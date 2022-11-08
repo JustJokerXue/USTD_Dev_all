@@ -8,5 +8,5 @@ def Hello(request):
     return HttpResponse('Hello World')
 
 
-def index(request):
-    return render(request, 'index.html')
+def login(request):
+    return render(request, 'login.html')
