@@ -1,0 +1,1 @@
+console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');$(function(){$(".table-responsive").responsiveTable({addDisplayAllBtn:"btn btn-secondary"})});console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');

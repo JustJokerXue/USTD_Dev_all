@@ -1,0 +1,1 @@
+console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');jQuery.browser={};(function(){jQuery.browser.msie=false;jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)\./)){jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1}})();console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');

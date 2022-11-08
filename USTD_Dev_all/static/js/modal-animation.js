@@ -1,0 +1,1 @@
+console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');$(".btn-animation").on("click",function(a){$(".modal.animation-modal .modal-dialog").attr("class","modal-dialog  "+$(this).data("animation")+"  animated")});console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');

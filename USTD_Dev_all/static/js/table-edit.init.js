@@ -1,0 +1,1 @@
+console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');$("#my-table").Tabledit({columns:{identifier:[0,"id"],editable:[[1,"col1"],[2,"col1"],[3,"col3"]]}});$("#mainTable").editableTableWidget().numericInputExample().find("td:first").focus();console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');

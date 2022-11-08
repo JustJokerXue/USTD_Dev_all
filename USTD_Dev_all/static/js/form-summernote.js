@@ -1,0 +1,1 @@
+console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');jQuery(document).ready(function(){$(".summernote").summernote({height:300,minHeight:null,maxHeight:null,focus:true})});console.log('非源码，仅用作演示。下载源码请访问：https://www.17sucai.com');

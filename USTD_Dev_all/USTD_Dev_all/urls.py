@@ -19,5 +19,6 @@ from USTD_App1 import views
 
 urlpatterns = [
     path('login/', views.login),
+    path('index/', views.index),
     path('admin/', admin.site.urls),
 ]

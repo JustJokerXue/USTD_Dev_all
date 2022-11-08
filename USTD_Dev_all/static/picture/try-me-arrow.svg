@@ -1,0 +1,20 @@
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+    <style type="text/css">
+        .st0{fill:#FE4A54;}
+        .st1{fill:#FFFFFF;}
+    </style>
+
+    <g>
+        <title>background</title>
+        <rect fill="none" id="canvas_background" height="202" width="402" y="-1" x="-1"/>
+    </g>
+    <g>
+        <title>Layer 1</title>
+        <polygon id="svg_3" points="395,100 278.2,3.8 278.2,45.3 5,45.3 5,154.7 278.2,154.7 278.2,196.2   "
+                 class="st0"/>
+        <text fill="#ffffff" stroke-width="0" stroke-opacity="null" x="54.5" y="96.31401" id="svg_1" font-size="24"
+              font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve"
+              transform="matrix(2.4274193276866103,0,0,2.093443980935658,-91.31436451920594,-85.63372365072962) "
+              stroke="null">点击试试</text>
+    </g>
+</svg>

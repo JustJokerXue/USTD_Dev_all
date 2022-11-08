@@ -1,0 +1,163 @@
+<!doctype html>
+
+<base href="/" />
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Webcraft Plugins - Premium jQuery and WordPress plugins</title>
+    <meta name="description" content="Webcraft Plugins">
+    <meta name="author" content="Webcraft">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/page-404.css">
+</head>
+
+<body class="unresolved">
+
+    <header>
+    <i class="fa fa-bars mobile-only" id="button-nav-menu"></i>
+    <div id="header-fixed">
+        <nav>
+            <ul>
+                <li><a href="/">About Us</a></li>
+                <li>
+                    <a class="toggle-submenu">Our Work</a>
+                    <div class="nav-submenu">
+                        <ul>
+                            <li><a href="/image-map-pro/">Image Map Pro</a></li>
+							<li><a href="/legal-assistant-pro-wordpress-plugin">Legal Assistant Pro - WordPress Plugin</a></li>
+                            <li><a href="/photo-grid-pro-jquery-plugin">Photo Grid Pro - jQuery Plugin</a></li>
+                            <li><a href="/photo-grid-pro-wordpress-plugin">Photo Grid Pro - WordPress Plugin</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="toggle-submenu">Freebies</a>
+                    <div class="nav-submenu">
+                        <ul>
+                            <li><a href="/scroll-craft-js">ScrollCraft.js</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/support">Customer Support</a></li>
+                <li><a data-inner-link-target="contact">Say Hello</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <h1 id="logo-resizable">Webcraft Plugins</h1>
+</header>
+
+    <section class="section-title">
+        <div class="subtitle-wrap">
+            <h2 id="title-error" class="small">Oops! Page not found.</h2>
+            <h3>We're sorry, but it looks like the page you were looking for isn't here.</h3>
+        </div>
+    </section>
+
+    <section id="section-error"></section>
+
+    <footer>
+    <section id="section-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 col-sm-6">
+                    <article class="article-left" id="footer-article-support">
+                        <h4>Customer Support</h4>
+                        <p>Please send us a ticket if you are having trouble using any of our products. We are here to help!</p>
+                        <div class="btn btn-pink btn-rounded"><a href="/support">Submit Ticket</a></div>
+                    </article>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <article class="article-right" data-inner-link="contact">
+                        <h4>Say Hello</h4>
+                        <form>
+                            <input type="text" id="input-footer-email" placeholder="Your Email">
+                            <textarea id="textarea-footer-message" placeholder="Your Message"></textarea>
+                            <p id="message-error"></p>
+                            <p id="message-success">Your message was sent!</p>
+                            <div class="btn btn-pink btn-rounded" id="button-send-message"><a>Send</a></div>
+                        </form>
+                    </article>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2 col-sm-6">
+                    <article class="article-left" id="footer-article-follow">
+                        <h4>Follow us</h4>
+                        <p>
+                            <a href="https://www.facebook.com/webcraftplugins/" target="_blank">Facebook</a><br>
+                            <a href="https://twitter.com/WebcraftP" target="_blank">Twitter</a><br>
+                            <a href="http://codecanyon.net/user/nickys" target="_blank">CodeCanyon</a><br>
+                            <a href="/blog">Webcraft Dev Blog</a><br>
+                        </p>
+                    </article>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <article class="article-right" id="footer-article-salesrobot">
+                        <h4>Are you an Envato Author?</h4>
+                        <p>
+                            We also make <a href="http://salesrobot.net">SalesRobot</a>! A completely free web app to track your sales like a pro. The demo is just one click away, no registration is required. Check it out!
+                        </p>
+                        <div id="salesrobot-box">
+                            <div class="pull-left"><a href="http://salesrobot.net"><img src="img/product/icon-salesrobot.png"></a></div>
+                            <div>
+                                <h5>SalesRobot</h5>
+                                <a href="http://salesrobot.net">salesrobot.net</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <p id="bottom-paragraph">
+                <a href="/privacy">Privacy Policy</a><br>
+                <a href="/terms">Terms of Use</a><br>
+                Copyright 2016. All rights reserved.
+            </p>
+        </div>
+    </section>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57641288-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  window.intercomSettings = {
+    app_id: "ukqxz4ki"
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ukqxz4ki';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="js/magic-scroll.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
