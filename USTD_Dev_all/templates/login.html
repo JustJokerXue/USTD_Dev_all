@@ -14,27 +14,28 @@
         <div class="_1RxfFVyy86UE1t7lqCDcGD">
             <div class="_3CkMCIo8-RsWtcLQqsuKBh">
                 <div class="_3lr3h2hawOi8pO8fYLQcjI">教师端登录</div>
-                <div class="_6vZdUKmPDGrrza0LnuXD9">
-                    <div>
-                        <div class="mobileIcon"></div>
-                        <input type="text" maxlength="11" autocomplete="off" placeholder="请输入十一位手机号码">
-                        <p class="_2nSTvdgBwioyepYsyeaVPN"></p>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="_6vZdUKmPDGrrza0LnuXD9">
+                        <div>
+                            <div class="mobileIcon"></div>
+                            <input type="text" name="id" maxlength="11" autocomplete="off" placeholder="请输入十一位手机号码">
+                            <p class="_2nSTvdgBwioyepYsyeaVPN"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="_6vZdUKmPDGrrza0LnuXD9">
-                    <div>
-                        <div class="passwordIcon"></div>
-                        <input type="password" autocomplete="off" placeholder="请输入6-20位密码">
-                        <p class="_2nSTvdgBwioyepYsyeaVPN"></p>
+                    <div class="_6vZdUKmPDGrrza0LnuXD9">
+                        <div>
+                            <div class="passwordIcon"></div>
+                            <input type="password" name="pwd" autocomplete="off" placeholder="请输入6-20位密码">
+                            <p class="_2nSTvdgBwioyepYsyeaVPN"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="_6vZdUKmPDGrrza0LnuXD9"><a class="_2ZggRBvDTyawWaQQ6ambu4">登录</a></div>
-                <div class="_6vZdUKmPDGrrza0LnuXD9">
-                    <div>
-                        <p class="_2owYBOfa1UIX-AfegSAhj7"><a href="">快速注册</a><span></span></p>
-                        <a href="" class="_3x9qBnGOvjSE2ZmDfi1w5g">忘记密码</a>
+                    <div class="_6vZdUKmPDGrrza0LnuXD9"><a class="_2ZggRBvDTyawWaQQ6ambu4"><input type="submit"
+                                                                                                  value="登录"
+                                                                                                  name="submit"></a>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>
