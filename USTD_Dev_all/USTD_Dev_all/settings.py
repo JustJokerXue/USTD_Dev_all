@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'USTD_App1',
-    'USTD_App2',
 ]
 
 MIDDLEWARE = [
