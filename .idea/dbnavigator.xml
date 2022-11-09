@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -34,13 +34,18 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="702ecc14-d1af-459f-b08c-41153edb2598" object-ref="schemas/main/tables/USTD_App1_student" />
+      <object connection-id="702ecc14-d1af-459f-b08c-41153edb2598" object-ref="schemas/main/tables/USTD_App1_score" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="702ecc14-d1af-459f-b08c-41153edb2598" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="702ecc14-d1af-459f-b08c-41153edb2598" dataset="main.USTD_App1_score" active-filter-id="d6144a8e-afde-4b8c-96bb-da18cbf29fae">
+      <filter id="d6144a8e-afde-4b8c-96bb-da18cbf29fae" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="702ecc14-d1af-459f-b08c-41153edb2598" dataset="main.USTD_App1_student" active-filter-id="be9a645c-e818-4f75-b9e7-6421f1aa0526">
       <filter id="be9a645c-e818-4f75-b9e7-6421f1aa0526" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />

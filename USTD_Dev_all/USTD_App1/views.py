@@ -57,37 +57,41 @@ def login(request):
 
 def select(i):
     S = Score.objects.get(id=i)
-    results = [{"大学英语": S.zy, "高等数学": S.cx, "体育": S.zs, "计算机基础": S.gl, "程序设计": S.zh},
-               {"大学英语": 80, "高等数学": 90, "体育": 91, "计算机基础": 85, "程序设计": 88}]
+    results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
+               {"专业技术": 50, "创新创业": 70, "知识学习": 53, "管理实践": 75, "综合发展": 85}]
     data_length = len(results[0])
-    # 将极坐标根据数据长度进行等分
     angles = np.linspace(0, 2 * np.pi, data_length, endpoint=False)
     labels = [key for key in results[0].keys()]
     score = [[v for v in result.values()] for result in results]
-    # 使雷达图数据封闭
     score_a = np.concatenate((score[0], [score[0][0]]))
     score_b = np.concatenate((score[1], [score[1][0]]))
     angles = np.concatenate((angles, [angles[0]]))
     labels = np.concatenate((labels, [labels[0]]))
-    # 设置图形的大小
-    fig = plt.figure(figsize=(8, 6), dpi=100)
-    # 新建一个子图
-    ax = plt.subplot(111, polar=True)
-    # 绘制雷达图
-    ax.plot(angles, score_a, color='g')
-    ax.plot(angles, score_b, color='b')
-    # 设置雷达图中每一项的标签显示
-    ax.set_thetagrids(angles * 180 / np.pi, labels)
-    # 设置雷达图的0度起始位置
-    ax.set_theta_zero_location('N')
-    # 设置雷达图的坐标刻度范围
-    ax.set_rlim(0, 100)
-    # 设置雷达图的坐标值显示角度，相对于起始角度的偏移量
-    ax.set_rlabel_position(270)
-    ax.set_title("计算机专业大一（上）")
-    plt.legend(["弓长张", "口天吴"], loc='best')
+    fig = plt.figure(figsize=(10, 6), dpi=100)
+    fig.suptitle("XXXX专业")
+    ax1 = plt.subplot(121, polar=True)
+    ax2 = plt.subplot(122, polar=True)
+    ax, data, name = [ax1, ax2], [score_a, score_b], ["个人", "平均"]
+    for i in range(2):
+        for j in np.arange(0, 100 + 20, 20):
+            ax[i].plot(angles, 6 * [j], '-.', lw=0.5, color='black')
+        for j in range(5):
+            ax[i].plot([angles[j], angles[j]], [0, 100], '-.', lw=0.5, color='black')
+        ax[i].plot(angles, data[i], color='b')
+        # 隐藏最外圈的圆
+        ax[i].spines['polar'].set_visible(False)
+        # 隐藏圆形网格线
+        ax[i].grid(False)
+        for a, b in zip(angles, data[i]):
+            ax[i].text(a, b + 5, '%.00f' % b, ha='center', va='center', fontsize=12, color='b')
+        ax[i].set_thetagrids(angles * 180 / np.pi, labels)
+        ax[i].set_theta_zero_location('N')
+        ax[i].set_rlim(0, 100)
+        ax[i].set_rlabel_position(0)
+        ax[i].set_title(name[i])
     # 汉字字体，优先使用楷体，找不到则使用黑体
     plt.rcParams['font.sans-serif'] = ['Kaitt', 'SimHei']
     # 正常显示负号
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig("1.png", format='png')
+    # plt.show()
+    plt.savefig("C:\\Users\\大灭\\PycharmProjects\\USTD_Dev_all\\USTD_Dev_all\\static\\image\\1.png", format='png')
