@@ -7,7 +7,7 @@ class Student(models.Model):
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     age = models.IntegerField(default=0, verbose_name='年龄', null=True)
     sp = models.CharField(max_length=200, verbose_name='专业', null=True)
-    pwd = models.IntegerField(default=0, verbose_name='密码', null=True)
+    pwd = models.IntegerField(verbose_name='密码', default=123456)
 
 
 class Score(models.Model):
