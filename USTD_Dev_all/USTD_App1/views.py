@@ -6,7 +6,7 @@ from .models import Student
 from .models import Score
 import numpy as np
 import matplotlib.pyplot as plt
-
+import sqlite3
 
 
 
@@ -32,11 +32,8 @@ def login(request):
         pwd = request.POST.get('pwd')
         #request.session['ID'] = id
         if not all([id, pwd]):
-            context = {
-                'status': '错误！用户名和密码不能为空！',
-                'length': 0
-            }
-            return render(request, 'login.html', context)
+
+            return render(request, 'error.html')
         else:
             student = Student.objects.filter(id=id, pwd=pwd)
             if len(student):
@@ -44,21 +41,38 @@ def login(request):
                 return render(request, 'index.html')#{"ID":ID}
 
             else:
-                context = {
-                    'status': '用户名密码错误！请重新输入！如未注册，请先注册！'
-                }
-                return render(request, 'login.html', context)
+
+                return render(request, 'error.html')
     else:
-        context = {
-            'status': '请输入用户名和密码',
-            'length': 0
-        }
-        return render(request, 'login.html', context)
+        return render(request, 'login.html')
+
 
 def select(i):
+    conn = sqlite3.connect('db.sqlite3')
+    cursor0 = conn.cursor()
+    cursor1 = conn.cursor()
+    cursor2 = conn.cursor()
+    cursor3 = conn.cursor()
+    cursor4 = conn.cursor()
     S = Score.objects.get(id=i)
+    avg_zy = cursor0.execute("SELECT AVG(zy) FROM USTD_App1_score")
+    avg_cx = cursor1.execute("SELECT AVG(cx) FROM USTD_App1_score")
+    avg_zs = cursor2.execute("SELECT AVG(zs) FROM USTD_App1_score")
+    avg_gl = cursor3.execute("SELECT AVG(gl) FROM USTD_App1_score")
+    avg_zh = cursor4.execute("SELECT AVG(zh) FROM USTD_App1_score")
+    avg_zy = avg_zy.fetchone()[0]
+    avg_cx = avg_cx.fetchone()[0]
+    avg_zs = avg_zs.fetchone()[0]
+    avg_gl = avg_gl.fetchone()[0]
+    avg_zh = avg_zh.fetchone()[0]
+    # print("\n")
+    # print("\n")
+    # print(avg_zy,avg_cx,avg_zs,avg_gl,avg_zh)
+    # #print(avg_zy,avg_cx)
+    # print("\n")
+    # print("\n")
     results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
-               {"专业技术": 50, "创新创业": 70, "知识学习": 53, "管理实践": 75, "综合发展": 85}]
+               {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
     data_length = len(results[0])
     angles = np.linspace(0, 2 * np.pi, data_length, endpoint=False)
     labels = [key for key in results[0].keys()]
