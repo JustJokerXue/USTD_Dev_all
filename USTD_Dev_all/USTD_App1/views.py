@@ -67,7 +67,7 @@ def select(i):
     score_b = np.concatenate((score[1], [score[1][0]]))
     angles = np.concatenate((angles, [angles[0]]))
     labels = np.concatenate((labels, [labels[0]]))
-    fig = plt.figure(figsize=(10, 6), dpi=100)
+    fig = plt.figure(figsize=(15, 6), dpi=100)
     fig.suptitle("XXXX专业")
     ax1 = plt.subplot(121, polar=True)
     ax2 = plt.subplot(122, polar=True)
@@ -94,4 +94,4 @@ def select(i):
     # 正常显示负号
     plt.rcParams['axes.unicode_minus'] = False
     # plt.show()
-    plt.savefig("C:\\Users\\大灭\\PycharmProjects\\USTD_Dev_all\\USTD_Dev_all\\static\\image\\1.png", format='png')
+    plt.savefig("static\\image\\1.png", format='png')
