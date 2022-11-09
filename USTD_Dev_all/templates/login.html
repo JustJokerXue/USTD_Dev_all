@@ -14,7 +14,7 @@
         <div class="_1RxfFVyy86UE1t7lqCDcGD">
             <div class="_3CkMCIo8-RsWtcLQqsuKBh">
                 <div class="_3lr3h2hawOi8pO8fYLQcjI">教师端登录</div>
-                <form action="" method="post">
+                <form action="" method="post" name="login">
                     {% csrf_token %}
                     <div class="_6vZdUKmPDGrrza0LnuXD9">
                         <div>
@@ -30,9 +30,8 @@
                             <p class="_2nSTvdgBwioyepYsyeaVPN"></p>
                         </div>
                     </div>
-                    <div class="_6vZdUKmPDGrrza0LnuXD9"><a class="_2ZggRBvDTyawWaQQ6ambu4"><input type="submit"
-                                                                                                  value="登录"
-                                                                                                  name="submit"></a>
+                    <div class="_6vZdUKmPDGrrza0LnuXD9"><a href="javascript:document.login.submit()" class="_2ZggRBvDTyawWaQQ6ambu4">登录
+                                                                                                  </a>
                     </div>
                 </form>
 
