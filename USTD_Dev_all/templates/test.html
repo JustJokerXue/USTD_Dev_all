@@ -5,6 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-test
+<table>
+
+    {% for row in shenhe_list %}
+    <tr>
+        <td>{{ row.id }}</td>
+        <td>{{ row.miaoshu }}</td>
+        <td>{{ row.leibie }}</td>
+        <td>{{ row.image }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
 </body>
 </html>

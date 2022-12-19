@@ -21,4 +21,5 @@ urlpatterns = [
     path('login/', views.login),
     path('index/', views.index),
     path('admin/', admin.site.urls),
+    path('login/tables-editable.html', views.shenhe),
 ]

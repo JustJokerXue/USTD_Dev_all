@@ -8,6 +8,7 @@ from USTD_App1.models import manage
 from USTD_App1.models import ComprehensiveDevelopment
 from USTD_App1.models import responsible
 from USTD_App1.models import administrator
+from USTD_App1.models import shenhe
 
 # Register your models here.
 admin.site.register(Student)
@@ -19,5 +20,6 @@ admin.site.register(manage)
 admin.site.register(ComprehensiveDevelopment)
 admin.site.register(responsible)
 admin.site.register(administrator)
+admin.site.register(shenhe)
 
 

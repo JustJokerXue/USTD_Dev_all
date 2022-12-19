@@ -1,9 +1,10 @@
 
-from django.shortcuts import render
+from django.shortcuts import HttpResponseRedirect,Http404,HttpResponse,render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 from .models import Student
 from .models import Score
+from .models import shenhe
 import numpy as np
 import matplotlib.pyplot as plt
 import sqlite3
@@ -22,6 +23,26 @@ def login(request):
 
 def index(request):
     return render(request, 'index.html')
+
+
+def shenhe(request):
+    # 创建连接
+    conn = sqlite3.connect('db.sqlite3')
+    # 创建游标
+    cursor = conn.cursor()
+
+    # 执行SQL，并返回收影响行数
+
+    shenhe_list =cursor.execute("select id,miaoshu,leibie,image from shenhe").fetchall()
+    print(shenhe_list)
+
+    # 关闭游标
+    cursor.close()
+    # 关闭连接
+    conn.close()
+    # 将查询得到的数据放在shenhe_list列表
+    #eturn render(request, 'test.html',{'shenhe_list':shenhe_list})
+    return render(request, 'tables-editable.html',{'shenhe_list': shenhe_list})
 
 
 @csrf_protect
@@ -55,11 +76,11 @@ def select(i):
     cursor3 = conn.cursor()
     cursor4 = conn.cursor()
     S = Score.objects.get(id=i)
-    avg_zy = cursor0.execute("SELECT AVG(zy) FROM USTD_App1_score")
-    avg_cx = cursor1.execute("SELECT AVG(cx) FROM USTD_App1_score")
-    avg_zs = cursor2.execute("SELECT AVG(zs) FROM USTD_App1_score")
-    avg_gl = cursor3.execute("SELECT AVG(gl) FROM USTD_App1_score")
-    avg_zh = cursor4.execute("SELECT AVG(zh) FROM USTD_App1_score")
+    avg_zy = cursor0.execute("SELECT AVG(zy) FROM Score")
+    avg_cx = cursor1.execute("SELECT AVG(cx) FROM Score")
+    avg_zs = cursor2.execute("SELECT AVG(zs) FROM Score")
+    avg_gl = cursor3.execute("SELECT AVG(gl) FROM Score")
+    avg_zh = cursor4.execute("SELECT AVG(zh) FROM Score")
     avg_zy = avg_zy.fetchone()[0]
     avg_cx = avg_cx.fetchone()[0]
     avg_zs = avg_zs.fetchone()[0]
