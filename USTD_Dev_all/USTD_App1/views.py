@@ -77,6 +77,8 @@ def login(request):
     else:
         return render(request, 'login.html')
 
+def Academic_Early_Warning(request):
+    return render(request, 'Academic_Early_Warning.html')
 
 def select(i):
     conn = sqlite3.connect('db.sqlite3')
