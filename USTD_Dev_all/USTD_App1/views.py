@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponseRedirect, Http404, HttpResponse, render
+from django.shortcuts import HttpResponseRedirect, Http404, HttpResponse, render, redirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 
@@ -17,24 +17,40 @@ def Hello(request):
     return HttpResponse('Hello World')
 
 
-def login(request):
-    return render()
+
+def login_view(requst):
+    return render(requst, 'login.html')
 
 
 def index(request):
     return render(request, 'index.html')
 
+# def shenhe(request):
+#     ID0 = request.session.get('ID')
+#     print(ID0)
+#     print("ww")
+#     shenhe1 = shenhe.objects.get(id=ID0)
+#
+#     return render(request, 'tables-editable.html')
 
-def shenhe(request):
+def shenhe_upload(request):
+    ID0 = request.session.get('ID')
+
+    print(ID0)
     if request.method == "POST":
         file = request.FILES['image']
         if file:
-            models.shenhe.objects.create(id=request.POST['id'], miaoshu=request.POST['miaoshu'],
-                                         leibie=request.POST['leibie'], image=file)
-    shenhe_list_obj = models.shenhe.objects.all()
-    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj})
+            models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'],leibie=request.POST['leibie'], image=file)
+    shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
+    request.session['ID0'] = ID0
+    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj,'ID0':ID0})
 
 
+def shenhe_delete(request):
+    id = request.GET.get('id')
+    models.shenhe.objects.filter(id=id).delete()
+    #return render(request, 'tables-editable.html')
+    return redirect("http://127.0.0.1:8000/login/tables-editable.html")
 # def shenhe(request):
 #     # 创建连接
 #     conn = sqlite3.connect('db.sqlite3')
@@ -58,24 +74,44 @@ def shenhe(request):
 @csrf_protect
 # 登录界面
 def login(request):
-    if request.method == "POST":
+    if request.method == 'POST':
+        print("进入页面")
         id = request.POST.get('id')
         pwd = request.POST.get('pwd')
-        # request.session['ID'] = id
-        if not all([id, pwd]):
-
-            return render(request, 'error.html')
+        id=str(id)
+        pwd=str(pwd)
+        student = Student.objects.get(id=id)
+        sid=str(student.id)
+        spwd=str(student.pwd)
+        print(id,pwd)
+        print(sid,spwd)
+        if id == sid and pwd == spwd:
+            print('登录成功')
+            select(id)
+            request.session['ID'] = student.id
+            return render(request, 'index.html',{'ID':student.id})
         else:
-            student = Student.objects.filter(id=id, pwd=pwd)
-            if len(student):
-                select(id)
-                return render(request, 'index.html')  # {"ID":ID}
-
-            else:
-
-                return render(request, 'error.html')
+            return render(request, 'test.html')
     else:
-        return render(request, 'login.html')
+        return render(request, 'test.html')
+    # if request.method == "POST":
+    #     id = request.POST.get('id')
+    #     pwd = request.POST.get('pwd')
+    #     print(id)
+    #     # request.session['ID'] = id
+    #     if not all([id, pwd]):
+    #
+    #         return render(request, 'error.html')
+    #     else:
+    #         student = Student.objects.filter(id=id, pwd=pwd)
+    #         if student:
+    #             select(id)
+    #             return render(request, 'index.html',{"ID":id})
+    #
+    #         else:
+    #             return render(request, 'error.html')
+    # else:
+    #     return render(request, 'test.html')
 
 def Academic_Early_Warning(request):
     return render(request, 'Academic_Early_Warning.html')

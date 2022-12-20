@@ -135,7 +135,7 @@ class administrator(models.Model):
         return self.name
 
 class shenhe(models.Model):
-    id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
+    no = models.IntegerField(default=0, verbose_name='学号')
     miaoshu = models.CharField(max_length=200, verbose_name='材料描述', null=True)
     leibie = models.CharField(max_length=200, verbose_name='材料类别', null=True)
     image = models.ImageField(default=0, verbose_name='材料图片', null=True)

@@ -485,37 +485,40 @@
                         <table class="table mb-0">
                             <thead>
                             <tr>
-                                <th>NO</th>
                                 <th>学号</th>
                                 <th>证明材料描述</th>
                                 <th>所属类别</th>
                                 <th>证明材料图片</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for item in shenhe_list %}
                             <tr>
-                                <td>{{ item.id }}</td>
+                                <td>{{ item.no }}</td>
                                 <td>{{ item.miaoshu }}</td>
                                 <td>{{ item.leibie }}</td>
                                 <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
+                                <td>
+                                <a href="/shenhe_delete.html?id={{ item.id }}">删除</a>
+                                </td>
                             </tr>
                             {% endfor %}
-                            <tr>
-                                <td>1</td>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
-                                <td></td>
-                            </tr>
-
                             </tbody>
                         </table>
                         <form enctype="multipart/form-data" action="tables-editable.html" method="post">
                             {% csrf_token %}
-                            <p>学号：<input type="text" name="id"></p>
+                            <p>学号：<input type="text" name="id" value={{ ID0 }} disabled="disabled"></p>
                             <p>描述：<input type="text" name="miaoshu"></p>
-                            <p>类别：<input type="text" name="leibie"></p>
+                            <p>
+                            类别：
+                            <select name="leibie">
+                                <option>创新创业</option>
+                                <option>专业技术</option>
+                                <option>管理实践</option>
+                                <option>综合发展</option>
+                            </select>
+                            </p>
                             <p>图片：<input type="file" name="image"></p>
                             <input type="submit" value="upload">
                         </form>
@@ -539,24 +542,7 @@
     </div>
 </footer>
 <!-- End Footer --><!-- jQuery -->
-<script type="text/javascript">
-    function addrow(){
-        var c=document.getElementById('mytable')//获得表格的信息
-        if( c.rows.length==0){//如果是向一个空表增加一行
-            var x=c.insertRow(0);//向空表插入一行
-            var y=x.insertCell(0);//向新行插入一列
-            y.innerHTML="new cell0";
-        }
-        else{
-            var z=c.rows[0].cells;//如果不是空表，首先获得表格有多少列，先获取再插入新行
-            var x=c.insertRow(0);
-            for(var i=0;i<z.length;i++){//依次向新行插入表格列数的单元格
-                var y=x.insertCell(i);
-                y.innerHTML="new cell"+i;
-            }
-        }
-    }
-</script>
+
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/popper.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
