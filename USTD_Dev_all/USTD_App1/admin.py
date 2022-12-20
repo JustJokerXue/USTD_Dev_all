@@ -22,4 +22,6 @@ admin.site.register(responsible)
 admin.site.register(administrator)
 admin.site.register(shenhe)
 
-
+admin.site.site_header = '大学生发展规划与评估系统管理后台'  # 设置header
+admin.site.site_title = '大学生发展规划与评估系统管理后台'  # 设置title
+admin.site.index_title = '大学生发展规划与评估系统管理后台'
