@@ -493,12 +493,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for i in shenhe_list %}
+                            {% for item in shenhe_list %}
                             <tr>
-                                <td>{{ i.id }}666</td>
-                                <td>{{ i.miaoshu }}</td>
-                                <td>{{ i.leibie }}</td>
-                                <td>{{ i.image }}</td>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.miaoshu }}</td>
+                                <td>{{ item.leibie }}</td>
+                                <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
                             </tr>
                             {% endfor %}
                             <tr>
@@ -511,6 +511,14 @@
 
                             </tbody>
                         </table>
+                        <form enctype="multipart/form-data" action="tables-editable.html" method="post">
+                            {% csrf_token %}
+                            <p>学号：<input type="text" name="id"></p>
+                            <p>描述：<input type="text" name="miaoshu"></p>
+                            <p>类别：<input type="text" name="leibie"></p>
+                            <p>图片：<input type="file" name="image"></p>
+                            <input type="submit" value="upload">
+                        </form>
                     </div>
                 </div>
             </div>

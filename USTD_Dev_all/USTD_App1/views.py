@@ -1,14 +1,14 @@
-
-from django.shortcuts import HttpResponseRedirect,Http404,HttpResponse,render
+from django.shortcuts import HttpResponseRedirect, Http404, HttpResponse, render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
+
+from . import models
 from .models import Student
 from .models import Score
 from .models import shenhe
 import numpy as np
 import matplotlib.pyplot as plt
 import sqlite3
-
 
 
 # Create your views here.
@@ -26,23 +26,33 @@ def index(request):
 
 
 def shenhe(request):
-    # 创建连接
-    conn = sqlite3.connect('db.sqlite3')
-    # 创建游标
-    cursor = conn.cursor()
+    if request.method == "POST":
+        file = request.FILES['image']
+        if file:
+            models.shenhe.objects.create(id=request.POST['id'], miaoshu=request.POST['miaoshu'],
+                                         leibie=request.POST['leibie'], image=file)
+    shenhe_list_obj = models.shenhe.objects.all()
+    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj})
 
-    # 执行SQL，并返回收影响行数
 
-    shenhe_list =cursor.execute("select id,miaoshu,leibie,image from shenhe").fetchall()
-    print(shenhe_list)
-
-    # 关闭游标
-    cursor.close()
-    # 关闭连接
-    conn.close()
-    # 将查询得到的数据放在shenhe_list列表
-    #eturn render(request, 'test.html',{'shenhe_list':shenhe_list})
-    return render(request, 'tables-editable.html',{'shenhe_list': shenhe_list})
+# def shenhe(request):
+#     # 创建连接
+#     conn = sqlite3.connect('db.sqlite3')
+#     # 创建游标
+#     cursor = conn.cursor()
+#
+#     # 执行SQL，并返回收影响行数
+#
+#     shenhe_list =cursor.execute("select id,miaoshu,leibie,image from shenhe").fetchall()
+#     print(shenhe_list)
+#
+#     # 关闭游标
+#     cursor.close()
+#     # 关闭连接
+#     conn.close()
+#     # 将查询得到的数据放在shenhe_list列表
+#     #eturn render(request, 'test.html',{'shenhe_list':shenhe_list})
+#     return render(request, 'tables-editable.html',{'shenhe_list': shenhe_list})
 
 
 @csrf_protect
@@ -51,7 +61,7 @@ def login(request):
     if request.method == "POST":
         id = request.POST.get('id')
         pwd = request.POST.get('pwd')
-        #request.session['ID'] = id
+        # request.session['ID'] = id
         if not all([id, pwd]):
 
             return render(request, 'error.html')
@@ -59,7 +69,7 @@ def login(request):
             student = Student.objects.filter(id=id, pwd=pwd)
             if len(student):
                 select(id)
-                return render(request, 'index.html')#{"ID":ID}
+                return render(request, 'index.html')  # {"ID":ID}
 
             else:
 
