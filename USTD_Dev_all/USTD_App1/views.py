@@ -1,3 +1,4 @@
+from django.db.models import Max
 from django.shortcuts import HttpResponseRedirect, Http404, HttpResponse, render, redirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
@@ -88,8 +89,10 @@ def login(request):
         if id == sid and pwd == spwd:
             print('登录成功')
             select(id)
+            max_Score_list=max_Score()
             request.session['ID'] = student.id
-            return render(request, 'index.html',{'ID':student.id})
+            return render(request, 'index.html',{'ID':student.id,'m1':max_Score_list[0],'m2':max_Score_list[1],'m3':max_Score_list[2]
+                ,'m4':max_Score_list[3],'m5':max_Score_list[4]})
         else:
             return render(request, 'test.html')
     else:
@@ -112,6 +115,29 @@ def login(request):
     #             return render(request, 'error.html')
     # else:
     #     return render(request, 'test.html')
+
+
+#查询各项成绩最高分
+def max_Score():
+    max_Score_list = list()
+    m1=Score.objects.aggregate(max1=Max("zy"))
+    m2=Score.objects.aggregate(max2=Max("cx"))
+    m3=Score.objects.aggregate(max3=Max("zs"))
+    m4=Score.objects.aggregate(max4=Max("gl"))
+    m5=Score.objects.aggregate(max5=Max("zh"))
+    print(m1,m2,m3,m4,m5)
+    value1 = list(m1.values())[0]
+    value2 = list(m2.values())[0]
+    value3 = list(m3.values())[0]
+    value4 = list(m4.values())[0]
+    value5 = list(m5.values())[0]
+    max_Score_list.append(value1)
+    max_Score_list.append(value2)
+    max_Score_list.append(value3)
+    max_Score_list.append(value4)
+    max_Score_list.append(value5)
+    print(max_Score_list)
+    return max_Score_list
 
 def Academic_Early_Warning(request):
     return render(request, 'Academic_Early_Warning.html')
