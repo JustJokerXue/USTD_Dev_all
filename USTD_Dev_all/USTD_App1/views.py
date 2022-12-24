@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 
 from . import models
-from .models import Student
+from .models import Student, Early_Warning
 from .models import Score
 from .models import shenhe
 import numpy as np
@@ -17,13 +17,27 @@ def Hello(request):
     return HttpResponse('Hello World')
 
 
-
-def login_view(requst):
-    return render(requst, 'login.html')
+def login_view(request):
+    return render(request, 'login.html')
 
 
 def index(request):
-    return render(request, 'index.html')
+    # ID0 = request.session.get('ID')
+    name = request.session.get('name')
+    print(name)
+    # std = Student.objects.get(id=ID0)
+    e = Student.objects.get(name=name)
+    std_id = e.id
+    print(std_id)
+    std = Early_Warning.objects.get(id=std_id)
+    # ame = std.name
+    if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
+        ans = '满足毕业最低要求'
+    else:
+        ans = '不满足毕业最低要求'
+    # request.session['stdID0'] = ID0
+    return render(request, 'index.html', locals())
+
 
 # def shenhe(request):
 #     ID0 = request.session.get('ID')
@@ -40,17 +54,20 @@ def shenhe_upload(request):
     if request.method == "POST":
         file = request.FILES['image']
         if file:
-            models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'],leibie=request.POST['leibie'], image=file)
+            models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'], leibie=request.POST['leibie'],
+                                         image=file)
     shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
     request.session['ID0'] = ID0
-    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj,'ID0':ID0})
+    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj, 'ID0': ID0})
 
 
 def shenhe_delete(request):
     id = request.GET.get('id')
     models.shenhe.objects.filter(id=id).delete()
-    #return render(request, 'tables-editable.html')
+    # return render(request, 'tables-editable.html')
     return redirect("http://127.0.0.1:8000/login/tables-editable.html")
+
+
 # def shenhe(request):
 #     # 创建连接
 #     conn = sqlite3.connect('db.sqlite3')
@@ -78,18 +95,22 @@ def login(request):
         print("进入页面")
         id = request.POST.get('id')
         pwd = request.POST.get('pwd')
-        id=str(id)
-        pwd=str(pwd)
+        id = str(id)
+        pwd = str(pwd)
         student = Student.objects.get(id=id)
-        sid=str(student.id)
-        spwd=str(student.pwd)
-        print(id,pwd)
-        print(sid,spwd)
+        sid = str(student.id)
+        spwd = str(student.pwd)
+        print(id, pwd)
+        print(sid, spwd)
         if id == sid and pwd == spwd:
             print('登录成功')
             select(id)
             request.session['ID'] = student.id
-            return render(request, 'index.html',{'ID':student.id})
+            # request.session['std'] = student.id
+            request.session['name'] = student.name
+            # request.session['stdID'] = student.id
+            return HttpResponseRedirect('index', {'ID': student.id, 'name': student.name})
+            # return render(request, 'index.html', {'ID': student.id, 'name': student.name})
         else:
             return render(request, 'test.html')
     else:
@@ -115,7 +136,26 @@ def login(request):
 
 
 def academic_Early_Warning(request):
-    return render(request, 'Academic_Early_Warning.html')
+    name = request.session.get('name')
+    print(name)
+    # std = Student.objects.get(id=ID0)
+    e = Student.objects.get(name=name)
+    std_id = e.id
+    print(std_id)
+    std = Early_Warning.objects.get(id=std_id)
+    minimum = std.minimum
+    compulsory = std.compulsory
+    elective = std.elective
+    physical = std.physical
+    cet4 = std.cet4
+    mandarin = std.mandarin
+    # ame = std.name
+    # if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
+    #     ans = '满足毕业最低要求'
+    # else:
+    #     ans = '不满足毕业最低要求'
+    # request.session['stdID0'] = ID0
+    return render(request, 'Academic_Early_Warning.html', locals())
 
 
 def test_view(request):

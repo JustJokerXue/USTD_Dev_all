@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'USTD_App1',
 ]
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 引擎（默认）
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
