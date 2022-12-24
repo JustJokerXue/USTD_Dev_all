@@ -23,6 +23,7 @@ urlpatterns = [
                   path('login/', views.login),
                   path('', views.login_view),
                   path('login/index', views.index),
+                  path('login/index.html', views.index),
                   path('admin/', admin.site.urls),
                   path(r'login/tables-editable.html', views.shenhe_upload),
                   path(r'index/tables-editable.html', views.shenhe_upload),
