@@ -25,5 +25,7 @@ urlpatterns = [
                   path('index/', views.index),
                   path('admin/', admin.site.urls),
                   path(r'login/tables-editable.html', views.shenhe_upload),
+                  path(r'login/Academic_Early_Warning.html', views.academic_Early_Warning),
+                  path(r'index/Academic_Early_Warning.html', views.academic_Early_Warning),
                   path(r'shenhe_delete.html', views.shenhe_delete),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

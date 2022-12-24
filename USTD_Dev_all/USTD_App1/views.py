@@ -113,8 +113,15 @@ def login(request):
     # else:
     #     return render(request, 'test.html')
 
-def Academic_Early_Warning(request):
+
+def academic_Early_Warning(request):
     return render(request, 'Academic_Early_Warning.html')
+
+
+def test_view(request):
+    python_data = "python里的数据"
+    return render(request, "test_view.html", {"html_data_name": python_data})
+
 
 def select(i):
     conn = sqlite3.connect('db.sqlite3')
