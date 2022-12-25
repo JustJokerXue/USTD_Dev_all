@@ -1,14 +1,14 @@
-from django.shortcuts import HttpResponseRedirect, Http404, HttpResponse, render, redirect
+import sqlite3
+
+import matplotlib.pyplot as plt
+import numpy as np
 from django.http import HttpResponse
+from django.shortcuts import HttpResponseRedirect, render, redirect
 from django.views.decorators.csrf import csrf_protect
 
 from . import models
-from .models import Student, Early_Warning
 from .models import Score
-from .models import shenhe
-import numpy as np
-import matplotlib.pyplot as plt
-import sqlite3
+from .models import Student, Early_Warning
 
 
 # Create your views here.
@@ -22,20 +22,16 @@ def login_view(request):
 
 
 def index(request):
-    # ID0 = request.session.get('ID')
     name = request.session.get('name')
     print(name)
-    # std = Student.objects.get(id=ID0)
     e = Student.objects.get(name=name)
     std_id = e.id
     print(std_id)
     std = Early_Warning.objects.get(id=std_id)
-    # ame = std.name
     if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
         ans = '满足毕业最低要求'
     else:
         ans = '不满足毕业最低要求'
-    # request.session['stdID0'] = ID0
     return render(request, 'index.html', locals())
 
 
@@ -49,7 +45,7 @@ def index(request):
 
 def shenhe_upload(request):
     ID0 = request.session.get('ID')
-
+    name = request.session.get('name')
     print(ID0)
     if request.method == "POST":
         file = request.FILES['image']
@@ -58,7 +54,7 @@ def shenhe_upload(request):
                                          image=file)
     shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
     request.session['ID0'] = ID0
-    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj, 'ID0': ID0})
+    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj, 'ID0': ID0, 'name': name})
 
 
 def shenhe_delete(request):
@@ -106,11 +102,8 @@ def login(request):
             print('登录成功')
             select(id)
             request.session['ID'] = student.id
-            # request.session['std'] = student.id
             request.session['name'] = student.name
-            # request.session['stdID'] = student.id
             return HttpResponseRedirect('index', {'ID': student.id, 'name': student.name})
-            # return render(request, 'index.html', {'ID': student.id, 'name': student.name})
         else:
             return render(request, 'test.html')
     else:

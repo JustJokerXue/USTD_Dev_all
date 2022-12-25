@@ -108,27 +108,33 @@
                             All </a>
                         </div>
                     </li><!-- User-->
-                    <li class="list-inline-item dropdown notification-list"><a
-                            class="nav-link dropdown-toggle arrow-none waves-effect nav-user"
-                            data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
-                            aria-expanded="false"><img src="/static/picture/avatar-1.jpg" alt="user"
-                                                       class="rounded-circle"></a>
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown"
+                           href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="/static/picture/avatar-1.jpg" alt="user" class="rounded-circle">
+                        </a>
+                        <span>{{ name }}</span>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown  border-0">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
-                                <h5>Welcome</h5>
+                                <h5>Welcome,{{ name }}</h5>
                             </div>
-                            <a class="dropdown-item" href="#"><i
-                                    class="mdi mdi-account-circle m-r-5 text-muted"></i>Profile</a><a
-                                class="dropdown-item" href="#"><i class="mdi mdi-wallet m-r-5 text-muted"></i>My
-                            Wallet</a><a class="dropdown-item" href="#"><span
-                                class="badge badge-success float-right">5</span><i
-                                class="mdi mdi-settings m-r-5 text-muted"></i>Settings</a><a
-                                class="dropdown-item" href="#"><i
-                                class="mdi mdi-lock-open-outline m-r-5 text-muted"></i>Lock screen</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i
-                                    class="mdi mdi-logout m-r-5 text-muted"></i></a><a href="index.html">Logout</a>
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-account-circle m-r-5 text-muted">
+                                </i>用户信息</a>
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-lock-open-outline m-r-5 text-muted">
+                                </i>切换用户</a>
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-settings m-r-5 text-muted">
+                                </i>设置
+                            </a>
+                            <div class="dropdown-divider">
+                            </div>
+                            <a class="dropdown-item" href="http://127.0.0.1:8000/">
+                                <i class="mdi mdi-logout m-r-5 text-muted">
+                                </i>退出登录
+                            </a>
                         </div>
                     </li>
                     <li class="menu-item list-inline-item">
@@ -286,7 +292,9 @@
                     <div class="float-right hide-phone">
                         <ul class="list-inline">
                             <li class="list-inline-item mr-3">
-                                <input class="knob" data-width="48" data-height="48" data-linecap="round" data-fgcolor="#605daf" value="80" data-skin="tron" data-angleoffset="180" data-readonly="true" data-thickness=".1">
+                                <input class="knob" data-width="48" data-height="48" data-linecap="round"
+                                       data-fgcolor="#605daf" value="80" data-skin="tron" data-angleoffset="180"
+                                       data-readonly="true" data-thickness=".1">
                             </li>
                             <li class="list-inline-item">
                                 <span class="text-muted">Storage used</span>
@@ -305,7 +313,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="mt-0 header-title">Edit Table With Button</h4>
-                       <br>
+                        <br>
                         <table class="table mb-0">
                             <thead>
                             <tr>
@@ -324,7 +332,7 @@
                                 <td>{{ item.leibie }}</td>
                                 <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
                                 <td>
-                                <a href="/shenhe_delete.html?id={{ item.id }}">删除</a>
+                                    <a href="/shenhe_delete.html?id={{ item.id }}">删除</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -335,13 +343,13 @@
                             <p>学号：<input type="text" name="id" value={{ ID0 }} disabled="disabled"></p>
                             <p>描述：<input type="text" name="miaoshu"></p>
                             <p>
-                            类别：
-                            <select name="leibie">
-                                <option>创新创业</option>
-                                <option>专业技术</option>
-                                <option>管理实践</option>
-                                <option>综合发展</option>
-                            </select>
+                                类别：
+                                <select name="leibie">
+                                    <option>创新创业</option>
+                                    <option>专业技术</option>
+                                    <option>管理实践</option>
+                                    <option>综合发展</option>
+                                </select>
                             </p>
                             <p>图片：<input type="file" name="image"></p>
                             <input type="submit" value="upload">
