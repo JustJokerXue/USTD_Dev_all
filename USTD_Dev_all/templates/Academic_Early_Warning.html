@@ -26,9 +26,9 @@
 			<div class="topbar-main">
 				<div class="container-fluid">
 					<!-- Logo container-->
-					<div class="logo"><a href="index.html" class="logo"><i
-								class="mdi mdi-bowling text-success mr-1"></i><span
-								class="hide-phone">大学生评估与预警系统</span></a></div><!-- End Logo container-->
+					<div class="logo"><a href="index" class="logo"><i
+							class="mdi mdi-bowling text-success mr-1"></i><span
+							class="hide-phone">大学生评估与预警系统</span></a></div><!-- End Logo container-->
 					<div class="menu-extras topbar-custom">
 						<ul class="list-inline float-right mb-0">
 							<!-- language-->
@@ -107,10 +107,11 @@
 									data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
 									aria-expanded="false"><img src="/static/picture/avatar-1.jpg" alt="user"
 															   class="rounded-circle"></a>
+								<span>{{ name }}</span>
 								<div class="dropdown-menu dropdown-menu-right profile-dropdown  border-0">
 									<!-- item-->
 									<div class="dropdown-item noti-title">
-										<h5>Welcome</h5>
+										<h5>Welcome,{{ name }}</h5>
 									</div><a class="dropdown-item" href="#"><i
 											class="mdi mdi-account-circle m-r-5 text-muted"></i>Profile</a><a
 										class="dropdown-item" href="#"><i class="mdi mdi-wallet m-r-5 text-muted"></i>My
@@ -172,44 +173,116 @@
 									<thead>
 										<tr>
 											<th style="width: 50%;">项目</th>
-											<th>成绩</th>
+											<th>成绩/及格分数</th>
 											<th>是否合格</th>
 										</tr>
 									</thead>
 									<tbody>
+									<tr>
+										<td>最低学分要求</td>
+										<td><a href="#" id="inline-xuefen" data-pk="1">
+											{% if minimum >= 24 %}
+											<font color="green">{{ minimum }}</font>/24</a>
+											{% endif %}
+											{% if minimum < 24 %}
+											<font color="red">{{ minimum }}</font>/24</a>
+											{% endif %}
+										</td>
+										{% if minimum >= 24 %}
+										<td><font color="green">是</font></td>
+										{% endif %}
+										{% if minimum < 24 %}
+										<td><font color="red">否</font></td>
+										{% endif %}
+									</tr>
+									<tr>
+										<td>必修课成绩</td>
+										<td><a href="#" id="inline-bixiu" data-pk="1">
+											{% if compulsory >= 20 %}
+											<font color="green">{{ compulsory }}</font>/20</a>
+											{% endif %}
+											{% if compulsory < 20 %}
+											<font color="red">{{ compulsory }}</font>/20</a>
+											{% endif %}
+										</td>
+										{% if compulsory >= 20 %}
+										<td><font color="green">是</font></td>
+										{% endif %}
+										{% if compulsory < 20 %}
+										<td><font color="red">否</font></td>
+										{% endif %}
+									</tr>
+									<tr>
+										<td>选修课成绩</td>
+										<td><a href="#" id="inline-xuanxiu" data-pk="1" data-value="">
+											{% if elective >= 4 %}
+											<font color="green">{{ elective }}</font>/4</a>
+											{% endif %}
+											{% if elective < 4 %}
+											<font color="red">{{ elective }}</font>/4</a>
+											{% endif %}
+										</td>
+										{% if elective >= 4 %}
+										<td><font color="green">是</font></td>
+										{% endif %}
+										{% if elective < 4 %}
+										<td><font color="red">否</font></td>
+										{% endif %}
+									</tr>
+									<tr>
+										<td>体测成绩</td>
+										<td><a href="#" id="inline-tiyu" data-type="select" data-pk="1"
+											   data-value="0" data-source="/status"
+											   data-title="Select status">
+											{% if physical >= 60 %}
+											<font color="green">{{ physical }}</font>/60</a>
+											{% endif %}
+											{% if physical < 60 %}
+											<font color="red">{{ physical }}</font>/60</a>
+											{% endif %}
+										</td>
+										{% if physical >= 60 %}
+										<td><font color="green">是</font></td>
+										{% endif %}
+										{% if physical < 60 %}
+										<td><font color="red">否</font></td>
+										{% endif %}
+									</tr>
+									<tr>
+										<td>四级成绩</td>
+										<td><a href="#" id="inline-siji" data-type="combodate"
+											   data-pk="1" data-title="">
+											{% if cet4 >= 425 %}
+											<font color="green">{{ cet4 }}</font>/425</a>
+											{% endif %}
+											{% if cet4 < 425 %}
+											<font color="red">{{ cet4 }}</font>/425</a>
+											{% endif %}
+										</td>
+										{% if cet4 >= 425 %}
+										<td><font color="green">是</font></td>
+										{% endif %}
+										{% if cet4 < 425 %}
+										<td><font color="red">否</font></td>
+										{% endif %}
+									</tr>
 										<tr>
-											<td>最低学分要求</td>
-											<td><a href="#" id="inline-xuefen" data-pk="1">/24</a></td>
-													<td>是</td>
-										</tr>
-										<tr>
-											<td>必修课成绩</td>
-											<td><a href="#" id="inline-bixiu" data-pk="1">/20</a></td>
-													<td>是</td>
-										</tr>
-										<tr>
-											<td>选修课成绩</td>
-											<td><a href="#" id="inline-xuanxiu" data-pk="1" data-value="">/4</a></td>
-													<td>是</td>
-										</tr>
-										<tr>
-											<td>体测成绩</td>
-											<td><a href="#" id="inline-tiyu" data-type="select" data-pk="1"
-													data-value="0" data-source="/status"
-													data-title="Select status">/60</a></td>
-													<td>是</td>
-										</tr>
-										<tr>
-											<td>四级成绩</td>
-											<td><a href="#" id="inline-siji" data-type="combodate"
-													data-pk="1" data-title="">/425</a></td>
-													<td>是</td>
-										</tr>
-										<tr>
-											<td>普通话</td>
+											<td>普通话成绩</td>
 											<td><a href="#" id="inline-putonghua" data-type="textarea" data-pk="1"
-													data-title="Enter comments">/80</a></td>
-													<td>是</td>
+												   data-title="Enter comments">
+												{% if mandarin >= 80 %}
+												<font color="green">{{ mandarin }}</font>/80</a>
+												{% endif %}
+												{% if mandarin < 80 %}
+												<font color="red">{{ mandarin }}</font>/80</a>
+												{% endif %}
+											</td>
+											{% if mandarin >= 80 %}
+											<td><font color="green">是</font></td>
+											{% endif %}
+											{% if mandarin < 80 %}
+											<td><font color="red">否</font></td>
+											{% endif %}
 										</tr>
 									</tbody>
 								</table>

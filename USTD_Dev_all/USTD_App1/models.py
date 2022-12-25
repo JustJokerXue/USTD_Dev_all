@@ -3,6 +3,29 @@ from django.db import models
 
 # Create your models here.
 
+class Early_Warning(models.Model):
+    id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
+    minimum = models.IntegerField(default=0, verbose_name='最低学分要求', null=True)
+    compulsory = models.IntegerField(default=0, verbose_name='必修课成绩', null=True)
+    elective = models.IntegerField(default=0, verbose_name='选修课成绩', null=True)
+    physical = models.IntegerField(default=0, verbose_name='体测成绩', null=True)
+    cet4 = models.IntegerField(default=0, verbose_name='四级成绩', null=True)
+    mandarin = models.IntegerField(default=0, verbose_name='普通话成绩', null=True)
+
+    class Meta:
+        db_table = 'Early_Warning'
+        verbose_name = "学业预警"
+        verbose_name_plural = "学业预警"
+        constraints = [
+            models.CheckConstraint(check=models.Q(minimum__gte=0, minimum__lte=170), name='minimum'),
+            models.CheckConstraint(check=models.Q(compulsory__gte=0, compulsory__lte=100), name='compulsory'),
+            models.CheckConstraint(check=models.Q(elective__gte=0, elective__lte=100), name='elective'),
+            models.CheckConstraint(check=models.Q(physical__gte=0, physical__lte=100), name='physical'),
+            models.CheckConstraint(check=models.Q(cet4__gte=0, cet4__lte=750), name='cet4'),
+            models.CheckConstraint(check=models.Q(mandarin__gte=0, mandarin__lte=100), name='mandarin'),
+        ]
+
+
 class Student(models.Model):
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
@@ -18,6 +41,7 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
+
 class Score(models.Model):
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     zy = models.IntegerField(default=0, verbose_name='专业技术能力', null=True)
@@ -30,6 +54,7 @@ class Score(models.Model):
         db_table = 'Score'
         verbose_name = "评分"
         verbose_name_plural = "评分"
+
 
 class Knowledge(models.Model):
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
@@ -46,6 +71,7 @@ class Knowledge(models.Model):
     def __str__(self):
         return self.name
 
+
 class Innovation(models.Model):
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
@@ -61,6 +87,7 @@ class Innovation(models.Model):
     def __str__(self):
         return self.name
 
+
 class majorTechnology(models.Model):
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
@@ -75,6 +102,7 @@ class majorTechnology(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class manage(models.Model):
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
@@ -105,8 +133,9 @@ class ComprehensiveDevelopment(models.Model):
         verbose_name = "综合发展"
         verbose_name_plural = "综合发展"
 
-        def __str__(self):
-            return self.name
+    def __str__(self):
+        return self.name
+
 
 class responsible(models.Model):
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
@@ -121,6 +150,7 @@ class responsible(models.Model):
     def __str__(self):
         return self.name
 
+
 class administrator(models.Model):
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     Employeeno = models.IntegerField(default=0, verbose_name='职工号', primary_key=True)
@@ -134,6 +164,7 @@ class administrator(models.Model):
     def __str__(self):
         return self.name
 
+
 class shenhe(models.Model):
     no = models.IntegerField(default=0, verbose_name='学号')
     miaoshu = models.CharField(max_length=200, verbose_name='材料描述', null=True)
@@ -144,7 +175,3 @@ class shenhe(models.Model):
         db_table = 'shenhe'
         verbose_name = "审核"
         verbose_name_plural = "审核"
-
-
-def __str__(self):
-    return self.name

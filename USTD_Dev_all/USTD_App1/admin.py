@@ -9,8 +9,11 @@ from USTD_App1.models import ComprehensiveDevelopment
 from USTD_App1.models import responsible
 from USTD_App1.models import administrator
 from USTD_App1.models import shenhe
+from USTD_App1.models import Early_Warning
 
 # Register your models here.
+
+admin.site.register(Early_Warning)
 admin.site.register(Student)
 admin.site.register(Score)
 admin.site.register(Knowledge)

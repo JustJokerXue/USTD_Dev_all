@@ -43,10 +43,11 @@
                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <img src="/static/picture/avatar-1.jpg" alt="user" class="rounded-circle">
                         </a>
+                        <span>{{ name }}</span>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown  border-0">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
-                                <h5>Welcome</h5>
+                                <h5>Welcome,{{ name }}</h5>
                             </div>
                             <a class="dropdown-item" href="#">
                                 <i class="mdi mdi-lock-open-outline m-r-5 text-muted">
@@ -352,8 +353,13 @@
                         </div>
                         </br></br>
                         <div>
-                            <h6 class="header-title mb-4 mt-0"><font color="red">学业预警情况</font></h6>
-                            <span><font color="red"><strong>不满足毕业要求</strong></font></span></br></br>
+                            <h6 class="header-title mb-4 mt-0"><font color="black">学业预警情况</font></h6>
+                            {% if ans == "满足毕业最低要求" %}
+                            <span><font color="green"><strong>{{ ans }}</strong></font></span></br></br>
+                            {% endif %}
+                            {% if ans == "不满足毕业最低要求" %}
+                            <span><font color="red"><strong>{{ ans }}</strong></font></span></br></br>
+                            {% endif %}
                             <a href="Academic_Early_Warning.html"><u>详细展开</u></a></br></br>
                         </div>
                         <!--                        <ul class="list-unstyled list-inline text-center mb-0 mt-3">-->
