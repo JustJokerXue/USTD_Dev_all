@@ -30,4 +30,5 @@ urlpatterns = [
                   path(r'login/Academic_Early_Warning.html', views.academic_Early_Warning),
                   path(r'index/Academic_Early_Warning.html', views.academic_Early_Warning),
                   path(r'shenhe_delete.html', views.shenhe_delete),
+                  path(r'login/form-editors.html', views.form_editor),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

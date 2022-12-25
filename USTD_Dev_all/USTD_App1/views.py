@@ -163,6 +163,12 @@ def test_view(request):
     return render(request, "test_view.html", {"html_data_name": python_data})
 
 
+def form_editor(request):
+    name = request.session.get('name')
+    print(name)
+    return render(request, "form-editors.html", locals())
+
+
 def select(i):
     conn = sqlite3.connect('db.sqlite3')
     cursor0 = conn.cursor()
