@@ -1,4 +1,5 @@
 import sqlite3
+from tkinter import Image
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -50,9 +51,13 @@ def shenhe_upload(request):
     print(ID0)
     if request.method == "POST":
         file = request.FILES['image']
-        if file:
+        name = str(file)
+        print(name)
+        if file and (name.lower().endswith(('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff'))):
             models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'], leibie=request.POST['leibie'],
                                          image=file)
+        else:
+            return render(request, 'error2.html')
     shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
     request.session['ID0'] = ID0
     return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj, 'ID0': ID0, 'name': name})
@@ -81,7 +86,7 @@ def shenhe_delete(request):
 #     # 关闭连接
 #     conn.close()
 #     # 将查询得到的数据放在shenhe_list列表
-#     #eturn render(request, 'test.html',{'shenhe_list':shenhe_list})
+#     #eturn render(request, 'error2.html',{'shenhe_list':shenhe_list})
 #     return render(request, 'tables-editable.html',{'shenhe_list': shenhe_list})
 
 
@@ -133,7 +138,7 @@ def login(request):
     #         else:
     #             return render(request, 'error.html')
     # else:
-    #     return render(request, 'test.html')
+    #     return render(request, 'error2.html')
 
 
 def academic_Early_Warning(request):
