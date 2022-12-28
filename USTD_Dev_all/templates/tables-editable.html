@@ -293,16 +293,16 @@
                         <ul class="list-inline">
                             <li class="list-inline-item mr-3">
                                 <input class="knob" data-width="48" data-height="48" data-linecap="round"
-                                       data-fgcolor="#605daf" value="80" data-skin="tron" data-angleoffset="180"
+                                       data-fgcolor="#605daf" value="{{number}}" data-skin="tron" data-angleoffset="180"
                                        data-readonly="true" data-thickness=".1">
                             </li>
                             <li class="list-inline-item">
-                                <span class="text-muted">Storage used</span>
-                                <h6>400GB/524.84GB</h6>
+                                <span class="text-muted">成绩达标率</span>
+                                <h6>{{num_pass}}人/{{num_all}}人</h6>
                             </li>
                         </ul>
                     </div>
-                    <h4 class="page-title">Editable</h4>
+                    <h4 class="page-title">材料</h4>
 
                 </div>
             </div>
@@ -312,7 +312,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title">Edit Table With Button</h4>
+                        <h4 class="mt-0 header-title">材料提交</h4>
                         <br>
                         <table class="table mb-0">
                             <thead>

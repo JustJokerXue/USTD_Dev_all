@@ -1,5 +1,4 @@
 import sqlite3
-from os import name
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -26,15 +25,30 @@ def login_view(request):
 def index(request):
     name = request.session.get('name')
     print(name)
+    num_all = Score.objects.all().count()
+    num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
+    number = int((num_pass / num_all) * 100)
+    zh = Score.objects.filter(zy__gte=60).count()
+    ch = Score.objects.filter(cx__gte=60).count()
+    know = Score.objects.filter(zs__gte=60).count()
+    gl = Score.objects.filter(gl__gte=60).count()
     e = Student.objects.get(name=name)
     std_id = e.id
     print(std_id)
+    select(std_id)
+    max_Score_list = max_Score()
+    m1 = max_Score_list[0]
+    m2 = max_Score_list[1]
+    m3 = max_Score_list[2]
+    m4 = max_Score_list[3]
+    m5 = max_Score_list[4]
     std = Early_Warning.objects.get(id=std_id)
     if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
         ans = '满足毕业最低要求'
     else:
         ans = '不满足毕业最低要求'
     return render(request, 'index.html', locals())
+
 
 def infor(request):
     name = request.session.get('name')
@@ -43,11 +57,12 @@ def infor(request):
     std_id = e.id
     print(std_id)
     std = Student.objects.get(id=std_id)
-    id =std.id
+    id = std.id
     age = std.age
     sp = std.sp
-    pwd =std.pwd
+    pwd = std.pwd
     return render(request, "infor.html", locals())
+
 
 # def shenhe(request):
 #     ID0 = request.session.get('ID')
@@ -60,6 +75,9 @@ def infor(request):
 def shenhe_upload(request):
     ID0 = request.session.get('ID')
     name = request.session.get('name')
+    num_all = Score.objects.all().count()
+    num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
+    number = int((num_pass / num_all) * 100)
     print(ID0)
     if request.method == "POST":
         file = request.FILES['image']
@@ -74,7 +92,7 @@ def shenhe_upload(request):
             return render(request, 'error2.html')
     shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
     request.session['ID0'] = ID0
-    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj, 'ID0': ID0, 'name': name})
+    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj, 'ID0': ID0, 'name': name,'num_pass':num_pass,'num_all':num_all,'number':number})
 
 
 def shenhe_delete(request):
@@ -124,6 +142,13 @@ def login(request):
             print(sid, spwd)
             if id == sid and pwd == spwd:
                 print('登录成功')
+                num_all = Score.objects.all().count()
+                num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
+                number = int((num_pass / num_all) * 100)
+                zh = Score.objects.filter(zy__gte=60).count()
+                ch = Score.objects.filter(cx__gte=60).count()
+                know = Score.objects.filter(zs__gte=60).count()
+                gl = Score.objects.filter(gl__gte=60).count()
                 select(id)
                 max_Score_list = max_Score()
                 request.session['ID'] = student.id
@@ -138,7 +163,7 @@ def login(request):
                 return render(request, 'index.html',
                               {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
                                'm2': max_Score_list[1], 'm3': max_Score_list[2]
-                                  , 'm4': max_Score_list[3], 'm5': max_Score_list[4]})
+                                  , 'm4': max_Score_list[3], 'm5': max_Score_list[4],'num_all':num_all,'num_pass':num_pass,'number':number,'zh':zh,'ch':ch,'know':know,'gl':gl},)
             else:
                 return render(request, 'error.html')
         else:
@@ -170,7 +195,10 @@ def academic_Early_Warning(request):
     # num_pass=
     name = request.session.get('name')
     print(name)
-    # std = Student.objects.get(id=ID0)
+    num_all = Early_Warning.objects.all().count()
+    num_pass = Early_Warning.objects.filter(minimum__gte=24, compulsory__gte=20, elective__gte=4, physical__gte=60,
+                                            cet4__gte=425, mandarin__gte=80).count()
+    number = int((num_pass / num_all) * 100)
     e = Student.objects.get(name=name)
     std_id = e.id
     print(std_id)

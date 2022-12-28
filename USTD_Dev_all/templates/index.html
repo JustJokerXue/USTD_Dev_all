@@ -120,7 +120,7 @@
                             <div class="dropdown-item noti-title">
                                 <h5>Welcome,{{ name }}</h5>
                             </div>
-                            <a class="dropdown-item" href="http://127.0.0.1:8000/login/index/infor.html">
+                            <a class="dropdown-item" href="/login/infor.html">
                                 <i class="mdi mdi-account-circle m-r-5 text-muted">
                                 </i>用户信息</a>
                             <a class="dropdown-item" href="#">
@@ -299,12 +299,12 @@
                         <ul class="list-inline">
                             <li class="list-inline-item mr-3">
                                 <input class="knob" data-width="48" data-height="48" data-linecap="round"
-                                       data-fgcolor="#605daf" value="75" data-skin="tron" data-angleoffset="180"
+                                       data-fgcolor="#605daf" value="{{number}}" data-skin="tron" data-angleoffset="180"
                                        data-readonly="true" data-thickness=".1">
                             </li>
                             <li class="list-inline-item">
                                 <span class="text-muted">成绩达标率</span>
-                                <h6>393人/524人</h6>
+                                <h6>{{num_pass}}人/{{num_all}}人</h6>
                             </li>
                         </ul>
                     </div>
@@ -335,7 +335,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">201</h5>
+                                            <h5 class="mt-0 mb-1">{{zh}}人</h5>
                                             <p class="mb-0 font-12 text-muted">专业技术能力</p>
                                         </div>
                                     </div>
@@ -354,7 +354,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">162</h5>
+                                            <h5 class="mt-0 mb-1">{{ch}}人</h5>
                                             <p class="mb-0 font-12 text-muted">创新创业能力</p>
                                         </div>
                                     </div>
@@ -373,7 +373,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">450</h5>
+                                            <h5 class="mt-0 mb-1">{{know}}人</h5>
                                             <p class="mb-0 font-12 text-muted">知识学习能力</p>
                                         </div>
                                     </div>
@@ -392,7 +392,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">286</h5>
+                                            <h5 class="mt-0 mb-1">{{gl}}人</h5>
                                             <p class="mb-0 font-12 text-muted">管理实践能力</p>
                                         </div>
                                     </div>
