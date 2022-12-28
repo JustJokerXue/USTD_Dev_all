@@ -1,11 +1,10 @@
 import sqlite3
-from tkinter import Image
 
 import matplotlib.pyplot as plt
 import numpy as np
 from django.db.models import Max
 from django.http import HttpResponse
-from django.shortcuts import HttpResponseRedirect, render, redirect
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 
 from . import models
@@ -53,7 +52,9 @@ def shenhe_upload(request):
         file = request.FILES['image']
         name = str(file)
         print(name)
-        if file and (name.lower().endswith(('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff'))):
+        if file and (
+                name.lower().endswith(
+                    ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff'))):
             models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'], leibie=request.POST['leibie'],
                                          image=file)
         else:
@@ -111,14 +112,24 @@ def login(request):
             if id == sid and pwd == spwd:
                 print('登录成功')
                 select(id)
-                max_Score_list=max_Score()
+                max_Score_list = max_Score()
                 request.session['ID'] = student.id
                 request.session['name'] = student.name
-                return render(request, 'index.html',{'ID':student.id,'m1':max_Score_list[0],'m2':max_Score_list[1],'m3':max_Score_list[2]
-                    ,'m4':max_Score_list[3],'m5':max_Score_list[4]})
+                std_id = student.id
+                print(std_id)
+                std = Early_Warning.objects.get(id=std_id)
+                if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
+                    ans = '满足毕业最低要求'
+                else:
+                    ans = '不满足毕业最低要求'
+                return render(request, 'index.html',
+                              {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
+                               'm2': max_Score_list[1], 'm3': max_Score_list[2]
+                                  , 'm4': max_Score_list[3], 'm5': max_Score_list[4]})
             else:
                 return render(request, 'error.html')
-        else:return render(request, 'error.html')
+        else:
+            return render(request, 'error.html')
     else:
         return render(request, 'error.html')
     # if request.method == "POST":
@@ -168,11 +179,11 @@ def academic_Early_Warning(request):
 
 def max_Score():
     max_Score_list = list()
-    m1=Score.objects.aggregate(max1=Max("zy"))
-    m2=Score.objects.aggregate(max2=Max("cx"))
-    m3=Score.objects.aggregate(max3=Max("zs"))
-    m4=Score.objects.aggregate(max4=Max("gl"))
-    m5=Score.objects.aggregate(max5=Max("zh"))
+    m1 = Score.objects.aggregate(max1=Max("zy"))
+    m2 = Score.objects.aggregate(max2=Max("cx"))
+    m3 = Score.objects.aggregate(max3=Max("zs"))
+    m4 = Score.objects.aggregate(max4=Max("gl"))
+    m5 = Score.objects.aggregate(max5=Max("zh"))
     value1 = list(m1.values())[0]
     value2 = list(m2.values())[0]
     value3 = list(m3.values())[0]
@@ -185,6 +196,7 @@ def max_Score():
     max_Score_list.append(value5)
     print(max_Score_list)
     return max_Score_list
+
 
 def test_view(request):
     python_data = "python里的数据"
