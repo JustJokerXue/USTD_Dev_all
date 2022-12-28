@@ -1,7 +1,8 @@
 from django.db import models
 
-
 # Create your models here.
+from django.utils.html import format_html
+
 
 class Early_Warning(models.Model):
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
@@ -54,6 +55,13 @@ class Score(models.Model):
         db_table = 'Score'
         verbose_name = "评分"
         verbose_name_plural = "评分"
+        constraints = [
+            models.CheckConstraint(check=models.Q(zy__gte=0, zy__lte=100), name='zy'),
+            models.CheckConstraint(check=models.Q(cx__gte=0, cx__lte=100), name='cx'),
+            models.CheckConstraint(check=models.Q(zs__gte=0, zs__lte=100), name='zs'),
+            models.CheckConstraint(check=models.Q(gl__gte=0, gl__lte=100), name='gl'),
+            models.CheckConstraint(check=models.Q(zh__gte=0, zh__lte=100), name='zh'),
+        ]
 
 
 class Knowledge(models.Model):
@@ -61,12 +69,17 @@ class Knowledge(models.Model):
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     java = models.IntegerField(default=0, verbose_name='java课程', null=True)
     dataStructure = models.IntegerField(default=0, verbose_name='数据结构', null=True)
-    Gaverage = models.IntegerField(default=0, verbose_name='平均绩点', null=True)
+    Gaverage = models.FloatField(default=0, verbose_name='平均绩点', null=True)
 
     class Meta:
         db_table = 'Knowledge'
         verbose_name = "知识学习"
         verbose_name_plural = "知识学习"
+        constraints = [
+            models.CheckConstraint(check=models.Q(java__gte=0, java__lte=100), name='java'),
+            models.CheckConstraint(check=models.Q(dataStructure__gte=0, dataStructure__lte=100), name='dataStructure'),
+            models.CheckConstraint(check=models.Q(Gaverage__gte=0, Gaverage__lte=5), name='Gaverage'),
+        ]
 
     def __str__(self):
         return self.name
@@ -83,6 +96,13 @@ class Innovation(models.Model):
         db_table = 'Innovation'
         verbose_name = "创新创业"
         verbose_name_plural = "创新创业"
+        constraints = [
+            models.CheckConstraint(check=models.Q(ContestRating__gte=0, ContestRating__lte=100), name='ContestRating'),
+            models.CheckConstraint(check=models.Q(PatentRcoring__gte=0, PatentRcoring__lte=100), name='PatentRcoring'),
+            models.CheckConstraint(
+                check=models.Q(EntrepreneurialAchievement__gte=0, EntrepreneurialAchievement__lte=100),
+                name='EntrepreneurialAchievement'),
+        ]
 
     def __str__(self):
         return self.name
@@ -99,6 +119,12 @@ class majorTechnology(models.Model):
         db_table = 'majorTechnology'
         verbose_name = "专业技术"
         verbose_name_plural = "专业技术"
+        constraints = [
+            models.CheckConstraint(check=models.Q(ProjectPractice__gte=0, ProjectPractice__lte=100),
+                                   name='ProjectPractice'),
+            models.CheckConstraint(check=models.Q(PaperGrading__gte=0, PaperGrading__lte=100), name='PaperGrading'),
+            models.CheckConstraint(check=models.Q(StudentTutor__gte=0, StudentTutor__lte=100), name='StudentTutor'),
+        ]
 
     def __str__(self):
         return self.name
@@ -115,6 +141,12 @@ class manage(models.Model):
         db_table = 'manage'
         verbose_name = "管理实践"
         verbose_name_plural = "管理实践"
+        constraints = [
+            models.CheckConstraint(check=models.Q(community__gte=0, community__lte=100),
+                                   name='community'),
+            models.CheckConstraint(check=models.Q(StudentWork__gte=0, StudentWork__lte=100), name='StudentWork'),
+            models.CheckConstraint(check=models.Q(ProjectTeam__gte=0, ProjectTeam__lte=100), name='ProjectTeam'),
+        ]
 
     def __str__(self):
         return self.name
@@ -132,6 +164,13 @@ class ComprehensiveDevelopment(models.Model):
         db_table = 'ComprehensiveDevelopment'
         verbose_name = "综合发展"
         verbose_name_plural = "综合发展"
+        constraints = [
+            models.CheckConstraint(check=models.Q(physical__gte=0, physical__lte=100),
+                                   name='physical_1'),
+            models.CheckConstraint(check=models.Q(Volunteer__gte=0, Volunteer__lte=100), name='Volunteer'),
+            models.CheckConstraint(check=models.Q(Labor__gte=0, Labor__lte=100), name='Labor'),
+            models.CheckConstraint(check=models.Q(morality__gte=0, morality__lte=100), name='morality'),
+        ]
 
     def __str__(self):
         return self.name
@@ -166,14 +205,25 @@ class administrator(models.Model):
 
 
 class shenhe(models.Model):
-    no = models.IntegerField(default=0, verbose_name='学号',null=True)
+    no = models.IntegerField(default=0, verbose_name='学号', null=True)
     miaoshu = models.CharField(max_length=200, verbose_name='材料描述', null=True)
     leibie = models.CharField(max_length=200, verbose_name='材料类别', null=True)
     image = models.ImageField(default=0, verbose_name='材料图片', null=True)
+    image_img = models.ImageField(default=0, verbose_name='材料图片', null=True)
     zhuangtai = models.CharField(max_length=200, verbose_name='状态',
                                  choices=(('T', '通过'), ('F', '不通过'), ('D', '待审核')), default='D')
+
     class Meta:
         db_table = 'shenhe'
         verbose_name = "审核"
         verbose_name_plural = "审核"
 
+    def image_img(self):
+        # 这里添加一个防空判断
+        if not self.image:
+            return '无'
+        return format_html(
+            """<img src='{}' style='width:100px;height:100px;' >""",
+            self.image.url, self.image.url)
+
+    image_img.short_description = '图片'
