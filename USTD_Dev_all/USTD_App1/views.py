@@ -2,6 +2,7 @@ import sqlite3
 
 import matplotlib.pyplot as plt
 import numpy as np
+from django.db.models import Max
 from django.http import HttpResponse
 from django.shortcuts import HttpResponseRedirect, render, redirect
 from django.views.decorators.csrf import csrf_protect
@@ -89,25 +90,32 @@ def shenhe_delete(request):
 def login(request):
     if request.method == 'POST':
         print("进入页面")
-        id = request.POST.get('id')
-        pwd = request.POST.get('pwd')
-        id = str(id)
-        pwd = str(pwd)
-        student = Student.objects.get(id=id)
-        sid = str(student.id)
-        spwd = str(student.pwd)
-        print(id, pwd)
-        print(sid, spwd)
-        if id == sid and pwd == spwd:
-            print('登录成功')
-            select(id)
-            request.session['ID'] = student.id
-            request.session['name'] = student.name
-            return HttpResponseRedirect('index', {'ID': student.id, 'name': student.name})
-        else:
-            return render(request, 'test.html')
+        id = str(request.POST.get('id'))
+        pwd = str(request.POST.get('pwd'))
+        # id = str(id)
+        # pwd = str(pwd)
+        if id.isdigit():
+            try:
+                student = Student.objects.get(id=id)
+            except Exception as err:
+                return render(request, 'error.html')
+            sid = str(student.id)
+            spwd = str(student.pwd)
+            print(id, pwd)
+            print(sid, spwd)
+            if id == sid and pwd == spwd:
+                print('登录成功')
+                select(id)
+                max_Score_list=max_Score()
+                request.session['ID'] = student.id
+                request.session['name'] = student.name
+                return render(request, 'index.html',{'ID':student.id,'m1':max_Score_list[0],'m2':max_Score_list[1],'m3':max_Score_list[2]
+                    ,'m4':max_Score_list[3],'m5':max_Score_list[4]})
+            else:
+                return render(request, 'error.html')
+        else:return render(request, 'error.html')
     else:
-        return render(request, 'test.html')
+        return render(request, 'error.html')
     # if request.method == "POST":
     #     id = request.POST.get('id')
     #     pwd = request.POST.get('pwd')
@@ -150,6 +158,26 @@ def academic_Early_Warning(request):
     # request.session['stdID0'] = ID0
     return render(request, 'Academic_Early_Warning.html', locals())
 
+
+def max_Score():
+    max_Score_list = list()
+    m1=Score.objects.aggregate(max1=Max("zy"))
+    m2=Score.objects.aggregate(max2=Max("cx"))
+    m3=Score.objects.aggregate(max3=Max("zs"))
+    m4=Score.objects.aggregate(max4=Max("gl"))
+    m5=Score.objects.aggregate(max5=Max("zh"))
+    value1 = list(m1.values())[0]
+    value2 = list(m2.values())[0]
+    value3 = list(m3.values())[0]
+    value4 = list(m4.values())[0]
+    value5 = list(m5.values())[0]
+    max_Score_list.append(value1)
+    max_Score_list.append(value2)
+    max_Score_list.append(value3)
+    max_Score_list.append(value4)
+    max_Score_list.append(value5)
+    print(max_Score_list)
+    return max_Score_list
 
 def test_view(request):
     python_data = "python里的数据"
