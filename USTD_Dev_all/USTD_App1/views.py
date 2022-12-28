@@ -129,6 +129,8 @@ def login(request):
 
 
 def academic_Early_Warning(request):
+    # num_all=
+    # num_pass=
     name = request.session.get('name')
     print(name)
     # std = Student.objects.get(id=ID0)
