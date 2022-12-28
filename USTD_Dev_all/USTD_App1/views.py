@@ -1,5 +1,4 @@
 import sqlite3
-from os import name
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -29,12 +28,20 @@ def index(request):
     e = Student.objects.get(name=name)
     std_id = e.id
     print(std_id)
+    select(std_id)
+    max_Score_list = max_Score()
+    m1 = max_Score_list[0]
+    m2 = max_Score_list[1]
+    m3 = max_Score_list[2]
+    m4 = max_Score_list[3]
+    m5 = max_Score_list[4]
     std = Early_Warning.objects.get(id=std_id)
     if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
         ans = '满足毕业最低要求'
     else:
         ans = '不满足毕业最低要求'
     return render(request, 'index.html', locals())
+
 
 def infor(request):
     name = request.session.get('name')
@@ -43,11 +50,12 @@ def infor(request):
     std_id = e.id
     print(std_id)
     std = Student.objects.get(id=std_id)
-    id =std.id
+    id = std.id
     age = std.age
     sp = std.sp
-    pwd =std.pwd
+    pwd = std.pwd
     return render(request, "infor.html", locals())
+
 
 # def shenhe(request):
 #     ID0 = request.session.get('ID')
