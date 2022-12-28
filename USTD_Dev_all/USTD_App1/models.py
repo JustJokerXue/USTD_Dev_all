@@ -166,12 +166,14 @@ class administrator(models.Model):
 
 
 class shenhe(models.Model):
-    no = models.IntegerField(default=0, verbose_name='学号')
+    no = models.IntegerField(default=0, verbose_name='学号',null=True)
     miaoshu = models.CharField(max_length=200, verbose_name='材料描述', null=True)
     leibie = models.CharField(max_length=200, verbose_name='材料类别', null=True)
     image = models.ImageField(default=0, verbose_name='材料图片', null=True)
-
+    zhuangtai = models.CharField(max_length=200, verbose_name='状态',
+                                 choices=(('T', '通过'), ('F', '不通过'), ('D', '待审核')), default='D')
     class Meta:
         db_table = 'shenhe'
         verbose_name = "审核"
         verbose_name_plural = "审核"
+
