@@ -17,14 +17,23 @@ from USTD_App1 import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 from django.urls import path
 
 urlpatterns = [
+                  path('password-change/', PasswordChangeView.as_view(
+                      template_name="password_change_form.html",
+                      success_url="password-change-done/"),
+                       name='password_change'),
+                  path('pasword-change-done/', PasswordChangeDoneView.as_view(
+                      template_name="password_change_done.html"),
+                       name='password_change_done'),
                   path('', views.login_view),
                   path('login/', views.login),
                   path('admin/', admin.site.urls),
                   path('login/index.html', views.index),
                   path(r'login/infor.html', views.infor),
+                  path(r'shenhe_delete.html', views.shenhe_delete),
                   path(r'login/form-editors.html', views.form_editor),
                   path(r'login/tables-editable.html', views.shenhe_upload),
                   path(r'login/Academic_Early_Warning.html', views.academic_Early_Warning),
