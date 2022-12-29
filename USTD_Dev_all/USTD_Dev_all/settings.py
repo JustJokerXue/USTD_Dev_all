@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 SIMPLEUI_HOME_INFO = False
 SIMPLEUI_ANALYSIS = False
 LANGUAGE_CODE = 'zh-hans'
-SIMPLEUI_LOGO = 'https://th.bing.com/th/id/R2411a2b340731d67dfa0d84503e915e3?rik=zmYce%2fLys72JVQ&pid=ImgRaw'
+SIMPLEUI_LOGO = '/static/image/AdminLogo.jpg'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
