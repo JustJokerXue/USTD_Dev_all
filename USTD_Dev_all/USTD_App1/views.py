@@ -119,10 +119,10 @@ def shenhe_upload(request):  # 上传审核材料页面功能实现及调用
     print(ID0)
     if request.method == "POST":
         file = request.FILES['image']
-        name = str(file)
-        print(name)
+        file_name = str(file)
+        print(file_name)
         if file and (
-                name.lower().endswith(
+                file_name.lower().endswith(
                     ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff'))):
             models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'], leibie=request.POST['leibie'],
                                          image=file)
@@ -296,3 +296,44 @@ def select(i):  # 主页面雷达图成绩展示功能实现
     plt.rcParams['axes.unicode_minus'] = False
     # plt.show()
     plt.savefig("static\\image\\1.png", format='png')
+
+
+def suggestion(request, p1):
+    print(p1)
+    ID = request.session.get('ID')
+    name = request.session.get('name')
+    e = Score.objects.get(id=ID)
+    print(ID)
+    if p1 == 1:
+        print(e.zy)
+        g = grade(e.zy)
+        print(g)
+    elif p1 == 2:
+        g = grade(e.cx)
+        print(e.cx)
+        print(g)
+    elif p1 == 3:
+        g = grade(e.zs)
+        print(e.zs)
+        print(g)
+    elif p1 == 4:
+        g = grade(e.gl)
+        print(e.gl)
+        print(g)
+    else:
+        g = grade(e.zh)
+        print(e.zh)
+        print(g)
+
+    return render(request, 'suggestion.html', {'grade': g, 'name': name})
+
+
+def grade(i):
+    if i >= 80:
+        grade = 'A'
+    elif 60 <= i < 80:
+        grade = 'B'
+    elif i < 60:
+        grade = 'C'
+
+    return grade
