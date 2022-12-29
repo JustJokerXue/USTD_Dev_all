@@ -3,7 +3,6 @@ import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
 from django.db.models import Max
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 
@@ -62,6 +61,53 @@ def infor(request):  # 用户信息页面功能实现及调用
     sp = std.sp
     pwd = std.pwd
     return render(request, "infor.html", locals())
+
+
+def password_change_form(request):  # 用户信息页面功能实现及调用
+    name = request.session.get('name')
+    e = Student.objects.get(name=name)
+    num_all = Score.objects.all().count()
+    num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
+    number = int((num_pass / num_all) * 100)
+    if request.method == 'POST':
+        opwd = request.POST.get('old_password')
+        npwd1 = request.POST.get('new_password1')
+        npwd2 = request.POST.get('new_password2')
+        if opwd != "":
+            opwd = int(opwd)
+        if npwd1 != "":
+            npwd1 = int(npwd1)
+        if npwd2 != "":
+            npwd2 = int(npwd2)
+        print(opwd, npwd1, npwd2)
+        print(type(opwd))
+        std_id = e.id
+        std = Student.objects.get(id=std_id)
+        id = std.id
+        pwd = std.pwd
+        print(id, pwd)
+        print(type(pwd))
+        if opwd == pwd:
+            if npwd1 == '' or npwd2 == '':
+                pwd_error3 = "您的新密码与确认密码存在空值，请仔细检查重新输入"
+                return render(request, "password_change_form.html", locals())
+            else:
+                if npwd1 == npwd2:
+                    if opwd == npwd1:
+                        pwd_error4 = "您的新密码与旧密码一致，请仔细检查重新输入"
+                        return render(request, "password_change_form.html", locals())
+                    else:
+                        std.pwd = npwd1
+                        std.save()
+                        res = "密码修改成功，请您重新登录！"
+                        return render(request, "password_change_form.html", locals())
+                else:
+                    pwd_error2 = "您的新密码与确认密码不一致，请仔细检查重新输入"
+                    return render(request, "password_change_form.html", locals())
+        else:
+            pwd_error1 = "您的旧密码输入错误，请仔细检查重新输入"
+            return render(request, "password_change_form.html", locals())
+    return render(request, "password_change_form.html", locals())
 
 
 def shenhe_upload(request):  # 上传审核材料页面功能实现及调用
