@@ -14,15 +14,12 @@ from .models import Student, Early_Warning
 
 # Create your views here.
 
-def Hello(request):
-    return HttpResponse('Hello World')
 
-
-def login_view(request):
+def login_view(request):  # 登录页面调用
     return render(request, 'login.html')
 
 
-def index(request):
+def index(request):  # 主页面功能实现及调用
     name = request.session.get('name')
     print(name)
     num_all = Score.objects.all().count()
@@ -50,7 +47,10 @@ def index(request):
     return render(request, 'index.html', locals())
 
 
-def infor(request):
+def infor(request):  # 用户信息页面功能实现及调用
+    num_all = Score.objects.all().count()
+    num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
+    number = int((num_pass / num_all) * 100)
     name = request.session.get('name')
     print(name)
     e = Student.objects.get(name=name)
@@ -64,15 +64,7 @@ def infor(request):
     return render(request, "infor.html", locals())
 
 
-# def shenhe(request):
-#     ID0 = request.session.get('ID')
-#     print(ID0)
-#     print("ww")
-#     shenhe1 = shenhe.objects.get(id=ID0)
-#
-#     return render(request, 'tables-editable.html')
-
-def shenhe_upload(request):
+def shenhe_upload(request):  # 上传审核材料页面功能实现及调用
     ID0 = request.session.get('ID')
     name = request.session.get('name')
     num_all = Score.objects.all().count()
@@ -92,39 +84,21 @@ def shenhe_upload(request):
             return render(request, 'error2.html')
     shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
     request.session['ID0'] = ID0
-    return render(request, 'tables-editable.html', {'shenhe_list': shenhe_list_obj, 'ID0': ID0, 'name': name,'num_pass':num_pass,'num_all':num_all,'number':number})
+    return render(request, 'tables-editable.html',
+                  {'shenhe_list': shenhe_list_obj, 'ID0': ID0, 'name': name, 'num_pass': num_pass, 'num_all': num_all,
+                   'number': number})
 
 
-def shenhe_delete(request):
+def shenhe_delete(request):  # 删除审核材料功能实现
     id = request.GET.get('id')
     models.shenhe.objects.filter(id=id).delete()
     # return render(request, 'tables-editable.html')
     return redirect("http://127.0.0.1:8000/login/tables-editable.html")
 
 
-# def shenhe(request):
-#     # 创建连接
-#     conn = sqlite3.connect('db.sqlite3')
-#     # 创建游标
-#     cursor = conn.cursor()
-#
-#     # 执行SQL，并返回收影响行数
-#
-#     shenhe_list =cursor.execute("select id,miaoshu,leibie,image from shenhe").fetchall()
-#     print(shenhe_list)
-#
-#     # 关闭游标
-#     cursor.close()
-#     # 关闭连接
-#     conn.close()
-#     # 将查询得到的数据放在shenhe_list列表
-#     #eturn render(request, 'error2.html',{'shenhe_list':shenhe_list})
-#     return render(request, 'tables-editable.html',{'shenhe_list': shenhe_list})
-
-
 @csrf_protect
 # 登录界面
-def login(request):
+def login(request):  # 登录页面功能实现
     if request.method == 'POST':
         print("进入页面")
         id = str(request.POST.get('id'))
@@ -163,36 +137,17 @@ def login(request):
                 return render(request, 'index.html',
                               {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
                                'm2': max_Score_list[1], 'm3': max_Score_list[2]
-                                  , 'm4': max_Score_list[3], 'm5': max_Score_list[4],'num_all':num_all,'num_pass':num_pass,'number':number,'zh':zh,'ch':ch,'know':know,'gl':gl},)
+                                  , 'm4': max_Score_list[3], 'm5': max_Score_list[4], 'num_all': num_all,
+                               'num_pass': num_pass, 'number': number, 'zh': zh, 'ch': ch, 'know': know, 'gl': gl}, )
             else:
                 return render(request, 'error.html')
         else:
             return render(request, 'error.html')
     else:
         return render(request, 'error.html')
-    # if request.method == "POST":
-    #     id = request.POST.get('id')
-    #     pwd = request.POST.get('pwd')
-    #     print(id)
-    #     # request.session['ID'] = id
-    #     if not all([id, pwd]):
-    #
-    #         return render(request, 'error.html')
-    #     else:
-    #         student = Student.objects.filter(id=id, pwd=pwd)
-    #         if student:
-    #             select(id)
-    #             return render(request, 'index.html',{"ID":id})
-    #
-    #         else:
-    #             return render(request, 'error.html')
-    # else:
-    #     return render(request, 'error2.html')
 
 
-def academic_Early_Warning(request):
-    # num_all=
-    # num_pass=
+def academic_Early_Warning(request):  # 学业预警页面功能实现及调用
     name = request.session.get('name')
     print(name)
     num_all = Early_Warning.objects.all().count()
@@ -209,16 +164,10 @@ def academic_Early_Warning(request):
     physical = std.physical
     cet4 = std.cet4
     mandarin = std.mandarin
-    # ame = std.name
-    # if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
-    #     ans = '满足毕业最低要求'
-    # else:
-    #     ans = '不满足毕业最低要求'
-    # request.session['stdID0'] = ID0
     return render(request, 'Academic_Early_Warning.html', locals())
 
 
-def max_Score():
+def max_Score():  # 主页面最高成绩展示功能实现
     max_Score_list = list()
     m1 = Score.objects.aggregate(max1=Max("zy"))
     m2 = Score.objects.aggregate(max2=Max("cx"))
@@ -239,18 +188,13 @@ def max_Score():
     return max_Score_list
 
 
-def test_view(request):
-    python_data = "python里的数据"
-    return render(request, "test_view.html", {"html_data_name": python_data})
-
-
-def form_editor(request):
+def form_editor(request):  # 评分准则页面调用
     name = request.session.get('name')
     print(name)
     return render(request, "form-editors.html", locals())
 
 
-def select(i):
+def select(i):  # 主页面雷达图成绩展示功能实现
     conn = sqlite3.connect('db.sqlite3')
     cursor0 = conn.cursor()
     cursor1 = conn.cursor()
@@ -268,12 +212,6 @@ def select(i):
     avg_zs = avg_zs.fetchone()[0]
     avg_gl = avg_gl.fetchone()[0]
     avg_zh = avg_zh.fetchone()[0]
-    # print("\n")
-    # print("\n")
-    # print(avg_zy,avg_cx,avg_zs,avg_gl,avg_zh)
-    # #print(avg_zy,avg_cx)
-    # print("\n")
-    # print("\n")
     results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
                {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
     data_length = len(results[0])

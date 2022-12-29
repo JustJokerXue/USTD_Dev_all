@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import django
 from django.utils.encoding import force_str
+
 django.utils.encoding.force_text = force_str
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'USTD_App1',
 ]
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 引擎（默认）
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 会话存储引擎
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'  # 上传图片存储路径
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 WSGI_APPLICATION = 'USTD_Dev_all.wsgi.application'
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'USTD_Dev_all.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-DATABASES = {
+DATABASES = {  # 数据库配置
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
@@ -125,7 +126,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'  # 静态文件配置路径
 
 STATICFILES_DIRS = [
     (os.path.join(BASE_DIR, 'static')),

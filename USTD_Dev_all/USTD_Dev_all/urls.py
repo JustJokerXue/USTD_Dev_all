@@ -20,16 +20,13 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-                  path('login/', views.login),
                   path('', views.login_view),
-                  path('login/index', views.index),
-                  path('login/index.html', views.index),
+                  path('login/', views.login),
                   path('admin/', admin.site.urls),
-                  path(r'login/tables-editable.html', views.shenhe_upload),
-                  path(r'index/tables-editable.html', views.shenhe_upload),
-                  path(r'login/Academic_Early_Warning.html', views.academic_Early_Warning),
-                  path(r'index/Academic_Early_Warning.html', views.academic_Early_Warning),
-                  path(r'shenhe_delete.html', views.shenhe_delete),
-                  path(r'login/form-editors.html', views.form_editor),
+                  path('login/index.html', views.index),
                   path(r'login/infor.html', views.infor),
+                  path(r'login/form-editors.html', views.form_editor),
+                  path(r'login/tables-editable.html', views.shenhe_upload),
+                  path(r'login/Academic_Early_Warning.html', views.academic_Early_Warning),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

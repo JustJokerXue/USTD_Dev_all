@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.html import format_html
 
 
-class Early_Warning(models.Model):
+class Early_Warning(models.Model):  # 学业预警成绩表
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     minimum = models.IntegerField(default=0, verbose_name='最低学分要求', null=True)
     compulsory = models.IntegerField(default=0, verbose_name='必修课成绩', null=True)
@@ -27,7 +27,7 @@ class Early_Warning(models.Model):
         ]
 
 
-class Student(models.Model):
+class Student(models.Model):  # 学生用户信息表
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     age = models.IntegerField(default=0, verbose_name='年龄', null=True)
@@ -43,7 +43,7 @@ class Student(models.Model):
         return self.name
 
 
-class Score(models.Model):
+class Score(models.Model):  # 学生五大方面评分表
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     zy = models.IntegerField(default=0, verbose_name='专业技术能力', null=True)
     cx = models.IntegerField(default=0, verbose_name='创新创业能力', null=True)
@@ -64,7 +64,7 @@ class Score(models.Model):
         ]
 
 
-class Knowledge(models.Model):
+class Knowledge(models.Model):  # 学生知识学习评分表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     java = models.IntegerField(default=0, verbose_name='java课程', null=True)
@@ -85,7 +85,7 @@ class Knowledge(models.Model):
         return self.name
 
 
-class Innovation(models.Model):
+class Innovation(models.Model):  # 学生创新创业评分表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     ContestRating = models.IntegerField(default=0, verbose_name='竞赛评分', null=False)
@@ -108,7 +108,7 @@ class Innovation(models.Model):
         return self.name
 
 
-class majorTechnology(models.Model):
+class majorTechnology(models.Model):  # 学生专业技术评分白
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     ProjectPractice = models.IntegerField(default=0, verbose_name='项目实践', null=True)
@@ -130,7 +130,7 @@ class majorTechnology(models.Model):
         return self.name
 
 
-class manage(models.Model):
+class manage(models.Model):  # 学生管理实践评分表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     community = models.IntegerField(default=0, verbose_name='社团工作评分', null=False)
@@ -152,7 +152,7 @@ class manage(models.Model):
         return self.name
 
 
-class ComprehensiveDevelopment(models.Model):
+class ComprehensiveDevelopment(models.Model):  # 学生综合发展评分表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     physical = models.IntegerField(default=0, verbose_name='体育评分', null=True)
@@ -176,7 +176,7 @@ class ComprehensiveDevelopment(models.Model):
         return self.name
 
 
-class responsible(models.Model):
+class responsible(models.Model):  # 负责人用户信息表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     Employeeno = models.IntegerField(default=0, verbose_name='职工号', primary_key=True)
     password = models.IntegerField(default=0, verbose_name='密码', null=True)
@@ -190,7 +190,7 @@ class responsible(models.Model):
         return self.name
 
 
-class administrator(models.Model):
+class administrator(models.Model):  # 管理员用户信息表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     Employeeno = models.IntegerField(default=0, verbose_name='职工号', primary_key=True)
     password = models.IntegerField(default=0, verbose_name='密码', null=True)
@@ -204,7 +204,7 @@ class administrator(models.Model):
         return self.name
 
 
-class shenhe(models.Model):
+class shenhe(models.Model):  # 上传审核材料汇总表
     no = models.IntegerField(default=0, verbose_name='学号', null=True)
     miaoshu = models.CharField(max_length=200, verbose_name='材料描述', null=True)
     leibie = models.CharField(max_length=200, verbose_name='材料类别', null=True)

@@ -12,7 +12,7 @@ from django.utils.safestring import mark_safe
 
 
 @admin.register(Early_Warning)
-class Early_WarningAdmin(admin.ModelAdmin):
+class Early_WarningAdmin(admin.ModelAdmin):  # 学业预警成绩表后台布局设计
     list_display = ('id', 'minimum', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin')
     list_display_links = ("id",)
     search_fields = ('id',)  # 查找
@@ -22,7 +22,7 @@ class Early_WarningAdmin(admin.ModelAdmin):
 
 
 @admin.register(Student)
-class StudentAdmin(admin.ModelAdmin):
+class StudentAdmin(admin.ModelAdmin):  # 学生用户信息表后台布局设计
     list_display = ('id', 'name', 'age', 'sp', 'pwd')
     list_display_links = ("id",)
     search_fields = ('id', 'name')  # 查找
@@ -32,7 +32,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 @admin.register(Score)
-class ScoreAdmin(admin.ModelAdmin):
+class ScoreAdmin(admin.ModelAdmin):  # 学生五大方面评分表后台布局设计
     list_display = ('id', 'zy', 'cx', 'zs', 'gl', 'zh')
     list_display_links = ("id",)
     search_fields = ('id',)  # 查找
@@ -40,9 +40,8 @@ class ScoreAdmin(admin.ModelAdmin):
     list_editable = ('zy', 'cx', 'zs', 'gl', 'zh')
 
 
-# admin.site.register(Knowledge)
 @admin.register(Knowledge)
-class KnowledgeAdmin(admin.ModelAdmin):
+class KnowledgeAdmin(admin.ModelAdmin):  # 学生知识学习评分表后台布局设计
     list_display = ('name', 'sno', 'java', 'dataStructure', 'Gaverage')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
@@ -50,9 +49,8 @@ class KnowledgeAdmin(admin.ModelAdmin):
     list_editable = ('name', 'java', 'dataStructure', 'Gaverage')
 
 
-# admin.site.register(Innovation)
 @admin.register(Innovation)
-class InnovationAdmin(admin.ModelAdmin):
+class InnovationAdmin(admin.ModelAdmin):  # 学生创新创业评分表后台布局设计
     list_display = ('name', 'sno', 'ContestRating', 'PatentRcoring', 'EntrepreneurialAchievement')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
@@ -60,9 +58,8 @@ class InnovationAdmin(admin.ModelAdmin):
     list_editable = ('name', 'ContestRating', 'PatentRcoring', 'EntrepreneurialAchievement')
 
 
-# admin.site.register(majorTechnology)
 @admin.register(majorTechnology)
-class majorTechnologyAdmin(admin.ModelAdmin):
+class majorTechnologyAdmin(admin.ModelAdmin):  # 学生专业技术评分白后台布局设计
     list_display = ('name', 'sno', 'ProjectPractice', 'PaperGrading', 'StudentTutor')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
@@ -70,9 +67,8 @@ class majorTechnologyAdmin(admin.ModelAdmin):
     list_editable = ('name', 'ProjectPractice', 'PaperGrading', 'StudentTutor')
 
 
-# admin.site.register(manage)
 @admin.register(manage)
-class manageAdmin(admin.ModelAdmin):
+class manageAdmin(admin.ModelAdmin):  # 学生管理实践评分表后台布局设计
     list_display = ('name', 'sno', 'community', 'StudentWork', 'ProjectTeam')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
@@ -80,9 +76,8 @@ class manageAdmin(admin.ModelAdmin):
     list_editable = ('name', 'community', 'StudentWork', 'ProjectTeam')
 
 
-# admin.site.register(ComprehensiveDevelopment)
 @admin.register(ComprehensiveDevelopment)
-class ComprehensiveDevelopmentAdmin(admin.ModelAdmin):
+class ComprehensiveDevelopmentAdmin(admin.ModelAdmin):  # 学生综合发展评分表后台布局设计
     list_display = ('name', 'sno', 'physical', 'Volunteer', 'Labor', 'morality')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
@@ -90,9 +85,8 @@ class ComprehensiveDevelopmentAdmin(admin.ModelAdmin):
     list_editable = ('name', 'physical', 'Volunteer', 'Labor', 'morality')
 
 
-# admin.site.register(responsible)
 @admin.register(responsible)
-class responsibleAdmin(admin.ModelAdmin):
+class responsibleAdmin(admin.ModelAdmin):  # 负责人用户信息表后台布局设计
     list_display = ('name', 'Employeeno', 'password')
     list_display_links = ("Employeeno",)
     search_fields = ('name',)  # 查找
@@ -100,9 +94,8 @@ class responsibleAdmin(admin.ModelAdmin):
     list_editable = ('name', 'password')
 
 
-# admin.site.register(administrator)
 @admin.register(administrator)
-class administratorAdmin(admin.ModelAdmin):
+class administratorAdmin(admin.ModelAdmin):  # 管理员用户信息表后台布局设计
     list_display = ('name', 'Employeeno', 'password')
     list_display_links = ("Employeeno",)
     search_fields = ('name',)  # 查找
@@ -112,7 +105,7 @@ class administratorAdmin(admin.ModelAdmin):
 
 @admin.register(shenhe)
 # admin.site.register(要写的表)  与  @admin.register(要写的表)  功能是一样的
-class shenheAdmin(admin.ModelAdmin):
+class shenheAdmin(admin.ModelAdmin):  # 上传审核材料汇总表后台布局设计
     list_display = ('no', 'miaoshu', 'leibie', 'image', 'image_img', 'zhuangtai')
     list_display_links = ("no",)
     search_fields = ('no',)  # 查找
