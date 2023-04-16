@@ -2,17 +2,56 @@ import sqlite3
 
 import matplotlib.pyplot as plt
 import numpy as np
+from django.core import serializers
 from django.db.models import Max
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 
+
 from . import models
-from .models import Score
-from .models import Student, Early_Warning
+from .models import Score, Weight,Activity
+from .models import Student, Early_Warning,Course
 
 
 # Create your views here.
+#进入主页前进行判断，若学生在评分表，课程表等无数据，则创建数据对象
+def Model_creat(id):
+    student = Student.objects.get(id=id)
+    name = student.name
+    score = Score.objects.filter(id=id)
+    course = Course.objects.filter(id=id)
+    if score.exists() and course.exists():
+        print("score and course is exists")
+        print("course and course is exists")
+    else:
+        score = Score(id=id)
+        score.save()
+        course = Course(id=id,name = name)
+        course.save()
+        print(score)
+        print(course)
+    return score
 
+def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成功就调用
+    #获取权重系数
+    weigth = Weight.objects.get(id=1)
+    #获取学生各方面评分
+    score = Score.objects.get(id=id)
+    #计算总成绩
+    overallgrade = weigth.zyweight * score.zy +weigth.cxweight * score.cx +weigth.zsweight * score.zs +weigth.glweight * score.gl +weigth.zhweight * score.zh
+    score.overallgrade = overallgrade
+    score.save()
+    print(weigth.zyweight,score.zy)
+    print(overallgrade)
+
+
+def Activity_new():  # 活动汇总调用
+    act_list = list()
+    act_list = Activity.objects.all()
+    act_json = serializers.serialize("json", act_list)
+    print(act_list)
+    print(act_json)
+    return act_list
 
 def login_view(request):  # 登录页面调用
     return render(request, 'login.html')
@@ -124,8 +163,10 @@ def shenhe_upload(request):  # 上传审核材料页面功能实现及调用
         if file and (
                 file_name.lower().endswith(
                     ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff'))):
-            models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'], leibie=request.POST['leibie'],
-                                         image=file)
+            models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'], leibie=request.POST['leibie'],extra_points=request.POST['extra_points'],
+                                          image=file)
+            print(request.POST['leibie'],request.POST['extra_points'])
+
         else:
             return render(request, 'error2.html')
     shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
@@ -162,6 +203,9 @@ def login(request):  # 登录页面功能实现
             print(sid, spwd)
             if id == sid and pwd == spwd:
                 print('登录成功')
+                Model_creat(id)
+                Calculate_grades(id)
+                Activity_new()
                 num_all = Score.objects.all().count()
                 num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
                 number = int((num_pass / num_all) * 100)
@@ -298,7 +342,7 @@ def select(i):  # 主页面雷达图成绩展示功能实现
     plt.savefig("static\\image\\1.png", format='png')
 
 
-def suggestion(request, p1):
+def suggestion(request, p1):  # 该函数实现发展建议页面功能
     print(p1)
     ID = request.session.get('ID')
     name = request.session.get('name')
@@ -328,7 +372,7 @@ def suggestion(request, p1):
     return render(request, 'suggestion.html', {'grade': g, 'name': name})
 
 
-def grade(i):
+def grade(i):  # 该函数实现发展建议功能中的分级排名功能
     if i >= 80:
         grade = 'A'
     elif 60 <= i < 80:

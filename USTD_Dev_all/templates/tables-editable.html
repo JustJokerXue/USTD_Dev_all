@@ -293,6 +293,7 @@
                                 <th>学号</th>
                                 <th>证明材料描述</th>
                                 <th>所属类别</th>
+                                <th>加分项</th>
                                 <th>证明材料图片</th>
                                 <th>审核状态</th>
                                 <th>操作</th>
@@ -304,6 +305,7 @@
                                 <td>{{ item.no }}</td>
                                 <td>{{ item.miaoshu }}</td>
                                 <td>{{ item.leibie }}</td>
+                                <td>{{ item.extra_points }}</td>
                                 <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
                                 {% if item.zhuangtai == "T" %}
                                 <td><font color="green">通过</font></td>
@@ -334,6 +336,7 @@
                                     <option>综合发展</option>
                                 </select>
                             </p>
+                            <p>加分：<input type="text" name="extra_points"></p>
                             <p>图片：<input type="file" name="image"></p>
                             <input type="submit" value="upload">
                         </form>
