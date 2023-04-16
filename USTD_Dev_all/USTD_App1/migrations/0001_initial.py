@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
             name='administrator',
             fields=[
                 ('name', models.CharField(max_length=200, null=True, verbose_name='姓名')),
-                ('Employeeno', models.IntegerField(default=0, primary_key=True, serialize=False, verbose_name='职工号')),
+                (
+                'Employeeno', models.IntegerField(default=0, primary_key=True, serialize=False, verbose_name='职工号')),
                 ('password', models.IntegerField(default=0, null=True, verbose_name='密码')),
             ],
             options={
@@ -120,7 +121,8 @@ class Migration(migrations.Migration):
             name='responsible',
             fields=[
                 ('name', models.CharField(max_length=200, null=True, verbose_name='姓名')),
-                ('Employeeno', models.IntegerField(default=0, primary_key=True, serialize=False, verbose_name='职工号')),
+                (
+                'Employeeno', models.IntegerField(default=0, primary_key=True, serialize=False, verbose_name='职工号')),
                 ('password', models.IntegerField(default=0, null=True, verbose_name='密码')),
             ],
             options={
@@ -154,7 +156,8 @@ class Migration(migrations.Migration):
                 ('leibie', models.CharField(max_length=200, null=True, verbose_name='材料类别')),
                 ('image', models.ImageField(default=0, null=True, upload_to='', verbose_name='材料图片')),
                 ('zhuangtai',
-                 models.CharField(choices=[('T', '通过'), ('F', '不通过'), ('D', '待审核')], default='D', max_length=200,
+                 models.CharField(choices=[('T', '通过'), ('F', '不通过'), ('D', '待审核')], default='D',
+                                  max_length=200,
                                   verbose_name='状态')),
             ],
             options={
