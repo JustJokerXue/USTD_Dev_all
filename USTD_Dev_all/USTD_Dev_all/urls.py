@@ -23,6 +23,8 @@ urlpatterns = [
 
                   path('', views.login_view),
                   path('login/', views.login),
+                  path('test/', views.Activity_new),
+                  path('test1/', views.queryCourse),
                   path('admin/', admin.site.urls),
                   path('login/index.html', views.index),
                   path(r'login/infor.html', views.infor),

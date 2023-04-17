@@ -39,11 +39,11 @@ class Weight(admin.ModelAdmin):  # 学业预警成绩表后台布局设计
 
 @admin.register(Course)
 class Course(admin.ModelAdmin):  # 知识学习表后台布局设计
-    list_display = ('id', 'name', 'course', 'grade', 'gpa')
-    list_display_links = ("id",)
-    search_fields = ('id',)  # 查找
+    list_display = ('stu_id', 'name', 'course', 'grade', 'gpa')
+    list_display_links = ("stu_id",)
+    search_fields = ('stu_id','course')  # 查找
     list_per_page = 20
-    list_editable = ('course', 'grade', 'gpa')
+    list_editable = ('course','grade', 'gpa')
     # list_filter = ("id", "sp")
 
 

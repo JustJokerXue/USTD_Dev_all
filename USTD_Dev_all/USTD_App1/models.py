@@ -114,7 +114,7 @@ class Score(models.Model):  # 学生五大方面评分表
 
 class Course(models.Model):  # 学生学习成绩表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
-    id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
+    stu_id = models.IntegerField(default=0, verbose_name='学号')
     course = models.CharField(max_length=200, default='', verbose_name='课程', null=True)
     grade = models.IntegerField(default=0, verbose_name='成绩', null=True)
     gpa = models.FloatField(default=0, verbose_name='绩点', null=True)

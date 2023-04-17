@@ -2,15 +2,28 @@ import sqlite3
 
 import matplotlib.pyplot as plt
 import numpy as np
+from cachecontrol.serialize import Serializer
 from django.core import serializers
 from django.db.models import Max
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
-
+from requests import session
 
 from . import models
 from .models import Score, Weight,Activity
 from .models import Student, Early_Warning,Course
+
+
+
+
+def queryCourse(request):  #获取学生成绩信息
+    stu_id = request.session.get('ID')
+    stu_cour = list()
+    stu_cour = Course.objects.filter(stu_id = stu_id)
+    stu_cour_json = serializers.serialize("json",  stu_cour)
+    print(stu_cour_json)
+    return render(request, 'test1.html', locals())
 
 
 # Create your views here.
@@ -19,14 +32,14 @@ def Model_creat(id):
     student = Student.objects.get(id=id)
     name = student.name
     score = Score.objects.filter(id=id)
-    course = Course.objects.filter(id=id)
+    course = Course.objects.filter(stu_id=id)
     if score.exists() and course.exists():
         print("score and course is exists")
         print("course and course is exists")
     else:
         score = Score(id=id)
         score.save()
-        course = Course(id=id,name = name)
+        course = Course(stu_id=id,name = name)
         course.save()
         print(score)
         print(course)
@@ -45,13 +58,13 @@ def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成�
     print(overallgrade)
 
 
-def Activity_new():  # 活动汇总调用
+def Activity_new(request):  # 活动汇总调用
     act_list = list()
     act_list = Activity.objects.all()
     act_json = serializers.serialize("json", act_list)
     print(act_list)
     print(act_json)
-    return act_list
+    return render(request, 'test.html', locals())
 
 def login_view(request):  # 登录页面调用
     return render(request, 'login.html')
@@ -203,17 +216,20 @@ def login(request):  # 登录页面功能实现
             print(sid, spwd)
             if id == sid and pwd == spwd:
                 print('登录成功')
+                select(id)
                 Model_creat(id)
                 Calculate_grades(id)
                 Activity_new()
+                #queryCourse(id)
                 num_all = Score.objects.all().count()
                 num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
                 number = int((num_pass / num_all) * 100)
-                zh = Score.objects.filter(zy__gte=60).count()
-                ch = Score.objects.filter(cx__gte=60).count()
-                know = Score.objects.filter(zs__gte=60).count()
-                gl = Score.objects.filter(gl__gte=60).count()
-                select(id)
+                score = Score.objects.get(id=id);
+                # zh = Score.objects.filter(zy__gte=60).count()
+                # ch = Score.objects.filter(cx__gte=60).count()
+                # know = Score.objects.filter(zs__gte=60).count()
+                # gl = Score.objects.filter(gl__gte=60).count()
+                # select(id)
                 max_Score_list = max_Score()
                 request.session['ID'] = student.id
                 request.session['name'] = student.name
@@ -228,7 +244,7 @@ def login(request):  # 登录页面功能实现
                               {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
                                'm2': max_Score_list[1], 'm3': max_Score_list[2]
                                   , 'm4': max_Score_list[3], 'm5': max_Score_list[4], 'num_all': num_all,
-                               'num_pass': num_pass, 'number': number, 'zh': zh, 'ch': ch, 'know': know, 'gl': gl}, )
+                               'num_pass': num_pass, 'number': number,'score':score }, )#'zh': zh, 'ch': ch, 'know': know, 'gl': gl
             else:
                 return render(request, 'error.html')
         else:
@@ -255,6 +271,7 @@ def academic_Early_Warning(request):  # 学业预警页面功能实现及调用
     cet4 = std.cet4
     mandarin = std.mandarin
     return render(request, 'Academic_Early_Warning.html', locals())
+
 
 
 def max_Score():  # 主页面最高成绩展示功能实现
