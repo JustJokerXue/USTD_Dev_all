@@ -1,7 +1,7 @@
 from USTD_App1.models import Early_Warning
 # Register your models here.
 from USTD_App1.models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible, \
-    administrator, GraduationRequirement
+    administrator, GraduationRequirement, OverallScore
 # from USTD_App1.models import Knowledge
 from USTD_App1.models import Course
 from USTD_App1.models import Score
@@ -69,12 +69,22 @@ class Early_WarningAdmin(admin.ModelAdmin):  # 学业预警成绩表后台布局
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):  # 学生用户信息表后台布局设计
-    list_display = ('id', 'name', 'age', 'sp', 'pwd')
+    list_display = ('id', 'name', 'age', 'major', 'pwd', 'banji', 'department')
     list_display_links = ("id",)
     search_fields = ('id', 'name')  # 查找
     list_per_page = 20
-    list_editable = ('name', 'age', 'sp', 'pwd')
-    list_filter = ("id", "sp")
+    list_editable = ('name', 'age', 'major', 'pwd')
+    list_filter = ("id", "major", 'banji', 'department')
+
+
+@admin.register(OverallScore)
+class OverallScoreAdmin(admin.ModelAdmin):  # 总评成绩表后台布局设计
+    list_display = ('id', 'name', 'banji', 'major', 'department', 'total_score')
+    list_display_links = ("id",)
+    search_fields = ('id', 'name',)  # 查找
+    list_per_page = 20
+    list_editable = ('total_score',)
+    list_filter = ('banji', 'major', 'department')
 
 
 @admin.register(Score)
@@ -97,38 +107,42 @@ class ScoreAdmin(admin.ModelAdmin):  # 学生五大方面评分表后台布局�
 
 @admin.register(Innovation)
 class InnovationAdmin(admin.ModelAdmin):  # 学生创新创业评分表后台布局设计
-    list_display = ('name', 'sno', 'ContestRating', 'PatentRcoring', 'EntrepreneurialAchievement')
+    list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
+    list_filter = ('banji', 'major', 'department')
     list_per_page = 20
-    list_editable = ('name', 'ContestRating', 'PatentRcoring', 'EntrepreneurialAchievement')
+    list_editable = ('total_score',)
 
 
 @admin.register(majorTechnology)
 class majorTechnologyAdmin(admin.ModelAdmin):  # 学生专业技术评分白后台布局设计
-    list_display = ('name', 'sno', 'ProjectPractice', 'PaperGrading', 'StudentTutor')
+    list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
+    list_filter = ('banji', 'major', 'department')
     list_per_page = 20
-    list_editable = ('name', 'ProjectPractice', 'PaperGrading', 'StudentTutor')
+    list_editable = ('total_score',)
 
 
 @admin.register(manage)
 class manageAdmin(admin.ModelAdmin):  # 学生管理实践评分表后台布局设计
-    list_display = ('name', 'sno', 'community', 'StudentWork', 'ProjectTeam')
+    list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
+    list_filter = ('banji', 'major', 'department')
     list_per_page = 20
-    list_editable = ('name', 'community', 'StudentWork', 'ProjectTeam')
+    list_editable = ('total_score',)
 
 
 @admin.register(ComprehensiveDevelopment)
 class ComprehensiveDevelopmentAdmin(admin.ModelAdmin):  # 学生综合发展评分表后台布局设计
-    list_display = ('name', 'sno', 'physical', 'Volunteer', 'Labor', 'morality')
+    list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
+    list_filter = ('banji', 'major', 'department')
     list_per_page = 20
-    list_editable = ('name', 'physical', 'Volunteer', 'Labor', 'morality')
+    list_editable = ('total_score',)
 
 
 @admin.register(responsible)
@@ -165,15 +179,17 @@ class shenheAdmin(admin.ModelAdmin):  # 上传审核材料汇总表后台布局�
             if item.zhuangtai == 'T':
                 return
             try:
-                score_item = Score.objects.get(id=item.no)
+                score_item = None
                 if item.leibie == '专业技术':
-                    score_item.zy += item.extra_points
+                    score_item = majorTechnology.objects
                 elif item.leibie == '创新创业':
-                    score_item.cx += item.extra_points
+                    score_item = Innovation.objects
                 elif item.leibie == '管理实践':
-                    score_item.gl += item.extra_points
+                    score_item = manage.objects
                 elif item.leibie == '综合发展':
-                    score_item.zh += item.extra_points
+                    score_item = ComprehensiveDevelopment.objects
+                score_item = score_item.get(item.no)
+                score_item.total_score += item.extra_points
                 score_item.save()
             except Exception as err:
                 print(err)
@@ -190,15 +206,17 @@ class shenheAdmin(admin.ModelAdmin):  # 上传审核材料汇总表后台布局�
             if item.zhuangtai == 'F':
                 return
             try:
-                score_item = Score.objects.get(id=item.no)
-                if item.leibie == 'zy':
-                    score_item.zy -= item.extra_points
-                elif item.leibie == 'cx':
-                    score_item.cx -= item.extra_points
-                elif item.leibie == 'gl':
-                    score_item.gl -= item.extra_points
-                elif item.leibie == 'zh':
-                    score_item.zh -= item.extra_points
+                score_item = None
+                if item.leibie == '专业技术':
+                    score_item = majorTechnology.objects
+                elif item.leibie == '创新创业':
+                    score_item = Innovation.objects
+                elif item.leibie == '管理实践':
+                    score_item = manage.objects
+                elif item.leibie == '综合发展':
+                    score_item = ComprehensiveDevelopment.objects
+                score_item = score_item.get(item.no)
+                score_item.total_score -= item.extra_points
                 score_item.save()
             except Exception as err:
                 print(err)
