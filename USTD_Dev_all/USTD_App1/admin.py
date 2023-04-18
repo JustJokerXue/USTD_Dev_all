@@ -87,13 +87,13 @@ class OverallScoreAdmin(admin.ModelAdmin):  # 总评成绩表后台布局设计
     list_filter = ('banji', 'major', 'department')
 
 
-@admin.register(Score)
-class ScoreAdmin(admin.ModelAdmin):  # 学生五大方面评分表后台布局设计
-    list_display = ('id', 'zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
-    list_display_links = ("id",)
-    search_fields = ('id',)  # 查找
-    list_per_page = 20
-    list_editable = ('zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
+# @admin.register(Score)
+# class ScoreAdmin(admin.ModelAdmin):  # 学生五大方面评分表后台布局设计
+#     list_display = ('id', 'zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
+#     list_display_links = ("id",)
+#     search_fields = ('id',)  # 查找
+#     list_per_page = 20
+#     list_editable = ('zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
 
 
 # @admin.register(Knowledge)
