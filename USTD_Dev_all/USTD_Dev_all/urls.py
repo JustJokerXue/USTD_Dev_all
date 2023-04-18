@@ -33,6 +33,8 @@ urlpatterns = [
                   path(r'login/tables-editable.html', views.shenhe_upload),
                   path(r'login/Academic_Early_Warning.html', views.academic_Early_Warning),
                   path('login/password_change_form.html', views.password_change_form, name='password_change_form'),
-                  path(r'login/suggestion/<int:p1>/', views.suggestion)
+                  path(r'login/suggestion/<int:p1>/', views.suggestion),
+                  path(r'login/student_score.html', views.queryCourse),
+                  path(r'login/activity.html', views.Activity_new),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,23 +11,23 @@ from django.views.decorators.csrf import csrf_protect
 from requests import session
 
 from . import models
-from .models import Score, Weight,Activity
-from .models import Student, Early_Warning,Course
+from .models import Score, Weight, Activity
+from .models import Student, Early_Warning, Course
 
 
-
-
-def queryCourse(request):  #获取学生成绩信息
+def queryCourse(request):  # 获取学生成绩信息
     stu_id = request.session.get('ID')
-    stu_cour = list()
-    stu_cour = Course.objects.filter(stu_id = stu_id)
-    stu_cour_json = serializers.serialize("json",  stu_cour)
+    student = Student.objects.get(id=stu_id)
+    course_list_obj = models.Course.objects.filter(stu_id=stu_id)
+    stu_cour = Course.objects.filter(stu_id=stu_id)
+    name = student.name
+    stu_cour_json = serializers.serialize("json", stu_cour)
     print(stu_cour_json)
-    return render(request, 'test1.html', locals())
+    return render(request, 'student_score.html', {'course_list': course_list_obj, 'name': name, })
 
 
 # Create your views here.
-#进入主页前进行判断，若学生在评分表，课程表等无数据，则创建数据对象
+# 进入主页前进行判断，若学生在评分表，课程表等无数据，则创建数据对象
 def Model_creat(id):
     student = Student.objects.get(id=id)
     name = student.name
@@ -39,32 +39,37 @@ def Model_creat(id):
     else:
         score = Score(id=id)
         score.save()
-        course = Course(stu_id=id,name = name)
+        course = Course(stu_id=id, name=name)
         course.save()
         print(score)
         print(course)
     return score
 
+
 def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成功就调用
-    #获取权重系数
+    # 获取权重系数
     weigth = Weight.objects.get(id=1)
-    #获取学生各方面评分
+    # 获取学生各方面评分
     score = Score.objects.get(id=id)
-    #计算总成绩
-    overallgrade = weigth.zyweight * score.zy +weigth.cxweight * score.cx +weigth.zsweight * score.zs +weigth.glweight * score.gl +weigth.zhweight * score.zh
+    # 计算总成绩
+    overallgrade = weigth.zyweight * score.zy + weigth.cxweight * score.cx + weigth.zsweight * score.zs + weigth.glweight * score.gl + weigth.zhweight * score.zh
     score.overallgrade = overallgrade
     score.save()
-    print(weigth.zyweight,score.zy)
+    print(weigth.zyweight, score.zy)
     print(overallgrade)
 
 
 def Activity_new(request):  # 活动汇总调用
+    stu_id = request.session.get('ID')
+    student = Student.objects.get(id=stu_id)
+    name = student.name
     act_list = list()
     act_list = Activity.objects.all()
     act_json = serializers.serialize("json", act_list)
     print(act_list)
     print(act_json)
-    return render(request, 'test.html', locals())
+    return render(request, 'activity.html', locals())
+
 
 def login_view(request):  # 登录页面调用
     return render(request, 'login.html')
@@ -176,9 +181,10 @@ def shenhe_upload(request):  # 上传审核材料页面功能实现及调用
         if file and (
                 file_name.lower().endswith(
                     ('.bmp', '.dib', '.png', '.jpg', '.jpeg', '.pbm', '.pgm', '.ppm', '.tif', '.tiff'))):
-            models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'], leibie=request.POST['leibie'],extra_points=request.POST['extra_points'],
-                                          image=file)
-            print(request.POST['leibie'],request.POST['extra_points'])
+            models.shenhe.objects.create(no=ID0, miaoshu=request.POST['miaoshu'], leibie=request.POST['leibie'],
+                                         extra_points=request.POST['extra_points'],
+                                         image=file)
+            print(request.POST['leibie'], request.POST['extra_points'])
 
         else:
             return render(request, 'error2.html')
@@ -219,8 +225,8 @@ def login(request):  # 登录页面功能实现
                 select(id)
                 Model_creat(id)
                 Calculate_grades(id)
-                Activity_new()
-                #queryCourse(id)
+                # Activity_new()
+                # queryCourse(id)
                 num_all = Score.objects.all().count()
                 num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
                 number = int((num_pass / num_all) * 100)
@@ -244,7 +250,8 @@ def login(request):  # 登录页面功能实现
                               {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
                                'm2': max_Score_list[1], 'm3': max_Score_list[2]
                                   , 'm4': max_Score_list[3], 'm5': max_Score_list[4], 'num_all': num_all,
-                               'num_pass': num_pass, 'number': number,'score':score }, )#'zh': zh, 'ch': ch, 'know': know, 'gl': gl
+                               'num_pass': num_pass, 'number': number,
+                               'score': score}, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
             else:
                 return render(request, 'error.html')
         else:
@@ -271,7 +278,6 @@ def academic_Early_Warning(request):  # 学业预警页面功能实现及调用
     cet4 = std.cet4
     mandarin = std.mandarin
     return render(request, 'Academic_Early_Warning.html', locals())
-
 
 
 def max_Score():  # 主页面最高成绩展示功能实现

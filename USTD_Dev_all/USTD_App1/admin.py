@@ -1,7 +1,7 @@
 from USTD_App1.models import Early_Warning
 # Register your models here.
 from USTD_App1.models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible, \
-    administrator,GraduationRequirement
+    administrator, GraduationRequirement
 # from USTD_App1.models import Knowledge
 from USTD_App1.models import Course
 from USTD_App1.models import Score
@@ -13,23 +13,24 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-
 admin.site.site_header = '大学生发展综合素质测评系统管理后台'  # 设置header
 admin.site.site_title = '大学生发展综合素质测评系统管理后台'  # 设置title
 admin.site.index_title = '大学生发展综合素质测评系统管理后台'
 
+
 @admin.register(Activity)
 class Activity(admin.ModelAdmin):  # 学业预警成绩表后台布局设计
-    list_display = ('aid','aname', 'content', 'organizer', 'baoming')
+    list_display = ('aid', 'aname', 'content', 'organizer', 'baoming')
     list_display_links = ("aid",)
     search_fields = ('aid',)  # 查找
     list_per_page = 20
     list_editable = ('aname', 'content', 'organizer', 'baoming')
     # list_filter = ("id", "sp")
 
+
 @admin.register(Weight)
 class Weight(admin.ModelAdmin):  # 学业预警成绩表后台布局设计
-    list_display = ('id','zyweight', 'cxweight', 'zsweight', 'glweight', 'zhweight')
+    list_display = ('id', 'zyweight', 'cxweight', 'zsweight', 'glweight', 'zhweight')
     list_display_links = ("id",)
     search_fields = ('zyweight',)  # 查找
     list_per_page = 20
@@ -41,9 +42,9 @@ class Weight(admin.ModelAdmin):  # 学业预警成绩表后台布局设计
 class Course(admin.ModelAdmin):  # 知识学习表后台布局设计
     list_display = ('stu_id', 'name', 'course', 'grade', 'gpa')
     list_display_links = ("stu_id",)
-    search_fields = ('stu_id','course')  # 查找
+    search_fields = ('stu_id', 'course')  # 查找
     list_per_page = 20
-    list_editable = ('course','grade', 'gpa')
+    list_editable = ('course', 'grade', 'gpa')
     # list_filter = ("id", "sp")
 
 
@@ -65,6 +66,7 @@ class Early_WarningAdmin(admin.ModelAdmin):  # 学业预警成绩表后台布局
     fk_fields = ['grad_req_id']
     # list_filter = ("id", "sp")
 
+
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):  # 学生用户信息表后台布局设计
     list_display = ('id', 'name', 'age', 'sp', 'pwd')
@@ -77,11 +79,11 @@ class StudentAdmin(admin.ModelAdmin):  # 学生用户信息表后台布局设计
 
 @admin.register(Score)
 class ScoreAdmin(admin.ModelAdmin):  # 学生五大方面评分表后台布局设计
-    list_display = ('id', 'zy', 'cx', 'zs', 'gl', 'zh','overallgrade')
+    list_display = ('id', 'zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
     list_display_links = ("id",)
     search_fields = ('id',)  # 查找
     list_per_page = 20
-    list_editable = ('zy', 'cx', 'zs', 'gl', 'zh','overallgrade')
+    list_editable = ('zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
 
 
 # @admin.register(Knowledge)
@@ -207,11 +209,11 @@ class shenheAdmin(admin.ModelAdmin):  # 上传审核材料汇总表后台布局�
     # 更改Action的内容为通过
     mak_pub1.short_description = "未通过"
 
+
 @admin.register(GraduationRequirement)
 class GraduationRequirementAdmin(admin.ModelAdmin):  # 毕业要求后台设计
     list_display = ('id', 'credit', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin')
     list_display_links = ("id",)
-    search_fields = ('id', )  # 查找
+    search_fields = ('id',)  # 查找
     list_per_page = 20
     list_editable = ('credit', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin')
-

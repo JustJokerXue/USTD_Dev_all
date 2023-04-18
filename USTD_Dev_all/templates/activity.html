@@ -8,30 +8,36 @@
     <meta content="Admin Dashboard" name="description">
     <meta content="Mannatthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon">
+    <!-- X-editable css -->
+    <link type="text/css" href="/static/css/bootstrap-editable.css" rel="stylesheet">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/static/css/icons.css" rel="stylesheet" type="text/css">
     <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<!-- Loader -->
 <div id="preloader">
     <div id="status">
         <div class="spinner">
 
         </div>
     </div>
-</div><!-- Navigation Bar-->
+</div>
+<!-- Navigation Bar-->
 <header id="topnav">
     <div class="topbar-main">
         <div class="container-fluid">
             <!-- Logo container-->
-            <div class="logo"><a href="index.html" class="logo"><i
-                    class="mdi mdi-bowling text-success mr-1"></i><span
-                    class="hide-phone">大学生发展综合素质测评系统</span></a></div>
+            <div class="logo">
+                <a href="index.html" class="logo">
+                    <i class="mdi mdi-bowling text-success mr-1">
+
+                    </i>
+                    <span class="hide-phone">大学生发展综合素质测评系统</span>
+                </a>
+            </div>
             <!-- End Logo container-->
             <div class="menu-extras topbar-custom">
-                <ul class="list-inline float-right mb-0">
+                <ul class="list-unstyled float-right mb-0">
                     <!-- language-->
                     <li class="list-inline-item dropdown notification-list hide-phone"><a
                             class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
@@ -42,11 +48,11 @@
                                 src="/static/picture/italy_flag.jpg" alt=""
                                 height="16"><span>Italian </span></a><a class="dropdown-item" href="#"><img
                                 src="/static/picture/french_flag.jpg" alt="" height="16"><span>French
-										</span></a><a class="dropdown-item" href="#"><img
+                        </span></a><a class="dropdown-item" href="#"><img
                                 src="/static/picture/spain_flag.jpg" alt="" height="16"><span>Spanish
-										</span></a><a class="dropdown-item" href="#"><img
+                        </span></a><a class="dropdown-item" href="#"><img
                                 src="/static/picture/russia_flag.jpg" alt="" height="16"><span>Russian
-										</span></a></div>
+                        </span></a></div>
                     </li><!-- notification-->
                     <li class="list-inline-item dropdown notification-list"><a
                             class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
@@ -72,8 +78,8 @@
                                                           class="img-fluid rounded-circle"></div>
                             <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a
                                 long established fact that a reader will</small></p>
-                        </a><!-- All--><a href="javascript:void(0);"
-                                          class="dropdown-item notify-item border-top">View All </a>
+                        </a><!-- All--><a href="javascript:void(0);" class="dropdown-item notify-item border-top">View
+                            All </a>
                         </div>
                     </li><!-- notification-->
                     <li class="list-inline-item dropdown notification-list"><a
@@ -99,8 +105,8 @@
                             <p class="notify-details"><b>Your class is updated</b><small
                                     class="text-muted">It is a long established fact that a reader
                                 will</small></p>
-                        </a><!-- All--><a href="javascript:void(0);"
-                                          class="dropdown-item notify-item border-top">View All </a>
+                        </a><!-- All--><a href="javascript:void(0);" class="dropdown-item notify-item border-top">View
+                            All </a>
                         </div>
                     </li><!-- User-->
                     <li class="dropdown notification-list">
@@ -132,16 +138,26 @@
                             </a>
                         </div>
                     </li>
-                    <li class="menu-item list-inline-item">
-                        <!-- Mobile menu toggle--><a class="navbar-toggle nav-link">
-                        <div class="lines"><span></span><span></span><span></span></div>
-                    </a><!-- End mobile menu toggle-->
+                    <li class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle nav-link">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
                     </li>
                 </ul>
-            </div><!-- end menu-extras -->
-            <div class="clearfix"></div>
-        </div><!-- end container -->
-    </div><!-- end topbar-main -->
+            </div>
+            <!-- end menu-extras -->
+            <div class="clearfix">
+            </div>
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end topbar-main -->
     <!-- MENU Start -->
     <div class="navbar-custom">
         <div class="container-fluid">
@@ -244,8 +260,8 @@
         <!-- end container -->
     </div>
     <!-- end navbar-custom -->
-
-</header><!-- End Navigation Bar-->
+</header>
+<!-- End Navigation Bar-->
 <div class="wrapper">
     <div class="container-fluid">
         <!-- Page-Title -->
@@ -254,14 +270,21 @@
                 <div class="page-title-box">
                     <div class="float-right hide-phone">
                         <ul class="list-inline">
-
+                            <li class="list-inline-item mr-3"><input class="knob" data-width="48"
+                                                                     data-height="48" data-linecap="round"
+                                                                     data-fgcolor="#605daf" value="{{number}}"
+                                                                     data-skin="tron" data-angleoffset="180"
+                                                                     data-readonly="true"
+                                                                     data-thickness=".1"></li>
+                            <li class="list-inline-item"><span class="text-muted">达标率</span>
+                                <h6>{{num_pass}}人/{{num_all}}人</h6>
+                            </li>
                         </ul>
                     </div>
-                    <h4 class="page-title">系统评分标准和细则</h4>
+                    <h4 class="page-title">活动汇总看板</h4>
                     <div class="btn-group mt-2">
                         <ol class="breadcrumb hide-phone p-0 m-0">
-                            <li class="breadcrumb-item"><a href="#">准则参考链接:<a
-                                    href="https://jwc.hunnu.edu.cn/info/1082/8044.htm">湖南师范大学本科生学业预警实施细则</a></a>>
+                            <li class="breadcrumb-item"><a href="#">活动汇总看板是将所有通知列在此处供学生查看</a>
                             </li>
                         </ol>
                     </div>
@@ -272,48 +295,42 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title">知识学习方面</h4>
-                        <p class="text-muted m-b-30 font-14">
-                            1.学生所修课程如出现补考，课程学习成绩应按补考前的成绩计算，补考后的课程学习成绩不能纳入学年的测评。经审批同意缓考的课程放在缓考当学年度进行测评。<br/>
-                            2.转专业的同学按教务系统出现的成绩计算（原学院的科目成绩要一并计算），但转专业，缓考的同学不能参与奖学金的评定。<br/>
-                            3.成绩评定均采用百分制记分。<br/>
-                            4.若课程成绩评定为优、良、中、及格、不及格的，则分别换算为95、85、75、65分和50分。
-                        </p>
-
-                        <h4 class="mt-0 header-title">创新创业方面</h4>
-                        <p class="text-muted m-b-30 font-14">1.“互联网+”项目网上申报+0.5分（1分封顶），入围校赛/省赛分别+2分/4分。<br/>
-                            2.国家发明专利每项+15分（证书中有署名即可），实用新型专利每项+7.5分（证书中有署名即可），软件著作权每项+5分（证书中有署名即可）<br/>
-                            3.校举办的大型学科竞赛类比赛（获全校认可的）按校级加分，必须有“湖南师范大学、湖南师范大学教务处或湖南师范大学学生会、团委”所盖的章。<br/>
-                            4.省市级教育部门大型学科竞赛类按校级加分，省一等按校一等；省二等按校二等；省三等按校三等加分。<br/>
-                            5.论文在投不加分，需收到录用通知/已发表才根据相应加分标准进行加分。
-                        </p>
-
-                        <h4 class="mt-0 header-title">专业技术方面</h4>
-                        <p class="text-muted m-b-30 font-14">
-                            1.实验课成绩由老师来确定。<br/>
-                            2.根据实验课的成绩来录入。
-                        </p>
-
-                        <h4 class="mt-0 header-title">管理实践能力</h4>
-                        <p class="text-muted m-b-30 font-14">1.学习委员计分为6分。<br/>
-                            2.学工办助理任期不足一学期者，不加分；满一学期者，每学期加1分（可与其他职务累计加分）。<br/>
-                            3.一个群体获得校级、院级奖项，则群体所有成员可以按学校文件加分。<br/>
-                            4.在学校学社联系统中评为校级“优秀社团会员”和校级“十佳社团会员”加2分，社团内部会员评级不加分。<br/>
-                            5.同一事迹在同一部门获得不同称号的奖项，只能选择一项加分。<br/>
-                            6.非学校组织的相关知识竞赛等+0.5/次，2分封顶
-                        </p>
-
-                        <h4 class="mt-0 header-title">综合发展能力</h4>
-                        <p class="text-muted m-b-30 font-14">1.大学生体测成绩。<br/>
-                            2.青志协活动总分不超过10分，志愿者活动按照时长加分，0.2分/h。有资金补贴的减半加分，迎新工作按志愿时长加分，青志协借书志愿活动，一本计1h志愿时长，上限5h。<br/>
-                            3.经过学校选拔代表学校赴外交流的+5分，经学院选代表学院赴外交流的+3分。<br/>
-                            4.全程参与三下乡活动者+5，回访母校完成队伍+3。<br/>
-                            5.班指导加5分、新生军训教官加5分，自训队队员加1分。<br/>
-                            6.加分项目要求是学生在完成基本教学要求外，通过自主学习获得的资格证书。<br/>
-                            7.获得国家认可的职业资格证书车辆行驶证（C证按合格加2分，A、B证按高级加4分）。<br/>
-                            8.国家级运动员，退伍证书加4分；“湖南青马在线”网络培训结业证书加1分；专项职业能力证书加1分；四会教练员证加1分；普通话二乙及以上加1分。<br/>
-                            9.入党积极分子培训、预备党员结业证书属于入党的必要过程，不予以加分。
-                        </p>
+                        <h4 class="mt-0 header-title">活动列表</h4>
+                        <p class="text-muted mb-4 font-13">下面是活动的汇总具体情况</p>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 20%;">活动编号</th>
+                                <th style="width: 20%;">活动名称</th>
+                                <th style="width: 20%;">活动内容</th>
+                                <th style="width: 20%;">活动举办方</th>
+                                <th style="width: 20%;">报名方式</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in act_list %}
+                            <tr>
+                                <td>{{ item.aid }}</td>
+                                <td>{{ item.aname }}</td>
+                                <td>{{ item.content }}</td>
+                                <td>{{ item.organizer }}</td>
+                                <td>{{ item.baoming}}</td>
+                                <!--                                {% if item.zhuangtai == "T" %}-->
+                                <!--                                <td><font color="green">通过</font></td>-->
+                                <!--                                {% endif %}-->
+                                <!--                                {% if item.zhuangtai == "F" %}-->
+                                <!--                                <td><font color="red">未通过</font></td>-->
+                                <!--                                {% endif %}-->
+                                <!--                                {% if item.zhuangtai == "D" %}-->
+                                <!--                                <td><font color="#CEBE29">待审核</font></td>-->
+                                <!--                                {% endif %}-->
+                                <!--                                <td>-->
+                                <!--                                    <a href="/shenhe_delete.html?id={{ item.id }}">删除</a>-->
+                                <!--                                </td>-->
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div><!-- end col -->
@@ -338,10 +355,11 @@
 <script src="/static/js/jquery.nicescroll.js"></script>
 <script src="/static/js/jquery.scrollTo.min.js"></script><!-- KNOB JS -->
 <script src="/static/js/excanvas.js"></script>
-<script src="/static/js/jquery.knob.js"></script>
-<!--Wysiwig js-->
-<script src="/static/js/tinymce.min.js"></script>
-<script src="/static/js/form-editor.js"></script><!-- App js -->
+<script src="/static/js/jquery.knob.js"></script><!-- XEditable Plugin -->
+<script src="/static/js/moment.js"></script>
+<script src="/static/js/bootstrap-editable.min.js"></script>
+<script src="/static/js/xeditable.js"></script><!-- App js -->
 <script src="/static/js/app.js"></script>
 </body>
 </html>
+<script src="/static/js/console-ban.min.js"></script>
