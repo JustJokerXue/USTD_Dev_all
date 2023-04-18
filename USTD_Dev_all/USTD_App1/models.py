@@ -1,4 +1,7 @@
+
+
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 from django.utils.html import format_html
@@ -100,8 +103,8 @@ class Score(models.Model):  # 学生五大方面评分表
 
     class Meta:
         db_table = 'Score'
-        verbose_name = "评分"
-        verbose_name_plural = "评分"
+        verbose_name = "综合测评分数"
+        verbose_name_plural = "综合测评分数"
         constraints = [
             models.CheckConstraint(check=models.Q(zy__gte=0, zy__lte=100), name='zy'),
             models.CheckConstraint(check=models.Q(cx__gte=0, cx__lte=100), name='cx'),
@@ -311,8 +314,8 @@ class shenhe(models.Model):  # 上传审核材料汇总表
 
     class Meta:
         db_table = 'shenhe'
-        verbose_name = "审核"
-        verbose_name_plural = "审核"
+        verbose_name = "审核表"
+        verbose_name_plural = "审核表"
         constraints = [
             models.CheckConstraint(check=models.Q(extra_points__gte=0, extra_points__lte=100),
                                    name='extra_points'),
@@ -351,14 +354,26 @@ class Weight(models.Model):  # 综测权重系数表
 
 
 class Activity(models.Model):  # 活动表
-    aid = models.IntegerField(default=0, verbose_name='活动编号', null=True)
-    aname = models.CharField(max_length=200, verbose_name='活动名称', null=True)
-    content = models.CharField(max_length=200, verbose_name='活动内容', null=True)
-    organizer = models.CharField(max_length=200, verbose_name='活动举办方', null=True)
-    baoming = models.CharField(max_length=200, verbose_name='报名方式', null=True)
+    # aid = models.IntegerField(default=0, verbose_name='活动编号', primary_key=True)
+    category = models.CharField(max_length=50, verbose_name='活动类型', null=True)
+    aname = models.CharField(max_length=50, verbose_name='活动名称', null=True)
+    content = models.CharField(max_length=2000, verbose_name='活动内容', null=True)
+    time = models.DateTimeField(auto_now=False, verbose_name='活动时间', default=timezone.now)
 
     class Meta:
         db_table = 'Activity'
-        verbose_name = "活动"
-        verbose_name_plural = "活动"
+        verbose_name = "活动汇总表"
+        verbose_name_plural = "活动汇总表"
 
+
+class Application(models.Model):  # 活动报名表
+    aid = models.IntegerField(default=0, verbose_name='活动编号')
+    aname = models.CharField(max_length=50, verbose_name='活动名称', null=True)
+    no = models.IntegerField(default='', verbose_name='学号', unique=True)
+    name = models.CharField(max_length=50, verbose_name='姓名', null=True)
+    banji = models.CharField(max_length=50, verbose_name='班级', null=True)
+
+    class Meta:
+        db_table = 'Application'
+        verbose_name = "活动报名表"
+        verbose_name_plural = "活动报名表"

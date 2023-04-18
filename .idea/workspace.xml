@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d230901-0407-4003-8a07-334f79f46914" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/activity.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/student_score.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/form-editors.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/form-editors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/suggestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/suggestion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/tables-editable.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/tables-editable.html" afterDir="false" />
-    </list>
+    <list default="true" id="6d230901-0407-4003-8a07-334f79f46914" name="变更" comment="4月18日" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,14 +68,16 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/大灭/PycharmProjects/USTD_Dev_all/USTD_Dev_all/USTD_App1&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -99,11 +88,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\大灭\PycharmProjects\USTD_Dev_all\USTD_Dev_all\USTD_App1" />
       <recent name="D:\USTD_Dev_all\USTD_Dev_all\static\image" />
       <recent name="D:\USTD_Dev_all\USTD_Dev_all\media" />
       <recent name="D:\USTD_Dev_all\USTD_Dev_all" />
       <recent name="D:\USTD_Dev_all" />
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all\static\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\USTD_Dev_all\USTD_Dev_all\media" />
@@ -143,6 +132,9 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\大灭\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
       <changelist id="6d230901-0407-4003-8a07-334f79f46914" name="变更" comment="" />
@@ -159,6 +151,7 @@
       <workItem from="1681794029751" duration="4198000" />
       <workItem from="1681799898753" duration="2115000" />
       <workItem from="1681811348268" duration="3174000" />
+      <workItem from="1681831764134" duration="738000" />
     </task>
     <task id="LOCAL-00001" summary="two apps">
       <created>1667823459797</created>

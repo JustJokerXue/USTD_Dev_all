@@ -15,6 +15,23 @@ from .models import Score, Weight, Activity
 from .models import Student, Early_Warning, Course
 
 
+def Application_message(request):  # 学生个人活动报名信息
+    stu_id = request.session.get('ID')
+    stu_application = Application.objects.filter(no=stu_id)
+    stu_application_json = serializers.serialize("json", stu_application)
+    return stu_application_json
+
+
+def Application(request):  # 活动报名
+
+    # 缺少活动编号与活动名称获取
+    stu_id = request.session.get('ID')
+    stu = Student.objects.get(id=stu_id)
+    application = Application(no=stu.id, name=stu.name, banji=stu.banji)
+    application.save()
+    return 0
+
+
 def queryCourse(request):  # 获取学生成绩信息
     stu_id = request.session.get('ID')
     student = Student.objects.get(id=stu_id)
