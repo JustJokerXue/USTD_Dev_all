@@ -1,9 +1,7 @@
 .DS_Store
-.idea/*
+
 # Editor directories and files
 .idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+*.iws
+*.iml
+*.ipr
