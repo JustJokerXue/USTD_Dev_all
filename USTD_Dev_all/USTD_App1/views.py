@@ -5,14 +5,35 @@ import numpy as np
 from cachecontrol.serialize import Serializer
 from django.core import serializers
 from django.db.models import Max
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse, request
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from requests import session
 
 from . import models
 from .models import Score, Weight, Activity
 from .models import Student, Early_Warning, Course
+# from django.utils.html import strip_tags
+# from notifications.signals import notify
+from notifications.models import Notification
+
+
+def my_notifications(request):
+    context = {}
+    return render(request, 'my_notifications.html', context)
+
+
+def my_notification(request, my_notification_pk):
+    my_notification = get_object_or_404(Notification, pk=my_notification_pk)
+    my_notification.unread = False
+    my_notification.save()
+    return redirect('http://127.0.0.1:8000/login/index.html')
+
+
+# def notification(request):
+#     send_notifications(request.user, "转正申请", request.user,
+#                        description="sp", level="danger")
+#     return render(request, 'my_notifications.html')
 
 
 def queryCourse(request):  # 获取学生成绩信息

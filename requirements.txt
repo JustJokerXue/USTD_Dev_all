@@ -60,3 +60,8 @@ urllib3@ file:///home/conda/feedstock_root/build_artifacts/urllib3_1678635778344
 Werkzeug==2.2.2
 win-inet-pton@ file:///D:/bld/win_inet_pton_1667051142467/work
 zipp==3.11.0
+
+cachecontrol~=0.12.11
+requests~=2.28.2
+notifications~=0.3.2
+django-notifications-hq~=1.7.0

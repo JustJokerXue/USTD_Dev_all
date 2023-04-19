@@ -14,10 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from USTD_App1 import views
+from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+import notifications.urls
+
+app_name = 'USTD_App1'
 
 urlpatterns = [
 
@@ -36,5 +40,8 @@ urlpatterns = [
                   path(r'login/suggestion/<int:p1>/', views.suggestion),
                   path(r'login/student_score.html', views.queryCourse),
                   path(r'login/activity.html', views.Activity_new),
-
+                  path(r'notifications/', include('notifications.urls', namespace='notifications')),
+                  path(r'my_notifications/', views.my_notifications, name='my_notifications'),
+                  path(r'my_notification/<int:my_notification_pk>', views.my_notification, name='my_notification'),
+                  path(r'my_notification/my_notifications.html', views.my_notification, name='my_notification'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

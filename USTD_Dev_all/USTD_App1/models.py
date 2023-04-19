@@ -1,7 +1,35 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
+from django.shortcuts import redirect
 
 # Create your models here.
 from django.utils.html import format_html
+
+
+# class Messages(models.Model):
+#     title = models.CharField(max_length=50)
+#     # type = models.ForeignKey(Type, on_delete=models.CASCADE)
+#     # content = RichTextUploadingField()
+#     author = models.ForeignKey(User, on_delete=models.CASCADE)
+#     # read_details = GenericRelation(ReadDetail)
+#     created_time = models.DateTimeField(auto_now_add=True)
+#     last_updated_time = models.DateTimeField(auto_now=True)
+#
+#     def get_url(self):
+#         return reverse('blog_detail', kwargs={'blog_pk': self.pk})
+#
+#     def get_user(self):
+#         return self.author
+#
+#     # def get_email(self):
+#     #     return self.author.email
+#
+#     def __str__(self):
+#         return "<Blog:%s>" % self.title
+#
+#     class Meta:
+#         ordering = ['-created_time']
 
 
 # class Early_Warning(models.Model):  # 学业预警成绩表
@@ -48,6 +76,7 @@ class GraduationRequirement(models.Model):  # 学生毕业要求表
             models.CheckConstraint(check=models.Q(mandarin__gte=0, mandarin__lte=100), name='grad_req_mandarin'),
         ]
 
+
 class Early_Warning(models.Model):  # 学业预警成绩表
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     minimum = models.FloatField(default=0, verbose_name='实修学分', null=True)
@@ -72,6 +101,7 @@ class Early_Warning(models.Model):  # 学业预警成绩表
             models.CheckConstraint(check=models.Q(cet4__gte=0, cet4__lte=750), name='cet4'),
             models.CheckConstraint(check=models.Q(mandarin__gte=0, mandarin__lte=100), name='mandarin'),
         ]
+
 
 class Student(models.Model):  # 学生用户信息表
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
@@ -297,7 +327,7 @@ class administrator(models.Model):  # 管理员用户信息表
 #     image_img.short_description = '图片'
 
 class shenhe(models.Model):  # 上传审核材料汇总表
-    #id = models.IntegerField(default=0, verbose_name='审核材料id', primary_key=True)
+    # id = models.IntegerField(default=0, verbose_name='审核材料id', primary_key=True)
     no = models.IntegerField(default=0, verbose_name='学号', null=True)
     miaoshu = models.CharField(max_length=200, verbose_name='材料描述', null=True)
     leibie = models.CharField(max_length=200, verbose_name='材料类别',
@@ -361,4 +391,3 @@ class Activity(models.Model):  # 活动表
         db_table = 'Activity'
         verbose_name = "活动"
         verbose_name_plural = "活动"
-
