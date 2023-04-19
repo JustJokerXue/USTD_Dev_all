@@ -3,15 +3,17 @@ import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
 from cachecontrol.serialize import Serializer
+from django.contrib import messages
 from django.core import serializers
 from django.db.models import Max
 from django.http import JsonResponse, request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from requests import session
+from sqlalchemy import Integer
 
 from . import models
-from .models import Score, Weight, Activity
+from .models import Score, Weight, Activity,Application
 from .models import Student, Early_Warning, Course
 # from django.utils.html import strip_tags
 # from notifications.signals import notify
@@ -43,15 +45,34 @@ def Application_message(request):  # 学生个人活动报名信息
     return stu_application_json
 
 
-def Application(request):  # 活动报名
+<<<<<<< HEAD
+def Application_new(request):  # 活动报名
     act_id = request.GET.get('id')
-    print(act_id)
     act = Activity.objects.get(id = act_id)
+    act_aname = act.aname
+    print(act_id,act_aname,act,type(act_id))
     stu_id = request.session.get('ID')
     stu = Student.objects.get(id=stu_id)
-    application = Application(aid =act.id,aname = act.aname,no=stu.id, name=stu.name, banji=stu.banji)
+    application = Application.objects.filter(aid=act_id,no = stu.id)
+    if application.exists():
+        # 需要弹出的消息框
+        messages.success(request, '请勿重复报名')
+        #  注意你需要在index.html添加我们上面的js代码
+    else:
+        application = Application(aid=act_id,aname = act_aname,no=stu.id, name=stu.name, banji=stu.banji)
+        application.save()
+        messages.success(request, '报名成功')
+    return redirect("http://127.0.0.1:8000/login/activity.html")
+=======
+def Application(request):  # 活动报名
+
+    # 缺少活动编号与活动名称获取
+    stu_id = request.session.get('ID')
+    stu = Student.objects.get(id=stu_id)
+    application = Application(no=stu.id, name=stu.name, banji=stu.banji)
     application.save()
-    return redirect("http://127.0.0.1:8000/login/Activity.html")
+    return 0
+>>>>>>> 7a9a20fdf8864799bfc1c23a4593d87c97d29d53
 
 
 def queryCourse(request):  # 获取学生成绩信息

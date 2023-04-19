@@ -291,6 +291,13 @@
                 </div>
             </div>
         </div><!-- end page title end breadcrumb -->
+    {% if messages %}
+<script>
+    {% for msg in messages %}
+        alert('{{ msg.message }}');
+    {% endfor %}
+</script>
+{% endif %}
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -298,28 +305,32 @@
                         <h4 class="mt-0 header-title">活动列表</h4>
                         <p class="text-muted mb-4 font-13">下面是活动的汇总具体情况</p>
                         <table class="table table-striped">
-                           <thead>
+                            <thead>
                             <tr>
                                 <th style="width: 20%;">活动编号</th>
-                                <th style="width: 20%;">活动类别</th>
                                 <th style="width: 20%;">活动名称</th>
                                 <th style="width: 20%;">活动内容</th>
-                                <th style="width: 20%;">报名时间</th>
+                                <th style="width: 20%;">活动举办方</th>
+                                <th style="width: 20%;">报名方式</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for item in act_list %}
                             <tr>
-                                <td>{{ item.id }}</td>
-                                <td>{{ item.category }}</td>
+                                <td>{{ item.aid }}</td>
                                 <td>{{ item.aname }}</td>
                                 <td>{{ item.content }}</td>
+<<<<<<< HEAD
                                 <td>{{ item.time}}</td>
                                 <td>
                                 <td>
-                                    <a href="/Application?id={{ item.id }}">报名</a>
+                                    <a href="/Application?id={{ item.id }}" id="a1">报名</a>
 
                                 </td>
+=======
+                                <td>{{ item.organizer }}</td>
+                                <td>{{ item.baoming}}</td>
+>>>>>>> 7a9a20fdf8864799bfc1c23a4593d87c97d29d53
                                 <!--                                {% if item.zhuangtai == "T" %}-->
                                 <!--                                <td><font color="green">通过</font></td>-->
                                 <!--                                {% endif %}-->
@@ -368,3 +379,21 @@
 </body>
 </html>
 <script src="/static/js/console-ban.min.js"></script>
+<style type="text/css">
+    #a1:hover{
+        color: green;
+        background: transparent;
+        border-color: #bbb#fff#fff#aaa;
+    }   /*鼠标经过超链接的样式*/
+
+    #a1{/*完全清除超链接下划线效果*/
+        width: 50px;
+        font-size:20px;
+        text-decoration: none;
+        border:solid 1px;
+        color: #444;
+        background: #f99;    /*超链接背景颜色*/
+        border-color: #fff#aaa#aaa#fff;
+        zoom: 1;      /*解决IE浏览器无法显示问题*/
+    }
+</style>
