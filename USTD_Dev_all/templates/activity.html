@@ -291,6 +291,13 @@
                 </div>
             </div>
         </div><!-- end page title end breadcrumb -->
+    {% if messages %}
+<script>
+    {% for msg in messages %}
+        alert('{{ msg.message }}');
+    {% endfor %}
+</script>
+{% endif %}
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -317,7 +324,7 @@
                                 <td>{{ item.time}}</td>
                                 <td>
                                 <td>
-                                    <a href="/Application?id={{ item.id }}">报名</a>
+                                    <a href="/Application?id={{ item.id }}" id="a1">报名</a>
 
                                 </td>
                                 <!--                                {% if item.zhuangtai == "T" %}-->
@@ -368,3 +375,21 @@
 </body>
 </html>
 <script src="/static/js/console-ban.min.js"></script>
+<style type="text/css">
+    #a1:hover{
+        color: green;
+        background: transparent;
+        border-color: #bbb#fff#fff#aaa;
+    }   /*鼠标经过超链接的样式*/
+
+    #a1{/*完全清除超链接下划线效果*/
+        width: 50px;
+        font-size:20px;
+        text-decoration: none;
+        border:solid 1px;
+        color: #444;
+        background: #f99;    /*超链接背景颜色*/
+        border-color: #fff#aaa#aaa#fff;
+        zoom: 1;      /*解决IE浏览器无法显示问题*/
+    }
+</style>

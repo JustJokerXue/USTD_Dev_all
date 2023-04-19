@@ -108,8 +108,10 @@ class Student(models.Model):  # 学生用户信息表
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     age = models.IntegerField(default=0, verbose_name='年龄', null=True)
-    sp = models.CharField(max_length=200, verbose_name='专业', null=True)
+    major = models.CharField(max_length=200, verbose_name='专业', null=True)
     pwd = models.IntegerField(verbose_name='密码', default=123456)
+    banji = models.CharField(max_length=200, verbose_name='班级',default='2020级')
+    department = models.CharField(max_length=200, verbose_name='院系', default='信工院')
 
     class Meta:
         db_table = 'Student'
@@ -118,6 +120,20 @@ class Student(models.Model):  # 学生用户信息表
 
     def __str__(self):
         return self.name
+# class Student(models.Model):  # 学生用户信息表
+#     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
+#     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
+#     age = models.IntegerField(default=0, verbose_name='年龄', null=True)
+#     sp = models.CharField(max_length=200, verbose_name='专业', null=True)
+#     pwd = models.IntegerField(verbose_name='密码', default=123456)
+#
+#     class Meta:
+#         db_table = 'Student'
+#         verbose_name = "学生"
+#         verbose_name_plural = "学生"
+#
+#     def __str__(self):
+#         return self.name
 
 
 class Score(models.Model):  # 学生五大方面评分表
@@ -395,10 +411,9 @@ class Activity(models.Model):  # 活动表
 
 
 class Application(models.Model):  # 活动报名表
-
     aid = models.IntegerField(default=0, verbose_name='活动编号')
     aname = models.CharField(max_length=50, verbose_name='活动名称', null=True)
-    no = models.IntegerField(default='', verbose_name='学号', unique=True)
+    no = models.IntegerField(default='', verbose_name='学号')
     name = models.CharField(max_length=50, verbose_name='姓名', null=True)
     banji = models.CharField(max_length=50, verbose_name='班级', null=True)
 

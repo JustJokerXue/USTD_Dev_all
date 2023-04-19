@@ -1,7 +1,7 @@
 from .models import Early_Warning
 # Register your models here.
 from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible, \
-    administrator, GraduationRequirement, Application,Activity
+    administrator, GraduationRequirement, Application, Activity
 # from USTD_App1.models import Knowledge
 from .models import Course
 from .models import Score
@@ -12,19 +12,28 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.text import capfirst
+
 admin.site.site_header = '大学生发展综合素质测评系统管理后台'  # 设置header
 admin.site.site_title = '大学生发展综合素质测评系统管理后台'  # 设置title
 admin.site.index_title = '大学生发展综合素质测评系统管理后台'
 
 
+# @admin.register(Student)
+# class StudentAdmin(admin.ModelAdmin):  # 学生用户信息表后台布局设计
+#     list_display = ('id', 'name', 'age', 'sp', 'pwd')
+#     list_display_links = ("id",)
+#     search_fields = ('id', 'name')  # 查找
+#     list_per_page = 20
+#     list_editable = ('name', 'age', 'sp', 'pwd')
+#     list_filter = ("id", "sp")
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):  # 学生用户信息表后台布局设计
-    list_display = ('id', 'name', 'age', 'sp', 'pwd')
+    list_display = ('id', 'name', 'age', 'major', 'pwd', 'banji', 'department')
     list_display_links = ("id",)
     search_fields = ('id', 'name')  # 查找
     list_per_page = 20
-    list_editable = ('name', 'age', 'sp', 'pwd')
-    list_filter = ("id", "sp")
+    list_editable = ('name', 'age', 'major', 'pwd')
+    list_filter = ("id", "major", 'banji', 'department')
 
     def save_model(self, request, obj, form, change):
         if form.is_valid():
@@ -54,6 +63,7 @@ class ScoreAdmin(admin.ModelAdmin):  # 学生五大方面评分表后台布局�
     list_per_page = 20
     list_editable = ('zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
 
+
 @admin.register(Course)
 class Course(admin.ModelAdmin):  # 知识学习表后台布局设计
     list_display = ('stu_id', 'name', 'course', 'grade', 'gpa')
@@ -62,6 +72,8 @@ class Course(admin.ModelAdmin):  # 知识学习表后台布局设计
     list_per_page = 20
     list_editable = ('course', 'grade', 'gpa')
     # list_filter = ("id", "sp")
+
+
 # @admin.register(Knowledge)
 # class KnowledgeAdmin(admin.ModelAdmin):  # 学生知识学习评分表后台布局设计
 #     list_display = ('name', 'sno', 'java', 'dataStructure', 'Gaverage')
