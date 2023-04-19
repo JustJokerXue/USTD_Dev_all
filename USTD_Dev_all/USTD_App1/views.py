@@ -44,13 +44,14 @@ def Application_message(request):  # 学生个人活动报名信息
 
 
 def Application(request):  # 活动报名
-
-    # 缺少活动编号与活动名称获取
+    act_id = request.GET.get('id')
+    print(act_id)
+    act = Activity.objects.get(id = act_id)
     stu_id = request.session.get('ID')
     stu = Student.objects.get(id=stu_id)
-    application = Application(no=stu.id, name=stu.name, banji=stu.banji)
+    application = Application(aid =act.id,aname = act.aname,no=stu.id, name=stu.name, banji=stu.banji)
     application.save()
-    return 0
+    return redirect("http://127.0.0.1:8000/login/Activity.html")
 
 
 def queryCourse(request):  # 获取学生成绩信息
