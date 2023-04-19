@@ -45,6 +45,7 @@ def Application_message(request):  # 学生个人活动报名信息
     return stu_application_json
 
 
+<<<<<<< HEAD
 def Application_new(request):  # 活动报名
     act_id = request.GET.get('id')
     act = Activity.objects.get(id = act_id)
@@ -62,6 +63,16 @@ def Application_new(request):  # 活动报名
         application.save()
         messages.success(request, '报名成功')
     return redirect("http://127.0.0.1:8000/login/activity.html")
+=======
+def Application(request):  # 活动报名
+
+    # 缺少活动编号与活动名称获取
+    stu_id = request.session.get('ID')
+    stu = Student.objects.get(id=stu_id)
+    application = Application(no=stu.id, name=stu.name, banji=stu.banji)
+    application.save()
+    return 0
+>>>>>>> 7a9a20fdf8864799bfc1c23a4593d87c97d29d53
 
 
 def queryCourse(request):  # 获取学生成绩信息

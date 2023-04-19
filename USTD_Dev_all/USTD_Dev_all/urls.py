@@ -40,7 +40,10 @@ urlpatterns = [
                   path(r'login/suggestion/<int:p1>/', views.suggestion),
                   path(r'login/student_score.html', views.queryCourse),
                   path(r'login/activity.html', views.Activity_new),
+<<<<<<< HEAD
                   path(r'Application', views.Application_new),
+=======
+>>>>>>> 7a9a20fdf8864799bfc1c23a4593d87c97d29d53
                   path(r'notifications/', include('notifications.urls', namespace='notifications')),
                   path(r'my_notifications/', views.my_notifications, name='my_notifications'),
                   path(r'my_notification/<int:my_notification_pk>', views.my_notification, name='my_notification'),
