@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d230901-0407-4003-8a07-334f79f46914" name="变更" comment="4月19">
+    <list default="true" id="6d230901-0407-4003-8a07-334f79f46914" name="变更" comment="添加依赖，增加两个页面调用，但菜单栏要增加">
       <change afterPath="$PROJECT_DIR$/USTD_Dev_all/static/css/my_notifications.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/my_notifications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -32,9 +41,6 @@
       </map>
     </option>
   </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
-  </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
@@ -42,7 +48,6 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -53,15 +58,15 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/apps.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/models.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/wsgi.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/urls.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/asgi.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/models.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/tests.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/settings.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/apps.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/wsgi.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/settings.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/urls.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -72,13 +77,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
+    ]
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\USTD_Dev_all\USTD_Dev_all\static\image" />
@@ -140,8 +157,7 @@
       <workItem from="1681179966754" duration="924000" />
       <workItem from="1681794029751" duration="4198000" />
       <workItem from="1681799898753" duration="2115000" />
-      <workItem from="1681811348268" duration="3174000" />
-      <workItem from="1681821508506" duration="10620000" />
+      <workItem from="1681811348268" duration="18145000" />
     </task>
     <task id="LOCAL-00001" summary="two apps">
       <created>1667823459797</created>
@@ -437,21 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672319687079</updated>
     </task>
-    <task id="LOCAL-00043" summary="更改学生表和总评成绩表以及四个方面成绩表">
-      <created>1681831747223</created>
+    <task id="LOCAL-00043" summary="添加依赖，增加两个页面调用，但菜单栏要增加">
+      <created>1681819278919</created>
       <option name="number" value="00043" />
       <option name="presentableId" value="LOCAL-00043" />
       <option name="project" value="LOCAL" />
-      <updated>1681831747223</updated>
+      <updated>1681819278919</updated>
     </task>
-    <task id="LOCAL-00044" summary="4月19">
-      <created>1681909692089</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1681909692089</updated>
-    </task>
-    <option name="localTasksCounter" value="45" />
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,9 +490,9 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="网页更改变动、数据库录入数据" />
     <MESSAGE value="平均值雷达图同步" />
     <MESSAGE value="以此为准" />
     <MESSAGE value="ZhouSY update" />
@@ -507,9 +516,8 @@
     <MESSAGE value="conflict" />
     <MESSAGE value="@LiXW author:新增发展建议功能&#10;@WangJC author:修复超链接bug,补充上传审核材料状态显示" />
     <MESSAGE value="提交审核材料名称修改" />
-    <MESSAGE value="更改学生表和总评成绩表以及四个方面成绩表" />
-    <MESSAGE value="4月19" />
-    <option name="LAST_COMMIT_MESSAGE" value="4月19" />
+    <MESSAGE value="添加依赖，增加两个页面调用，但菜单栏要增加" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加依赖，增加两个页面调用，但菜单栏要增加" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
