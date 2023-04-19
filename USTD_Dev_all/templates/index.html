@@ -1,3 +1,4 @@
+{% load notifications_tags %}
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -9,19 +10,25 @@
     <meta content="Mannatthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--    <link rel="shortcut icon" href="https://www.17sucai.com/2022/5/ekow512451/assets/images/favicon.ico">-->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/icons.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <style>
+        .unread-count {
+            background-color: #d9534f !important;
+        }
+
+        .rows {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px
+        }
+    </style>
 </head>
 <body>
 <!-- Loader -->
-<div id="preloader">
-    <div id="status">
-        <div class="spinner">
-
-        </div>
-    </div>
-</div>
 <!-- Navigation Bar-->
 <header id="topnav">
     <div class="topbar-main">
@@ -74,7 +81,7 @@
                             <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You
                                 have 87 unread messages</small></p>
                         </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon"><img src="/static/picture/avatar-4.jpg" alt="user-img"
+                            <div class="notify-icon"><img src="../static/picture/avatar-4.jpg" alt="user-img"
                                                           class="img-fluid rounded-circle"></div>
                             <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a
                                 long established fact that a reader will</small></p>
@@ -86,27 +93,16 @@
                             class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
                             href="#" role="button" aria-haspopup="false" aria-expanded="false"><i
                             class="dripicons-bell noti-icon"></i><span
-                            class="badge badge-success noti-icon-badge">2</span></a>
+                            class="badge badge-success noti-icon-badge">{% notifications_unread %}</span></a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg border-0">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
-                                <h5>Notification(3)</h5>
-                            </div><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <h5>Notification</h5>
+                            </div><!-- item--><a href="{% url 'my_notifications' %}" class="dropdown-item notify-item">
                             <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                            <p class="notify-details"><b>Your order is placed</b><small
-                                    class="text-muted">Dummy text of the printing and typesetting
-                                industry.</small></p>
-                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
-                            <p class="notify-details"><b>New Message received</b><small
-                                    class="text-muted">You have 87 unread messages</small></p>
-                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-info"><i class="mdi mdi-glass-cocktail"></i></div>
-                            <p class="notify-details"><b>Your class is updated</b><small
-                                    class="text-muted">It is a long established fact that a reader
-                                will</small></p>
-                        </a><!-- All--><a href="javascript:void(0);" class="dropdown-item notify-item border-top">View
-                            All </a>
+                            我的消息<span class="badge unread-count">{% notifications_unread %}</span>
+                            <br><small class="text-muted">My Messages</small>
+                        </a>
                         </div>
                     </li><!-- User-->
                     <li class="dropdown notification-list">
@@ -224,6 +220,7 @@
                                     <li>
                                         <a href="suggestion/4/">管理实践推荐</a>
                                     </li>
+
                                 </ul>
                             </li>
                             <li class="has-submenu">
@@ -252,21 +249,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="has-submenu">
-                        <a href="#">
-                            <i class="dripicons-blog">
-                            </i>活动信息
-                        </a>
-                        <ul class="submenu megamenu">
-                            <li>
-                                <ul>
-                                    <li>
-                                        <a href="activity.html">活动入口</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
                 <!-- End navigation menu -->
             </div>
@@ -287,12 +269,13 @@
                         <ul class="list-inline">
                             <li class="list-inline-item mr-3">
                                 <input class="knob" data-width="48" data-height="48" data-linecap="round"
-                                       data-fgcolor="#605daf" value="{{number}}" data-skin="tron" data-angleoffset="180"
+                                       data-fgcolor="#605daf" value="{{ number }}" data-skin="tron"
+                                       data-angleoffset="180"
                                        data-readonly="true" data-thickness=".1">
                             </li>
                             <li class="list-inline-item">
                                 <span class="text-muted">成绩达标率</span>
-                                <h6>{{num_pass}}人/{{num_all}}人</h6>
+                                <h6>{{ num_pass }}人/{{ num_all }}人</h6>
                             </li>
                         </ul>
                     </div>
@@ -309,9 +292,9 @@
             </div>
         </div>
         <!-- end page title end breadcrumb -->
-        <div class="row">
+        <div class="rows">
             <div class="col-lg-9">
-                <div class="row">
+                <div class="rows">&emsp;
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
@@ -323,14 +306,14 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{zh}}人</h5>
+                                            <h5 class="mt-0 mb-1">{{ score.zy }}分</h5>
                                             <p class="mb-0 font-12 text-muted">专业技术能力</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>&emsp;
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body justify-content-center">
@@ -342,14 +325,14 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{ch}}人</h5>
+                                            <h5 class="mt-0 mb-1">{{ score.cx }}分</h5>
                                             <p class="mb-0 font-12 text-muted">创新创业能力</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>&emsp;
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
@@ -361,27 +344,46 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{know}}人</h5>
+                                            <h5 class="mt-0 mb-1">{{ score.zs }}分</h5>
                                             <p class="mb-0 font-12 text-muted">知识学习能力</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>&emsp;
                     <div class="col-lg-3">
-                        <div class="card"> <!背景颜色等>
-                            <div class="card-body" >
-                                <div class="icon-contain"> <!图片>
-                                    <div class="row"><!里面内容>
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="icon-contain">
+                                    <div class="row">
                                         <div class="col-2 align-self-center">
                                             <i class="fas fa-database text-gradient-primary">
 
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{gl}}人</h5>
+                                            <h5 class="mt-0 mb-1">{{ score.gl }}分</h5>
                                             <p class="mb-0 font-12 text-muted">管理实践能力</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>&emsp;
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="icon-contain">
+                                    <div class="row">
+                                        <div class="col-2 align-self-center">
+                                            <i class="fas fa-tasks text-gradient-success">
+
+                                            </i>
+                                        </div>
+                                        <div class="col-10 text-right">
+                                            <h5 class="mt-0 mb-1">{{ score.zy }}分</h5>
+                                            <p class="mb-0 font-12 text-muted">专业技术能力</p>
                                         </div>
                                     </div>
                                 </div>
@@ -389,8 +391,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" style = "cleaer:both">
-                    <div class="card-body" style = "clear:both;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card-body">
                         <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                             <label class="btn btn-primary btn-sm active">
                                 <input type="radio" name="options" id="option1" checked="">用户（左）
@@ -408,121 +414,45 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body justify-content-center">
-                                <div class="icon-contain">
-                                    <div class="row">
-                                        <div class="col-2 align-self-center">
-                                            <i class="far fa-gem text-gradient-danger">
-
-                                            </i>
-                                        </div>
-                                        <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{ch}}人</h5>
-                                            <p class="mb-0 font-12 text-muted">创新创业能力</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            <div class="col-lg-3">
-                <div class="card" style="border:0;clear:both;position:relative;top:-492px;right:-1030px">
+                <div class="card">
                     <div class="card-body">
-                        <div class="dropdown d-inline-block float-right" >
+                        <div class="dropdown d-inline-block float-right">
                             <a class="nav-link dropdown-toggle arrow-none" id="dLabel4" data-toggle="dropdown" href="#"
                                role="button" aria-haspopup="false" aria-expanded="false">
 
                             </a>
                         </div>
                         <!--                        <h5 class="header-title mb-4 mt-0">综合发展能力</h5>-->
-
-                        </br></br>
-                        </br></br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br></br>
-                        </br></br>
-                        </br></br>
-                        </br></br>
-                        </br></br>
+                        <div>
+                            <h6 class="header-title mb-4 mt-0">近期活动展示</h6></br>
+                            <a href="https://www.hunnu.edu.cn/">湖南师范大学官网</a></br></br>
+                            <a href="https://jwc.hunnu.edu.cn/">湖南师范大学教务处</a></br></br>
+                            <a href="http://jwglnew.hunnu.edu.cn">湖南师范大学教务系统</a></br></br>
+                            <a href="https://stustar.hunnu.edu.cn/">湖南师范大学学生工作处</a></br></br>
+                            <a href="https://www.neea.edu.cn/">中国教育考试网</a></br></br>
+                            <a href="https://cy.ncss.cn/">全国大学生创业服务网</a></br></br>
+                            <a href="https://www.guoxinlanqiao.com/">蓝桥杯大赛官网</a></br></br>
+                        </div>
+                        <hr style="border-color: #0b0b0b">
                         <div>
                             <h6 class="header-title mb-4 mt-0"><font color="black">学业预警情况</font></h6>
                             {% if ans == "满足毕业最低要求" %}
-                            <span><font color="green"><strong>{{ ans }}</strong></font></span></br></br>
+                                <span><font color="green"><strong>{{ ans }}</strong></font></span></br></br>
                             {% endif %}
                             {% if ans == "不满足毕业最低要求" %}
-                            <span><font color="red"><strong>{{ ans }}</strong></font></span></br></br>
+                                <span><font color="red"><strong>{{ ans }}</strong></font></span></br></br>
                             {% endif %}
-                            <a href="Academic_Early_Warning.html"><u>详细展开</u></a></br></br>
+                            <a href="Academic_Early_Warning.html"><u>详细展开</u></a></br>
                         </div>
-                        <!--                        <ul class="list-unstyled list-inline text-center mb-0 mt-3">-->
-                        <!--                            <li class="mb-2 list-inline-item text-muted font-13">-->
-                        <!--                                <i class="mdi mdi-label text-success mr-2">-->
-
-                        <!--                                </i>优秀-->
-                        <!--                            </li>-->
-                        <!--                            <li class="mb-2 list-inline-item text-muted font-13">-->
-                        <!--                                <i class="mdi mdi-label text-danger mr-2">-->
-
-                        <!--                                </i>不合格-->
-                        <!--                            </li>-->
-                        <!--                            <li class="mb-2 list-inline-item text-muted font-13">-->
-                        <!--                                <i class="mdi mdi-label text-warning mr-2">-->
-
-                        <!--                                </i>良好-->
-                        <!--                            </li>-->
-                        <!--                        </ul>-->
                     </div>
                 </div>
 
             </div>
         </div>
-        <div class = "line-under">
-            <div class = "box_1" style = "background-color:white ; height:280px; width:995px;position:relative;top:-800px">
-            <table border = "0" cellpadding="20" width = "1200"    >
-                <tr>
-                    <td> <h6 class="header-title mb-4 mt-0">直达链接</h6></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><a href="https://www.hunnu.edu.cn/">湖南师范大学官网</a></h6></td>
-                    <td><a href="https://jwc.hunnu.edu.cn/">湖南师范大学教务处</a></td>
-                    <td><a href="http://jwglnew.hunnu.edu.cn">湖南师范大学教务系统</a></td>
-                </tr>
-                <tr>
-                    <td> <a href="https://stustar.hunnu.edu.cn/">湖南师范大学学生工作处</a></td>
-                    <td><a href="https://www.neea.edu.cn/">中国教育考试网</a></td>
-                    <td> <a href="https://cy.ncss.cn/">全国大学生创业服务网</a></td>
-                </tr>
-                <tr>
-                    <td><a href="https://www.guoxinlanqiao.com/">蓝桥杯大赛官网</a></td>
-                    <td> <a href="https://gplt.patest.cn/regulation">天梯赛大赛官网</a></td>
-                    <td> <a href="https://www.csdn.net/">CSDN-专业开发者社区</a></td>
-                </tr>
-            </table>
-            </div>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br><br>
         <div class="row">
-            <div class="col-xl-12" style = "position:relative;top:-880px">
+            <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-body" style = "position:relative;">
+                    <div class="card-body">
                         <h5 class="header-title pb-3 mt-0">学生学习成果</h5>
                         <div class="table-responsive">
                             <table class="table table-hover mb-0">
@@ -606,6 +536,46 @@
             </div>
         </div>
         <!-- end row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <h6 class="header-title mb-4 mt-0">直达链接</h6>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="https://www.hunnu.edu.cn/">湖南师范大学官网</a>
+                            </div>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="https://jwc.hunnu.edu.cn/">湖南师范大学教务处</a>
+                            </div>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="http://jwglnew.hunnu.edu.cn">湖南师范大学教务系统</a>
+                            </div>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="https://stustar.hunnu.edu.cn/">湖南师范大学学生工作处</a>
+                            </div>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="https://www.neea.edu.cn/">中国教育考试网</a>
+                            </div>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="https://cy.ncss.cn/">全国大学生创业服务网</a>
+                            </div>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="https://www.guoxinlanqiao.com/">蓝桥杯大赛官网</a>
+                            </div>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="https://gplt.patest.cn/regulation">天梯赛大赛官网</a>
+                            </div>
+                            <div style="width: 10.5%; display:inline-block; text-align: center">
+                                <a href="https://www.csdn.net/">CSDN-专业开发者社区</a>
+                            </div>
+                        </div>
+                        <!--end table-responsive-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- end container -->
 </div>
@@ -614,7 +584,7 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12" style = "position:relative;top:-900px">© 2022 大学生发展综合素质测评系统</a></div>
+            <div class="col-12">© 2022 大学生发展综合素质测评系统</div>
         </div>
     </div>
 </footer>
