@@ -1,6 +1,7 @@
 {% load notifications_tags %}
+{% load notifications_tags %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +30,7 @@
         <div class="container-fluid">
             <!-- Logo container-->
             <div class="logo">
-                <a href="index.html" class="logo">
+                <a href="/login/index.html" class="logo">
                     <i class="mdi mdi-bowling text-success mr-1">
 
                     </i>
@@ -40,11 +41,12 @@
             <div class="menu-extras topbar-custom">
                 <ul class="list-unstyled float-right mb-0">
                     <!-- language-->
-                    <li class="list-inline-item dropdown notification-list hide-phone">
-                        <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="false" aria-expanded="false">Chinese
-                            <img src="../static/picture/chinese_fiag.jpg" class="ml-2" height="16" alt=""></a>
-                    </li><!-- notification-->
+                    <li class="list-inline-item dropdown notification-list hide-phone"><a
+                            class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">Chinese <img
+                            src="/static/picture/chinese_fiag.jpg" class="ml-2" height="16" alt=""></a>
+                    </li>
+                    <!-- notification-->
                     <li class="list-inline-item dropdown notification-list"><a
                             class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
                             href="#" role="button" aria-haspopup="false" aria-expanded="false"><i
@@ -57,25 +59,27 @@
                             </div>
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon">
-                                <img src="../static/picture/avatar-2.jpg" alt="user-img" class="img-fluid rounded-circle">
-                            </div>
-                            <p class="notify-details">
-                                <b>Charles M. Jones</b>
-                                <small class="text-muted">Dummy text of the printing and typesetting industry.</small>
-                            </p>
+                                <div class="notify-icon">
+                                    <img src="../static/picture/avatar-2.jpg" alt="user-img"
+                                         class="img-fluid rounded-circle">
+                                </div>
+                                <p class="notify-details">
+                                    <b>Charles M. Jones</b>
+                                    <small class="text-muted">Dummy text of the printing and typesetting
+                                        industry.</small>
+                                </p>
                             </a>
-{#                            <!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">#}
-{#                            <div class="notify-icon"><img src="../static/picture/avatar-3.jpg" alt="user-img"#}
-{#                                                          class="img-fluid rounded-circle"></div>#}
-{#                            <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You#}
-{#                                have 87 unread messages</small></p>#}
-{#                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">#}
-{#                            <div class="notify-icon"><img src="../static/picture/avatar-4.jpg" alt="user-img"#}
-{#                                                          class="img-fluid rounded-circle"></div>#}
-{#                            <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a#}
-{#                                long established fact that a reader will</small></p>#}
-{#                            </a>#}
+                            {#                            <!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">#}
+                            {#                            <div class="notify-icon"><img src="../static/picture/avatar-3.jpg" alt="user-img"#}
+                            {#                                                          class="img-fluid rounded-circle"></div>#}
+                            {#                            <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You#}
+                            {#                                have 87 unread messages</small></p>#}
+                            {#                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">#}
+                            {#                            <div class="notify-icon"><img src="../static/picture/avatar-4.jpg" alt="user-img"#}
+                            {#                                                          class="img-fluid rounded-circle"></div>#}
+                            {#                            <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a#}
+                            {#                                long established fact that a reader will</small></p>#}
+                            {#                            </a>#}
                             <!-- All-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item border-top">
                                 View All
@@ -216,19 +220,19 @@
 
                                 </ul>
                             </li>
-                            <li class="has-submenu">
-                                <a href="#">综合发展能力</a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="suggestion/5/">综合发展推荐</a>
-                                    </li>
-                                </ul>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#">综合发展能力</a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="suggestion/5/">综合发展推荐</a>
                             </li>
                         </ul>
                     </li>
                     <li class="has-submenu">
                         <a href="#">
-                            <i class="dripicons-blog">
+                            <i class="dripicons-device-desktop">
 
                             </i>评分准则
                         </a>
@@ -237,22 +241,6 @@
                                 <ul>
                                     <li>
                                         <a href="form-editors.html">五大方面评分准则</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="#">
-                            <i class="dripicons-blog">
-
-                            </i> 活动信息
-                        </a>
-                        <ul class="submenu megamenu">
-                            <li>
-                                <ul>
-                                    <li>
-                                        <a href="activity.html">活动入口</a>
                                     </li>
                                 </ul>
                             </li>
@@ -298,7 +286,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title">材料提交</h4>
+                        <h4 class="mt-0 header-title" align="center">正在审核材料</h4>
                         <br>
                         <table class="table mb-0">
                             <thead>
@@ -313,7 +301,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for item in shenhe_list %}
+                            {% for item in shenhe_list_D %}
                                 <tr>
                                     <td>{{ item.no }}</td>
                                     <td>{{ item.miaoshu }}</td>
@@ -336,23 +324,87 @@
                             {% endfor %}
                             </tbody>
                         </table>
-                        <form enctype="multipart/form-data" action="tables-editable.html" method="post">
-                            {% csrf_token %}
-                            <p>学号：<input type="text" name="id" value={{ ID0 }} disabled="disabled"></p>
-                            <p>描述：<input type="text" name="miaoshu"></p>
-                            <p>
-                                类别：
-                                <select name="leibie">
-                                    <option>创新创业</option>
-                                    <option>专业技术</option>
-                                    <option>管理实践</option>
-                                    <option>综合发展</option>
-                                </select>
-                            </p>
-                            <p>加分：<input type="text" name="extra_points"></p>
-                            <p>图片：<input type="file" name="image"></p>
-                            <input type="submit" value="upload">
-                        </form>
+                        <HR style="FILTER:alpha(opacity=100,finishopacity=0,style=2)" width="80%" color=#987cb9 SIZE=10>
+                        <br>
+                        <br>
+                        {#                        <form enctype="multipart/form-data" action="tables-editable.html" method="post">#}
+                        {#                            {% csrf_token %}#}
+                        {#                            <p>学号：<input type="text" name="id" value={{ ID0 }} disabled="disabled"></p>#}
+                        {#                            <p>描述：<input type="text" name="miaoshu"></p>#}
+                        {#                            <p>#}
+                        {#                                类别：#}
+                        {#                                <select name="leibie">#}
+                        {#                                    <option>创新创业</option>#}
+                        {#                                    <option>专业技术</option>#}
+                        {#                                    <option>管理实践</option>#}
+                        {#                                    <option>综合发展</option>#}
+                        {#                                </select>#}
+                        {#                            </p>#}
+                        {#                            <p>加分：<input type="text" name="extra_points"></p>#}
+                        {#                            <p>图片：<input type="file" name="image"></p>#}
+                        {#                            <input type="submit" value="upload">#}
+                        {#                        </form>#}
+                        <div class="rg_layout">
+                            <div class="rg_left">
+                                <p>提交审核材料</p>
+                            </div>
+
+                            <div class="rg_center">
+                                <br><br><br><br><br>
+                                <div class="rg_form">
+                                    <!--定义表单 form-->
+                                    <form enctype="multipart/form-data" action="tables-editable.html" method="post">
+                                        {% csrf_token %}
+                                        <table>
+                                            <tr>
+                                                <td class="td_left"><label for="username">学号</label></td>
+                                                <td class="td_right"><input type="text" name="id"
+                                                                            value={{ ID0 }} disabled="disabled"
+                                                                            id="name"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="td_left"><label for="password">材料描述</label></td>
+                                                <td class="td_right"><input type="text" name="miaoshu" id="password">
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="td_left"><label for="email">类别</label></td>
+                                                <td class="td_right"><select name="leibie"
+                                                                             style="width:200px;height: 20px">
+                                                    <option>创新创业</option>
+                                                    <option>专业技术</option>
+                                                    <option>管理实践</option>
+                                                    <option>综合发展</option>
+                                                </select></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="td_left"><label for="name">分值</label></td>
+                                                <td class="td_right"><input type="text" name="extra_points" id="name"
+                                                                            placeholder="请输入加分值"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="td_left"><label for="tel">上传文件</label></td>
+                                                <td class="td_right"><input type="file" name="image"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="2" align="center"><input type="submit" id="btn_sub"
+                                                                                      value="提交"></td>
+                                            </tr>
+                                        </table>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -367,7 +419,8 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">© 2022 大学生发展综合素质测评系统</div>
+            <div class="col-12">© 2022 大学生发展综合素质测评系统
+            </div>
         </div>
     </div>
 </footer>
@@ -389,6 +442,108 @@
 <script src="../static/js/jquery.tabledit.js"></script>
 <script src="../static/js/table-edit.init.js"></script>
 <!-- App js -->
-<script src="../static/js/app.js"></script>
+<script src="/static/js/app.js"></script>
+<style type="text/css">
+    #a1:hover{
+        color: red;
+        background: transparent;
+        border-color: #bbb#fff#fff#aaa;
+    }   /*鼠标经过超链接的样式*/
+
+    #a1{/*完全清除超链接下划线效果*/
+        width: 50px;
+        font-size:20px;
+        text-decoration: none;
+        border:solid 1px;
+        color: #444;
+        background: burlywood;    /*超链接背景颜色*/
+        border-color: #fff#aaa#aaa#fff;
+        zoom: 1;      /*解决IE浏览器无法显示问题*/
+    }
+    *{
+		        margin: 0px;
+		        padding: 0px;
+		        box-sizing: border-box;
+		    }
+
+		    .rg_layout{
+		        width: 900px;
+		        height: 500px;
+		        border: 8px solid #EEEEEE;
+		        background-color: white;
+		        /*让div水平居中*/
+		        margin: auto;
+		    }
+
+		    .rg_left{
+		        /*border: 1px solid red;*/
+		        float: left;
+		        margin: 15px;
+		    }
+		    .rg_left > p:first-child{
+		        color:#FFD026;
+		        font-size: 20px;
+		    }
+
+		    .rg_left > p:last-child{
+		        color:#A6A6A6;
+		        font-size: 20px;
+
+		    }
+
+
+		    .rg_center{
+		        float: left;
+		       /* border: 1px solid red;*/
+
+		    }
+
+		    .rg_right{
+		        /*border: 1px solid red;*/
+		        float: right;
+		        margin: 15px;
+		    }
+
+		    .rg_right > p:first-child{
+		        font-size: 15px;
+
+		    }
+		    .rg_right p a {
+		        color:pink;
+		    }
+
+		    .td_left{
+		        width: 100px;
+		        text-align: right;
+		        height: 45px;
+		    }
+		    .td_right{
+		        padding-left: 50px ;
+		    }
+
+		    #username,#password,#email,#name,#tel,#birthday,#checkcode{
+		        width: 251px;
+		        height: 32px;
+		        border: 1px solid #A6A6A6 ;
+		        /*设置边框圆角*/
+		        border-radius: 5px;
+		        padding-left: 10px;
+		    }
+		    #checkcode{
+		        width: 110px;
+		    }
+
+		    #img_check{
+		        height: 32px;
+		        vertical-align: middle;
+		    }
+
+		    #btn_sub{
+		        width: 150px;
+		        height: 40px;
+		        background-color: #FFD026;
+		        border: 1px solid #FFD026 ;
+		    }
+</style>
 </body>
 </html>
