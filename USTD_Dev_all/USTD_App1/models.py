@@ -112,8 +112,6 @@ class Student(models.Model):  # 学生用户信息表
     pwd = models.IntegerField(verbose_name='密码', default=123456)
     banji = models.CharField(max_length=200, verbose_name='班级',default='2020级')
     department = models.CharField(max_length=200, verbose_name='院系', default='信工院')
-    banji = models.CharField(max_length=200, verbose_name='班级', null=True)
-    department = models.CharField(max_length=200, verbose_name='院系', null=True)
 
     class Meta:
         db_table = 'Student'

@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="modify" />
+    <list default="true" id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="modify">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/Academic_Early_Warning.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/Academic_Early_Warning.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/activity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/error2.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/error2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/form-editors.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/form-editors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/infor.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/infor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/my_notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/my_notifications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/password_change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/password_change_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/student_score.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/student_score.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/suggestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/suggestion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/tables-editable.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/tables-editable.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,17 +33,27 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2OeFYFGiP2NMwifNOApQC3ahKhA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -30,6 +63,8 @@
       <option name="presentableId" value="Default" />
       <updated>1681913186631</updated>
       <workItem from="1681913188491" duration="198000" />
+      <workItem from="1681924257187" duration="620000" />
+      <workItem from="1681949883287" duration="6190000" />
     </task>
     <task id="LOCAL-00001" summary="modify">
       <created>1681913290900</created>
@@ -38,11 +73,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681913290900</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="modify">
+      <created>1681923750336</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681923750336</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
