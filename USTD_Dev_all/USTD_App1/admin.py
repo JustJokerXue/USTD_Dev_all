@@ -1,6 +1,6 @@
 from .models import Early_Warning
 # Register your models here.
-from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application, Activity,OverallScore
+from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application,OverallScore
 # from USTD_App1.models import Knowledge
 from .models import Course
 from .models import Score
@@ -39,8 +39,14 @@ class StudentAdmin(admin.ModelAdmin):  # 学生用户信息表后台布局设计
         if form.is_valid():
             stu = form.save()
             print(stu.id)
-            stu_cx = Innovation(sno=stu.id, name=stu.name)
+            stu_cx = Innovation(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
             stu_cx.save()
+            stu_zy = majorTechnology(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
+            stu_zy.save()
+            stu_gl = manage(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
+            stu_gl.save()
+            stu_zh = ComprehensiveDevelopment(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
+            stu_zh.save()
 
         super().save_model(request, obj, form, change)
 
