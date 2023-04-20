@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'USTD_App1',
     'notifications',
+    'import_export',
 ]
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 会话存储引擎

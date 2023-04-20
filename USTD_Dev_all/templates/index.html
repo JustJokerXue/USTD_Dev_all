@@ -9,6 +9,7 @@
     <meta content="Admin Dashboard" name="description">
     <meta content="Mannatthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--    <link rel="shortcut icon" href="https://www.17sucai.com/2022/5/ekow512451/assets/images/favicon.ico">-->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../static/css/icons.css" rel="stylesheet" type="text/css">
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
@@ -325,7 +326,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{ score.zy }}分</h5>
+                                            <h5 class="mt-0 mb-1">{{ s1 }}分</h5>
                                             <p class="mb-0 font-12 text-muted">专业技术能力</p>
                                         </div>
                                     </div>
@@ -344,7 +345,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{ score.cx }}分</h5>
+                                            <h5 class="mt-0 mb-1">{{ s2 }}分</h5>
                                             <p class="mb-0 font-12 text-muted">创新创业能力</p>
                                         </div>
                                     </div>
@@ -363,7 +364,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{ score.zs }}分</h5>
+                                            <h5 class="mt-0 mb-1">{{ s3 }}分</h5>
                                             <p class="mb-0 font-12 text-muted">知识学习能力</p>
                                         </div>
                                     </div>
@@ -382,7 +383,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{ score.gl }}分</h5>
+                                            <h5 class="mt-0 mb-1">{{ s4 }}分</h5>
                                             <p class="mb-0 font-12 text-muted">管理实践能力</p>
                                         </div>
                                     </div>
@@ -401,7 +402,7 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{ score.zy }}分</h5>
+                                            <h5 class="mt-0 mb-1">{{ s5 }}分</h5>
                                             <p class="mb-0 font-12 text-muted">专业技术能力</p>
                                         </div>
                                     </div>
@@ -416,23 +417,30 @@
             <div class="col-lg-9">
                 <div class="card">
                     <div class="card-body">
-                        <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                            <label class="btn btn-primary btn-sm active">
-                                <input type="radio" name="options" id="option1" checked="">用户（左）
-                            </label>
-                            <label class="btn btn-primary btn-sm">
-                                <input type="radio" name="options" id="option2">平均（右）
-                            </label>
-                        </div>
-                        <h5 class="header-title mb-4 mt-0">成绩雷达图对比
-                        </h5>
-                        <div>
-                            <img height="100%" width="100%" src="../static/image/1.png"/>
-                        </div>
+                        <h5 class="header-title mb-4 mt-0">成绩雷达图对比</h5>
+                        <img height="100%" width="100%" src="/static/image/1.png"/>
+
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="icon-contain">
+                            <div class="row">
+                                <div class="col-2 align-self-center">
+                                    <i class="fas fa-database text-gradient-primary">
+                                    </i>
+                                </div>
+                                <div class="col-10 text-right">
+                                    <h1 style="color:red" class="mt-0 mb-1">{{ overallgrade }}分</h1>
+                                    <p style="color:blue" class="mb-0 font-32 text-muted">综合素质测评总分</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="dropdown d-inline-block float-right">
@@ -442,26 +450,27 @@
                             </a>
                         </div>
                         <!--                        <h5 class="header-title mb-4 mt-0">综合发展能力</h5>-->
+
                         <div>
-                            <h6 class="header-title mb-4 mt-0">近期活动展示</h6><br>
-                            <a href="https://www.hunnu.edu.cn/">湖南师范大学官网</a><br><br>
-                            <a href="https://jwc.hunnu.edu.cn/">湖南师范大学教务处</a><br><br>
-                            <a href="http://jwglnew.hunnu.edu.cn">湖南师范大学教务系统</a><br><br>
-                            <a href="https://stustar.hunnu.edu.cn/">湖南师范大学学生工作处</a><br><br>
-                            <a href="https://www.neea.edu.cn/">中国教育考试网</a><br><br>
-                            <a href="https://cy.ncss.cn/">全国大学生创业服务网</a><br><br>
-                            <a href="https://www.guoxinlanqiao.com/">蓝桥杯大赛官网</a><br><br>
+                            <h6 class="header-title mb-4 mt-0">近期活动展示</h6></br>
+                            <a href="https://www.hunnu.edu.cn/">湖南师范大学官网</a></br></br>
+                            <a href="https://jwc.hunnu.edu.cn/">湖南师范大学教务处</a></br></br>
+                            <a href="http://jwglnew.hunnu.edu.cn">湖南师范大学教务系统</a></br></br>
+                            <a href="https://stustar.hunnu.edu.cn/">湖南师范大学学生工作处</a></br></br>
+                            <a href="https://www.neea.edu.cn/">中国教育考试网</a></br></br>
+                            <a href="https://cy.ncss.cn/">全国大学生创业服务网</a></br></br>
+                            <a href="https://www.guoxinlanqiao.com/">蓝桥杯大赛官网</a></br></br>
                         </div>
                         <hr style="border-color: #0b0b0b">
                         <div>
                             <h6 class="header-title mb-4 mt-0"><font color="black">学业预警情况</font></h6>
                             {% if ans == "满足毕业最低要求" %}
-                                <span><font color="green"><strong>{{ ans }}</strong></font></span><br><br>
+                                <span><font color="green"><strong>{{ ans }}</strong></font></span></br></br>
                             {% endif %}
                             {% if ans == "不满足毕业最低要求" %}
-                                <span><font color="red"><strong>{{ ans }}</strong></font></span><br><br>
+                                <span><font color="red"><strong>{{ ans }}</strong></font></span></br></br>
                             {% endif %}
-                            <a href="Academic_Early_Warning.html"><u>详细展开</u></a><br>
+                            <a href="Academic_Early_Warning.html"><u>详细展开</u></a></br>
                         </div>
                     </div>
                 </div>
@@ -486,7 +495,7 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <img src="../static/picture/avatar-1.jpg" alt=""
+                                        <img src="/static/picture/avatar-1.jpg" alt=""
                                              class="thumb-sm rounded-circle mr-2">***
                                     </td>
                                     <td>专业技术能力</td>
@@ -497,7 +506,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="../static/picture/avatar-2.jpg" alt=""
+                                        <img src="/static/picture/avatar-2.jpg" alt=""
                                              class="thumb-sm rounded-circle mr-2">***
                                     </td>
                                     <td>创新创业能力</td>
@@ -509,7 +518,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="../static/picture/avatar-3.jpg" alt=""
+                                        <img src="/static/picture/avatar-3.jpg" alt=""
                                              class="thumb-sm rounded-circle mr-2">***
                                     </td>
                                     <td>知识学习能力</td>
@@ -522,7 +531,7 @@
                                 <tr>
 
                                     <td>
-                                        <img src="../static/picture/avatar-4.jpg" alt=""
+                                        <img src="/static/picture/avatar-4.jpg" alt=""
                                              class="thumb-sm rounded-circle mr-2">***
                                     </td>
                                     <td>管理实践能力</td>
@@ -535,7 +544,7 @@
                                 <tr>
 
                                     <td>
-                                        <img src="../static/picture/avatar-5.jpg" alt=""
+                                        <img src="/static/picture/avatar-5.jpg" alt=""
                                              class="thumb-sm rounded-circle mr-2">***
                                     </td>
                                     <td>综合发展能力</td>
@@ -609,37 +618,38 @@
 </footer>
 <!-- End Footer -->
 <!-- jQuery -->
-<script src="../static/js/jquery.min.js">
+<script src="/static/js/jquery.min.js">
 </script>
-<script src="../static/js/popper.min.js">
+<script src="/static/js/popper.min.js">
 </script>
-<script src="../static/js/bootstrap.min.js">
+<script src="/static/js/bootstrap.min.js">
 </script>
-<script src="../static/js/modernizr.min.js">
+<script src="/static/js/modernizr.min.js">
 </script>
-<script src="../static/js/waves.js">
+<script src="/static/js/waves.js">
 </script>
-<script src="../static/js/jquery.slimscroll.js">
+<script src="/static/js/jquery.slimscroll.js">
 </script>
-<script src="../static/js/jquery.nicescroll.js">
+<script src="/static/js/jquery.nicescroll.js">
 </script>
-<script src="../static/js/jquery.scrollTo.min.js">
+<script src="/static/js/jquery.scrollTo.min.js">
 </script>
 <!-- KNOB JS -->
-<script src="../static/js/excanvas.js">
+<script src="/static/js/excanvas.js">
 </script>
-<script src="../static/js/jquery.knob.js">
+<script src="/static/js/jquery.knob.js">
 </script>
-<script src="../static/js/chart.min.js">
+<script src="/static/js/chart.min.js">
 </script>
-<script src="../static/js/dashboard.js">
+<script src="/static/js/dashboard.js">
 </script>
 <!-- App js -->
-<script src="../static/js/app.js">
+<script src="/static/js/app.js">
 </script>
 <div style="display:none;">
+    <!--    <a href="https://smalltool.github.io/">扒站工具</a>-->
 </div>
 </body>
 </html>
-<script src="../static/js/console-ban.min.js">
+<script src="/static/js/console-ban.min.js">
 </script>

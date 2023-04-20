@@ -13,7 +13,8 @@ from requests import session
 from sqlalchemy import Integer
 
 from . import models
-from .models import Score, Weight, Activity,Application
+from .models import Score, Weight, Activity, Application, OverallScore, learning, Innovation, majorTechnology, manage, \
+    ComprehensiveDevelopment
 from .models import Student, Early_Warning, Course
 # from django.utils.html import strip_tags
 # from notifications.signals import notify
@@ -81,31 +82,69 @@ def Model_creat(id):
     student = Student.objects.get(id=id)
     name = student.name
     score = Score.objects.filter(id=id)
+    overallsorce = OverallScore.objects.filter(id=id)
     course = Course.objects.filter(stu_id=id)
-    if score.exists() and course.exists():
-        print("score and course is exists")
-        print("course and course is exists")
+    learn = learning.objects.filter(sno=id)
+    warning = Early_Warning.objects.filter(id=id)
+    if learn.exists():
+        print("learn is exists")
+    else:
+        learn = learning(sno=student.id, name=student.name, banji=student.banji, major=student.major,
+                         department=student.department)
+        learn.save()
+        print(learn)
+
+    if score.exists():
+        print("score is exists")
     else:
         score = Score(id=id)
         score.save()
+        print(score)
+
+    if course.exists():
+        print("course is exists")
+    else:
         course = Course(stu_id=id, name=name)
         course.save()
-        print(score)
         print(course)
-    return score
+
+    if overallsorce.exists():
+        print("overallsorce is exists")
+    else:
+        overallsorce = OverallScore(id=id, name=student.name, banji=student.banji, major=student.major,
+                                    department=student.department)
+        overallsorce.save()
+        print(overallsorce)
+
+    if warning.exists():
+        print("warning is exists")
+    else:
+        warning = Early_Warning(id=id, )
+        warning.save()
+        print(warning)
+
+    return 1
 
 
 def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成功就调用
     # 获取权重系数
     weigth = Weight.objects.get(id=1)
     # 获取学生各方面评分
-    score = Score.objects.get(id=id)
+    m1 = learning.objects.get(sno=id)
+    m2 = Innovation.objects.get(sno=id)
+    m3 = majorTechnology.objects.get(sno=id)
+    m4 = manage.objects.get(sno=id)
+    m5 = ComprehensiveDevelopment.objects.get(sno=id)
+
     # 计算总成绩
-    overallgrade = weigth.zyweight * score.zy + weigth.cxweight * score.cx + weigth.zsweight * score.zs + weigth.glweight * score.gl + weigth.zhweight * score.zh
-    score.overallgrade = overallgrade
-    score.save()
-    print(weigth.zyweight, score.zy)
+    overallgrade = weigth.zyweight * m3.total_score + weigth.cxweight * m1.total_score \
+                   + weigth.zsweight * m1.total_score + weigth.glweight * m4.total_score \
+                   + weigth.zhweight * m5.total_score
+    overallscore = OverallScore.objects.get(id=id)
+    overallscore.total_score = overallgrade
+    overallscore.save()
     print(overallgrade)
+    return overallgrade
 
 
 def Activity_new(request):  # 活动汇总调用
@@ -271,19 +310,24 @@ def login(request):  # 登录页面功能实现
                 return render(request, 'error.html')
             sid = str(student.id)
             spwd = str(student.pwd)
+
             print(id, pwd)
             print(sid, spwd)
             if id == sid and pwd == spwd:
                 print('登录成功')
-                select(id)
                 Model_creat(id)
-                Calculate_grades(id)
+                select(id)
+                overallgrade = Calculate_grades(id)
                 # Activity_new()
                 # queryCourse(id)
                 num_all = Score.objects.all().count()
                 num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
                 number = int((num_pass / num_all) * 100)
-                score = Score.objects.get(id=id);
+                s1 = majorTechnology.objects.get(sno=id)
+                s2 = Innovation.objects.get(sno=id)
+                s3 = learning.objects.get(sno=id)
+                s4 = manage.objects.get(sno=id)
+                s5 = ComprehensiveDevelopment.objects.get(sno=id)
                 # zh = Score.objects.filter(zy__gte=60).count()
                 # ch = Score.objects.filter(cx__gte=60).count()
                 # know = Score.objects.filter(zs__gte=60).count()
@@ -304,7 +348,9 @@ def login(request):  # 登录页面功能实现
                                'm2': max_Score_list[1], 'm3': max_Score_list[2]
                                   , 'm4': max_Score_list[3], 'm5': max_Score_list[4], 'num_all': num_all,
                                'num_pass': num_pass, 'number': number,
-                               'score': score}, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
+                               's1': s1.total_score, 's2': s2.total_score, 's3': s3.total_score, 's4': s4.total_score,
+                               's5': s5.total_score,
+                               'overallgrade': overallgrade, }, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
             else:
                 return render(request, 'error.html')
         else:
@@ -335,11 +381,11 @@ def academic_Early_Warning(request):  # 学业预警页面功能实现及调用
 
 def max_Score():  # 主页面最高成绩展示功能实现
     max_Score_list = list()
-    m1 = Score.objects.aggregate(max1=Max("zy"))
-    m2 = Score.objects.aggregate(max2=Max("cx"))
-    m3 = Score.objects.aggregate(max3=Max("zs"))
-    m4 = Score.objects.aggregate(max4=Max("gl"))
-    m5 = Score.objects.aggregate(max5=Max("zh"))
+    m1 = majorTechnology.objects.aggregate(max1=Max("total_score"))
+    m2 = Innovation.objects.aggregate(max2=Max("total_score"))
+    m3 = learning.objects.aggregate(max3=Max("total_score"))
+    m4 = manage.objects.aggregate(max4=Max("total_score"))
+    m5 = ComprehensiveDevelopment.objects.aggregate(max5=Max("total_score"))
     value1 = list(m1.values())[0]
     value2 = list(m2.values())[0]
     value3 = list(m3.values())[0]
@@ -367,54 +413,102 @@ def select(i):  # 主页面雷达图成绩展示功能实现
     cursor2 = conn.cursor()
     cursor3 = conn.cursor()
     cursor4 = conn.cursor()
-    S = Score.objects.get(id=i)
-    avg_zy = cursor0.execute("SELECT AVG(zy) FROM Score")
-    avg_cx = cursor1.execute("SELECT AVG(cx) FROM Score")
-    avg_zs = cursor2.execute("SELECT AVG(zs) FROM Score")
-    avg_gl = cursor3.execute("SELECT AVG(gl) FROM Score")
-    avg_zh = cursor4.execute("SELECT AVG(zh) FROM Score")
+    s1 = majorTechnology.objects.get(sno=i)
+    s2 = Innovation.objects.get(sno=i)
+    s3 = learning.objects.get(sno=i)
+    s4 = manage.objects.get(sno=i)
+    s5 = ComprehensiveDevelopment.objects.get(sno=i)
+    avg_zy = cursor0.execute("SELECT AVG(total_score) FROM majorTechnology")
+    avg_cx = cursor1.execute("SELECT AVG(total_score) FROM Innovation")
+    avg_zs = cursor2.execute("SELECT AVG(total_score) FROM learning")
+    avg_gl = cursor3.execute("SELECT AVG(total_score) FROM manage")
+    avg_zh = cursor4.execute("SELECT AVG(total_score) FROM ComprehensiveDevelopment")
     avg_zy = avg_zy.fetchone()[0]
     avg_cx = avg_cx.fetchone()[0]
     avg_zs = avg_zs.fetchone()[0]
     avg_gl = avg_gl.fetchone()[0]
     avg_zh = avg_zh.fetchone()[0]
-    results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
-               {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
-    data_length = len(results[0])
-    angles = np.linspace(0, 2 * np.pi, data_length, endpoint=False)
-    labels = [key for key in results[0].keys()]
-    score = [[v for v in result.values()] for result in results]
-    score_a = np.concatenate((score[0], [score[0][0]]))
-    score_b = np.concatenate((score[1], [score[1][0]]))
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    # import matplotlib
+    plt.rcParams["font.sans-serif"] = ["SimHei"]
+    # results = [{"专业技术": s1.total_score, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
+    #            {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
+    dataset = pd.DataFrame(data=[[s1.total_score, avg_zy],
+                                 [s2.total_score, avg_cx],
+                                 [s3.total_score, avg_zs],
+                                 [s4.total_score, avg_gl],
+                                 [s5.total_score, avg_zh]],
+                           index=['专业技术', '创新创业', '知识学习 ', '管理实践', '综合发展'],
+                           columns=['个人水平', '平均水平'])
+    radar_labels = dataset.index
+    nAttr = 5
+    data = dataset.values  # 数据值
+    data_labels = dataset.columns
+    # 设置角度
+    angles = np.linspace(0, 2 * np.pi, nAttr,
+                         endpoint=False)
+    data = np.concatenate((data, [data[0]]))
     angles = np.concatenate((angles, [angles[0]]))
-    labels = np.concatenate((labels, [labels[0]]))
-    fig = plt.figure(figsize=(15, 6), dpi=100)
-    fig.suptitle("XXXX专业")
-    ax1 = plt.subplot(121, polar=True)
-    ax2 = plt.subplot(122, polar=True)
-    ax, data, name = [ax1, ax2], [score_a, score_b], ["个人", "平均"]
-    for i in range(2):
-        for j in np.arange(0, 100 + 20, 20):
-            ax[i].plot(angles, 6 * [j], '-.', lw=0.5, color='black')
-        for j in range(5):
-            ax[i].plot([angles[j], angles[j]], [0, 100], '-.', lw=0.5, color='black')
-        ax[i].plot(angles, data[i], color='b')
-        # 隐藏最外圈的圆
-        ax[i].spines['polar'].set_visible(False)
-        # 隐藏圆形网格线
-        ax[i].grid(False)
-        for a, b in zip(angles, data[i]):
-            ax[i].text(a, b + 5, '%.00f' % b, ha='center', va='center', fontsize=12, color='b')
-        ax[i].set_thetagrids(angles * 180 / np.pi, labels)
-        ax[i].set_theta_zero_location('N')
-        ax[i].set_rlim(0, 100)
-        ax[i].set_rlabel_position(0)
-        ax[i].set_title(name[i])
-    # 汉字字体，优先使用楷体，找不到则使用黑体
-    plt.rcParams['font.sans-serif'] = ['Kaitt', 'SimHei']
-    # 正常显示负号
-    plt.rcParams['axes.unicode_minus'] = False
+    # 设置画布
+    fig = plt.figure(facecolor="white", figsize=(10, 6))
+    plt.subplot(111, polar=True)
+    # 绘图
+    plt.plot(angles, data, 'o-',
+             linewidth=1.5, alpha=0.2)
+    # 填充颜色
+    plt.fill(angles, data, alpha=0.25)
+    plt.thetagrids(angles[:-1] * 180 / np.pi,
+                   radar_labels, 1.2)
+    plt.figtext(0.52, 0.95, '综合素质分析',
+                ha='center', size=20)
+    # 设置图例
+    legend = plt.legend(data_labels,
+                        loc=(1.1, 0.05),
+                        labelspacing=0.1)
+    plt.setp(legend.get_texts(),
+             fontsize='large')
+    plt.grid(True)
+    # plt.savefig('tongshi.png')
     # plt.show()
+    # results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
+    #            {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
+    # data_length = len(results[0])
+    # angles = np.linspace(0, 2 * np.pi, data_length, endpoint=False)
+    # labels = [key for key in results[0].keys()]
+    # score = [[v for v in result.values()] for result in results]
+    # score_a = np.concatenate((score[0], [score[0][0]]))
+    # score_b = np.concatenate((score[1], [score[1][0]]))
+    # angles = np.concatenate((angles, [angles[0]]))
+    # labels = np.concatenate((labels, [labels[0]]))
+    # fig = plt.figure(figsize=(15, 6), dpi=100)
+    # fig.suptitle("XXXX专业")
+    # ax1 = plt.subplot(121, polar=True)
+    # ax2 = plt.subplot(122, polar=True)
+    # ax, data, name = [ax1, ax2], [score_a, score_b], ["个人", "平均"]
+    # for i in range(2):
+    #     for j in np.arange(0, 100 + 20, 20):
+    #         ax[i].plot(angles, 6 * [j], '-.', lw=0.5, color='black')
+    #     for j in range(5):
+    #         ax[i].plot([angles[j], angles[j]], [0, 100], '-.', lw=0.5, color='black')
+    #     ax[i].plot(angles, data[i], color='b')
+    #     # 隐藏最外圈的圆
+    #     ax[i].spines['polar'].set_visible(False)
+    #     # 隐藏圆形网格线
+    #     ax[i].grid(False)
+    #     for a, b in zip(angles, data[i]):
+    #         ax[i].text(a, b + 5, '%.00f' % b, ha='center', va='center', fontsize=12, color='b')
+    #     ax[i].set_thetagrids(angles * 180 / np.pi, labels)
+    #     ax[i].set_theta_zero_location('N')
+    #     ax[i].set_rlim(0, 100)
+    #     ax[i].set_rlabel_position(0)
+    #     ax[i].set_title(name[i])
+    # # 汉字字体，优先使用楷体，找不到则使用黑体
+    # plt.rcParams['font.sans-serif'] = ['Kaitt', 'SimHei']
+    # # 正常显示负号
+    # plt.rcParams['axes.unicode_minus'] = False
+    # # plt.show()
     plt.savefig("static\\image\\1.png", format='png')
 
 
@@ -422,27 +516,31 @@ def suggestion(request, p1):  # 该函数实现发展建议页面功能
     print(p1)
     ID = request.session.get('ID')
     name = request.session.get('name')
-    e = Score.objects.get(id=ID)
+    s1 = majorTechnology.objects.get(sno=ID)
+    s2 = Innovation.objects.get(sno=ID)
+    s3 = learning.objects.get(sno=ID)
+    s4 = manage.objects.get(sno=ID)
+    s5 = ComprehensiveDevelopment.objects.get(sno=ID)
     print(ID)
     if p1 == 1:
-        print(e.zy)
-        g = grade(e.zy)
+        print(s1.total_score)
+        g = grade(s1.total_score)
         print(g)
     elif p1 == 2:
-        g = grade(e.cx)
-        print(e.cx)
+        g = grade(s2.total_score)
+        print(s2.total_score)
         print(g)
     elif p1 == 3:
-        g = grade(e.zs)
-        print(e.zs)
+        g = grade(s3.total_score)
+        print(s3.total_score)
         print(g)
     elif p1 == 4:
-        g = grade(e.gl)
-        print(e.gl)
+        g = grade(s4.total_score)
+        print(s4.total_score)
         print(g)
     else:
-        g = grade(e.zh)
-        print(e.zh)
+        g = grade(s5.total_score)
+        print(s5.total_score)
         print(g)
 
     return render(request, 'suggestion.html', {'grade': g, 'name': name})
