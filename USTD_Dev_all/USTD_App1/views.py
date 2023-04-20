@@ -237,10 +237,12 @@ def shenhe_upload(request):  # 上传审核材料页面功能实现及调用
 
         else:
             return render(request, 'error2.html')
-    shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
+    shenhe_list_obj_D = models.shenhe.objects.filter(no=ID0,zhuangtai='D')
+    shenhe_list_obj_F = models.shenhe.objects.filter(no=ID0,zhuangtai='F')
+    shenhe_list_obj_T = models.shenhe.objects.filter(no=ID0,zhuangtai='T')
     request.session['ID0'] = ID0
     return render(request, 'tables-editable.html',
-                  {'shenhe_list': shenhe_list_obj, 'ID0': ID0, 'name': name, 'num_pass': num_pass, 'num_all': num_all,
+                  {'shenhe_list_D': shenhe_list_obj_D,'shenhe_list_F': shenhe_list_obj_F,'shenhe_list_T': shenhe_list_obj_T, 'ID0': ID0, 'name': name, 'num_pass': num_pass, 'num_all': num_all,
                    'number': number})
 
 
