@@ -186,8 +186,8 @@ class Course(models.Model):  # 学生学习成绩表
 
     class Meta:
         db_table = 'Course'
-        verbose_name = "知识学习"
-        verbose_name_plural = "知识学习"
+        verbose_name = "课程成绩"
+        verbose_name_plural = "课程成绩"
         constraints = [
             models.CheckConstraint(check=models.Q(grade__gte=0, grade__lte=100), name='grade'),
             models.CheckConstraint(check=models.Q(gpa__gte=0, gpa__lte=5), name='gpa'),
@@ -197,25 +197,26 @@ class Course(models.Model):  # 学生学习成绩表
         return self.name
 
 
-# class Knowledge(models.Model):  # 学生知识学习评分表
-#     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
-#     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
-#     java = models.IntegerField(default=0, verbose_name='java课程', null=True)
-#     dataStructure = models.IntegerField(default=0, verbose_name='数据结构', null=True)
-#     Gaverage = models.FloatField(default=0, verbose_name='平均绩点', null=True)
-#
-#     class Meta:
-#         db_table = 'Knowledge'
-#         verbose_name = "知识学习"
-#         verbose_name_plural = "知识学习"
-#         constraints = [
-#             models.CheckConstraint(check=models.Q(java__gte=0, java__lte=100), name='java'),
-#             models.CheckConstraint(check=models.Q(dataStructure__gte=0, dataStructure__lte=100), name='dataStructure'),
-#             models.CheckConstraint(check=models.Q(Gaverage__gte=0, Gaverage__lte=5), name='Gaverage'),
-#         ]
-#
-#     def __str__(self):
-#         return self.name
+
+
+class learning(models.Model):  # 知识学习表
+    name = models.CharField(max_length=200, verbose_name='姓名', null=True)
+    sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
+    banji = models.CharField(max_length=200, verbose_name='班级', null=True)
+    major = models.CharField(max_length=200, verbose_name='专业', null=True)
+    department = models.CharField(max_length=200, verbose_name='院系', null=True)
+    total_score = models.IntegerField(default=0, verbose_name='成绩')
+
+    class Meta:
+        db_table = 'learning'
+        verbose_name = "学习"
+        verbose_name_plural = "学习"
+        constraints = [
+            models.CheckConstraint(check=models.Q(total_score__gte=0, total_score__lte=100),
+                                   name='learning_total_score'),
+        ]
+    def __str__(self):
+        return self.name
 
 
 class Innovation(models.Model):  # 学生创新创业评分表
