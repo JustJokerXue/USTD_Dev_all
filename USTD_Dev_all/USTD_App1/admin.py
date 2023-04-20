@@ -1,12 +1,6 @@
 from USTD_App1.models import Early_Warning
 # Register your models here.
-<<<<<<< HEAD
-from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible, \
-    administrator, GraduationRequirement, Application, Activity
-=======
-from USTD_App1.models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible, \
-    administrator, GraduationRequirement, Application, OverallScore
->>>>>>> 7a9a20fdf8864799bfc1c23a4593d87c97d29d53
+from USTD_App1.models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application, Activity,OverallScore
 # from USTD_App1.models import Knowledge
 from USTD_App1.models import Course
 from USTD_App1.models import Score

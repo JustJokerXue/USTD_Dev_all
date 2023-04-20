@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.utils import timezone
 
 # Create your models here.
 from django.utils.html import format_html
@@ -109,13 +110,10 @@ class Student(models.Model):  # 学生用户信息表
     age = models.IntegerField(default=0, verbose_name='年龄', null=True)
     major = models.CharField(max_length=200, verbose_name='专业', null=True)
     pwd = models.IntegerField(verbose_name='密码', default=123456)
-<<<<<<< HEAD
     banji = models.CharField(max_length=200, verbose_name='班级',default='2020级')
     department = models.CharField(max_length=200, verbose_name='院系', default='信工院')
-=======
     banji = models.CharField(max_length=200, verbose_name='班级', null=True)
     department = models.CharField(max_length=200, verbose_name='院系', null=True)
->>>>>>> 7a9a20fdf8864799bfc1c23a4593d87c97d29d53
 
     class Meta:
         db_table = 'Student'
@@ -413,15 +411,14 @@ class Weight(models.Model):  # 综测权重系数表
 
 
 class Activity(models.Model):  # 活动表
-    aid = models.IntegerField(default=0, verbose_name='活动编号', null=True)
-    aname = models.CharField(max_length=200, verbose_name='活动名称', null=True)
-    content = models.CharField(max_length=200, verbose_name='活动内容', null=True)
-    organizer = models.CharField(max_length=200, verbose_name='活动举办方', null=True)
-    baoming = models.CharField(max_length=200, verbose_name='报名方式', null=True)
+    # aid = models.IntegerField(default=0, verbose_name='活动编号', primary_key=True)
+    category = models.CharField(max_length=50, verbose_name='活动类型', null=True)
+    aname = models.CharField(max_length=50, verbose_name='活动名称', null=True)
+    content = models.CharField(max_length=2000, verbose_name='活动内容', null=True)
+    time = models.DateTimeField(auto_now=False, verbose_name='活动时间', default=timezone.now)
 
     class Meta:
         db_table = 'Activity'
-<<<<<<< HEAD
         verbose_name = "活动汇总表"
         verbose_name_plural = "活动汇总表"
 
@@ -437,7 +434,4 @@ class Application(models.Model):  # 活动报名表
         db_table = 'Application'
         verbose_name = "活动报名表"
         verbose_name_plural = "活动报名表"
-=======
-        verbose_name = "活动"
-        verbose_name_plural = "活动"
->>>>>>> 7a9a20fdf8864799bfc1c23a4593d87c97d29d53
+
