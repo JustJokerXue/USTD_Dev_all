@@ -23,7 +23,12 @@ from notifications.models import Notification
 
 def my_notifications(request):
     context = {}
-    return render(request, 'my_notifications.html', context)
+    name = request.session.get('name')
+    print(name)
+    num_all = Score.objects.all().count()
+    num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
+    number = int((num_pass / num_all) * 100)
+    return render(request, 'my_notifications.html', locals())
 
 
 def my_notification(request, my_notification_pk):

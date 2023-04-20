@@ -11,9 +11,9 @@ from django.utils.text import capfirst
 from django.contrib import admin  # 导入导出包
 from import_export.admin import ImportExportModelAdmin
 
-admin.site.site_header = '大学生发展综合素质测评系统管理后台'  # 设置header
-admin.site.site_title = '大学生发展综合素质测评系统管理后台'  # 设置title
-admin.site.index_title = '大学生发展综合素质测评系统管理后台'
+admin.site.site_header = '高校学生综合素质测评及综合分析平台--后台'  # 设置header
+admin.site.site_title = '高校学生综合素质测评及综合分析平台--后台'  # 设置title
+admin.site.index_title = '高校学生综合素质测评及综合分析平台--后台'
 
 from .models import Student
 @admin.register(Student)
