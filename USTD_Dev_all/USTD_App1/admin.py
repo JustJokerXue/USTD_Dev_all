@@ -231,7 +231,7 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
     # 判断未通过的
     def mak_pub1(self, request, queryset):
         for item in queryset:
-            if item.zhuangtai == 'F':
+            if item.zhuangtai == 'D':
                 return
             try:
                 score_item = None

@@ -4,470 +4,100 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="合并">
+    <list default="true" id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="主页成绩显示bug修复，用户信息变量调整">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/Academic_Early_Warning.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/Academic_Early_Warning.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/activity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/error2.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/error2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/form-editors.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/form-editors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/infor.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/infor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/my_notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/my_notifications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/password_change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/password_change_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/student_score.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/student_score.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/suggestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/suggestion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/tables-editable.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/tables-editable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
-    <envs>
-      <env key="FLASK_APP" value="app" />
-    </envs>
-    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
-    <option name="myEnvs">
-      <map>
-        <entry key="FLASK_APP" value="app" />
-      </map>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="Mr.W" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/apps.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/models.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/wsgi.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/urls.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/asgi.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/tests.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_Dev_all/settings.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2HDbylQnjjvwacBJUSRUhU7Ykf2" />
+  <component name="ProjectId" id="2OeFYFGiP2NMwifNOApQC3ahKhA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all\static\image" />
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all\media" />
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all" />
-      <recent name="D:\USTD_Dev_all" />
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all\static\css" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all\media" />
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all" />
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all\USTD_App1" />
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all\templates" />
-      <recent name="D:\USTD_Dev_all\USTD_Dev_all\static\static1" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="USTD_Dev_all" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USTD_Dev_all/USTD_App1" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.views" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="默认任务">
-      <changelist id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="modify" />
-      <created>1667822860414</created>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="" />
+      <created>1681913186631</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1667822860414</updated>
-      <workItem from="1680709484670" duration="3520000" />
-      <workItem from="1680713782631" duration="10000" />
-      <workItem from="1680714632280" duration="959000" />
-      <workItem from="1680774072016" duration="3749000" />
-      <workItem from="1681179801796" duration="134000" />
-      <workItem from="1681179966754" duration="924000" />
-      <workItem from="1681794029751" duration="4198000" />
-      <workItem from="1681799898753" duration="2115000" />
-      <workItem from="1681811348268" duration="18145000" />
-      <workItem from="1681971381161" duration="4781000" />
-      <workItem from="1682001341626" duration="1379000" />
+      <updated>1681913186631</updated>
+      <workItem from="1681913188491" duration="198000" />
+      <workItem from="1681924257187" duration="620000" />
+      <workItem from="1681949883287" duration="7113000" />
+      <workItem from="1681992461062" duration="5000" />
+      <workItem from="1681992491236" duration="3746000" />
+      <workItem from="1681996437282" duration="32000" />
+      <workItem from="1681996901285" duration="1643000" />
     </task>
-    <task id="LOCAL-00001" summary="two apps">
-      <created>1667823459797</created>
+    <task id="LOCAL-00001" summary="modify">
+      <created>1681913290900</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1667823459797</updated>
+      <updated>1681913290900</updated>
     </task>
-    <task id="LOCAL-00002" summary="index.html">
-      <created>1667824500518</created>
+    <task id="LOCAL-00002" summary="modify">
+      <created>1681923750336</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1667824500518</updated>
+      <updated>1681923750336</updated>
     </task>
-    <task id="LOCAL-00003" summary="补充同步文件">
-      <created>1667887580797</created>
+    <task id="LOCAL-00003" summary="路由跳转统一，接入站内消息通知功能">
+      <created>1681961372472</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1667887580797</updated>
+      <updated>1681961372472</updated>
     </task>
-    <task id="LOCAL-00004" summary="网页附加">
-      <created>1667887994813</created>
+    <task id="LOCAL-00004" summary="主页成绩显示bug修复，用户信息变量调整">
+      <created>1681996184251</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1667887994813</updated>
+      <updated>1681996184251</updated>
     </task>
-    <task id="LOCAL-00005" summary="用户故事">
-      <created>1667889598564</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1667889598564</updated>
-    </task>
-    <task id="LOCAL-00006" summary="网页格式素材调用">
-      <created>1667890232148</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1667890232148</updated>
-    </task>
-    <task id="LOCAL-00007" summary="登录网页重命名">
-      <created>1667891843140</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1667891843140</updated>
-    </task>
-    <task id="LOCAL-00008" summary="项目开发各项配置版本号">
-      <created>1667893417448</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1667893417448</updated>
-    </task>
-    <task id="LOCAL-00009" summary="index上传">
-      <created>1667898094248</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1667898094248</updated>
-    </task>
-    <task id="LOCAL-00010" summary="数据库及登录">
-      <created>1667907795111</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1667907795111</updated>
-    </task>
-    <task id="LOCAL-00011" summary="数据库及登录">
-      <created>1667913808922</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1667913808922</updated>
-    </task>
-    <task id="LOCAL-00012" summary="python绘制matplotlib五边形雷达图">
-      <created>1667973855015</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1667973855015</updated>
-    </task>
-    <task id="LOCAL-00013" summary="图片自适应">
-      <created>1667982736828</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1667982736828</updated>
-    </task>
-    <task id="LOCAL-00014" summary="网页更改变动、数据库录入数据">
-      <created>1667985954596</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1667985954596</updated>
-    </task>
-    <task id="LOCAL-00015" summary="平均值雷达图同步">
-      <created>1667989196457</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1667989196457</updated>
-    </task>
-    <task id="LOCAL-00016" summary="平均值雷达图同步">
-      <created>1671441604835</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1671441604835</updated>
-    </task>
-    <task id="LOCAL-00017" summary="平均值雷达图同步">
-      <created>1671443548534</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1671443548534</updated>
-    </task>
-    <task id="LOCAL-00018" summary="平均值雷达图同步">
-      <created>1671443889378</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1671443889378</updated>
-    </task>
-    <task id="LOCAL-00019" summary="平均值雷达图同步">
-      <created>1671446684279</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1671446684279</updated>
-    </task>
-    <task id="LOCAL-00020" summary="以此为准">
-      <created>1671446884728</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1671446884728</updated>
-    </task>
-    <task id="LOCAL-00021" summary="以此为准">
-      <created>1671447538705</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1671447538705</updated>
-    </task>
-    <task id="LOCAL-00022" summary="ZhouSY update">
-      <created>1671450994506</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1671450994506</updated>
-    </task>
-    <task id="LOCAL-00023" summary="修订完善上传图片bug、展示图片bug">
-      <created>1671507051750</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1671507051750</updated>
-    </task>
-    <task id="LOCAL-00024" summary="学业预警超链接，简便提示">
-      <created>1671522910877</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1671522910877</updated>
-    </task>
-    <task id="LOCAL-00025" summary="学业预警超链接，简便提示对接调用">
-      <created>1671523581762</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1671523581762</updated>
-    </task>
-    <task id="LOCAL-00026" summary="try">
-      <created>1671526791804</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1671526791804</updated>
-    </task>
-    <task id="LOCAL-00027" summary="try transform image">
-      <created>1671527064748</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1671527064748</updated>
-    </task>
-    <task id="LOCAL-00028" summary="url">
-      <created>1671845328658</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1671845328658</updated>
-    </task>
-    <task id="LOCAL-00029" summary="主界面用户session调用完成，学业预警功能完善调用数据完成">
-      <created>1671875940224</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1671875940224</updated>
-    </task>
-    <task id="LOCAL-00030" summary="学业预警bug修复（url）及合格显示调整">
-      <created>1671876789774</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1671876789774</updated>
-    </task>
-    <task id="LOCAL-00031" summary="各页面基本布局同步，初步调整功能栏，用户栏及session传送，实现各页面布局显示基本同步">
-      <created>1671941818480</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1671941818480</updated>
-    </task>
-    <task id="LOCAL-00032" summary="提交材料界面用户退出功能完善，部分代码格式规范化调整">
-      <created>1671963019769</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1671963019769</updated>
-    </task>
-    <task id="LOCAL-00033" summary="完善后台审核bug，实现后台图片显示，统一后台数据显示风格，增加数据库约束">
-      <created>1672215137259</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1672215137259</updated>
-    </task>
-    <task id="LOCAL-00034" summary="修复主页学业预警情况bug">
-      <created>1672215895677</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1672215895677</updated>
-    </task>
-    <task id="LOCAL-00035" summary="修复主页因地址问题最高成绩显示bug，修复用户信息页面bug">
-      <created>1672216944097</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1672216944097</updated>
-    </task>
-    <task id="LOCAL-00036" summary="添加注释，部分bug修复">
-      <created>1672281330080</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1672281330080</updated>
-    </task>
-    <task id="LOCAL-00037" summary="删除功能修复，用户密码修改初步设计">
-      <created>1672283809149</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1672283809149</updated>
-    </task>
-    <task id="LOCAL-00038" summary="用户密码修改功能实现">
-      <created>1672292836401</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1672292836401</updated>
-    </task>
-    <task id="LOCAL-00039" summary="链接跳转，后台图标修改">
-      <created>1672295310271</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1672295310271</updated>
-    </task>
-    <task id="LOCAL-00040" summary="conflict">
-      <created>1672300809394</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1672300809394</updated>
-    </task>
-    <task id="LOCAL-00041" summary="@LiXW author:新增发展建议功能&#10;@WangJC author:修复超链接bug,补充上传审核材料状态显示">
-      <created>1672304469915</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1672304469915</updated>
-    </task>
-    <task id="LOCAL-00042" summary="提交审核材料名称修改">
-      <created>1672319687079</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1672319687079</updated>
-    </task>
-    <task id="LOCAL-00043" summary="添加依赖，增加两个页面调用，但菜单栏要增加">
-      <created>1681819278919</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1681819278919</updated>
-    </task>
-    <task id="LOCAL-00044" summary="modify">
-      <created>1681971630848</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1681971630848</updated>
-    </task>
-    <task id="LOCAL-00045" summary="合并">
-      <created>1681995768507</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1681995768507</updated>
-    </task>
-    <task id="LOCAL-00046" summary="合并">
-      <created>1681996014757</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1681996014757</updated>
-    </task>
-    <option name="localTasksCounter" value="47" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,65 +106,21 @@
   <component name="UpdateCopyrightCheckinHandler">
     <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
-      </list>
-    </option>
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ID_WIDTH">
-                <map>
-                  <entry key="Table.Default.Author.ColumnIdWidth" value="257" />
-                  <entry key="Table.Default.Date.ColumnIdWidth" value="109" />
-                  <entry key="Table.Space.CommitStatus.ColumnIdWidth" value="40" />
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ZhouSY update" />
-    <MESSAGE value="修订完善上传图片bug、展示图片bug" />
-    <MESSAGE value="学业预警超链接，简便提示" />
-    <MESSAGE value="学业预警超链接，简便提示对接调用" />
-    <MESSAGE value="try" />
-    <MESSAGE value="try transform image" />
-    <MESSAGE value="url" />
-    <MESSAGE value="主界面用户session调用完成，学业预警功能完善调用数据完成" />
-    <MESSAGE value="学业预警bug修复（url）及合格显示调整" />
-    <MESSAGE value="各页面基本布局同步，初步调整功能栏，用户栏及session传送，实现各页面布局显示基本同步" />
-    <MESSAGE value="提交材料界面用户退出功能完善，部分代码格式规范化调整" />
-    <MESSAGE value="完善后台审核bug，实现后台图片显示，统一后台数据显示风格，增加数据库约束" />
-    <MESSAGE value="修复主页学业预警情况bug" />
-    <MESSAGE value="修复主页因地址问题最高成绩显示bug，修复用户信息页面bug" />
-    <MESSAGE value="添加注释，部分bug修复" />
-    <MESSAGE value="删除功能修复，用户密码修改初步设计" />
-    <MESSAGE value="用户密码修改功能实现" />
-    <MESSAGE value="链接跳转，后台图标修改" />
-    <MESSAGE value="conflict" />
-    <MESSAGE value="@LiXW author:新增发展建议功能&#10;@WangJC author:修复超链接bug,补充上传审核材料状态显示" />
-    <MESSAGE value="提交审核材料名称修改" />
-    <MESSAGE value="添加依赖，增加两个页面调用，但菜单栏要增加" />
-    <MESSAGE value="学生表和评分表更改" />
     <MESSAGE value="modify" />
-    <MESSAGE value="合并" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
+    <MESSAGE value="路由跳转统一，接入站内消息通知功能" />
+    <MESSAGE value="主页成绩显示bug修复，用户信息变量调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="主页成绩显示bug修复，用户信息变量调整" />
   </component>
 </project>
