@@ -288,16 +288,16 @@
                     <div class="card-body">
                         <h4 class="mt-0 header-title" align="center">正在审核材料</h4>
                         <br>
-                        <table class="table mb-0">
+                        <table class="table mb-0"  rules=all frame="all">
                             <thead>
                             <tr>
-                                <th>学号</th>
-                                <th>证明材料描述</th>
-                                <th>所属类别</th>
-                                <th>加分项</th>
-                                <th>证明材料图片</th>
-                                <th>审核状态</th>
-                                <th>操作</th>
+                                <th width="6%">学号</th>
+                                <th width="35%" >证明材料描述</th>
+                                <th width="13%">所属类别</th>
+                                <th width="6%">加分项</th>
+                                <th width="23%">证明材料图片</th>
+                                <th width="7%">审核状态</th>
+                                <th width="5%">操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -330,15 +330,15 @@
                     <br>
                         <h3 class="mt-0 header-title" align="center" >不予通过材料</h3>
                         <br>
-                        <table class="table mb-0">
+                        <table class="table mb-0" rules=all frame="all">
                             <thead>
                             <tr>
-                                <th>学号</th>
-                                <th>证明材料描述</th>
-                                <th>所属类别</th>
-                                <th>加分项</th>
-                                <th>证明材料图片</th>
-                                <th>审核状态</th>
+                                <th width="5%">学号</th>
+                                <th width="30%" align="center">证明材料描述</th>
+                                <th width="10%">所属类别</th>
+                                <th width="5%">加分项</th>
+                                <th width="20%">证明材料图片</th>
+                                <th width="10%">审核状态</th>
 
 
                             </tr>
@@ -370,15 +370,15 @@
                     <br>
                     <h4 class="mt-0 header-title" align="center">审核通过材料</h4>
                         <br>
-                        <table class="table mb-0" >
+                        <table class="table mb-0" rules=all frame="all" >
                             <thead>
                             <tr>
-                                <th>学号</th>
-                                <th>证明材料描述</th>
-                                <th>所属类别</th>
-                                <th>加分项</th>
-                                <th>证明材料图片</th>
-                                <th>审核状态</th>
+                                <th width="5%">学号</th>
+                                <th width="30%" align="center">证明材料描述</th>
+                                <th width="10%">所属类别</th>
+                                <th width="5%">加分项</th>
+                                <th width="20%">证明材料图片</th>
+                                <th width="10%">审核状态</th>
 
 
                             </tr>
@@ -444,8 +444,9 @@
 
 		                    <tr>
 		                        <td class="td_left"><label for="password">材料描述</label></td>
-		                        <td class="td_right"><input type="text" name="miaoshu" id="password" ></td>
+		                        <td class="td_right"><textarea cols="8" rows="20" name="miaoshu" id="password" ></textarea></td>
 		                    </tr>
+
 
 		                    <tr>
 		                        <td class="td_left"><label for="email">类别</label></td>
@@ -596,7 +597,7 @@
 		        padding-left: 50px ;
 		    }
 
-		    #username,#password,#email,#name,#tel,#birthday,#checkcode{
+		    #name{
 		        width: 251px;
 		        height: 32px;
 		        border: 1px solid #A6A6A6 ;
@@ -604,6 +605,14 @@
 		        border-radius: 5px;
 		        padding-left: 10px;
 		    }
+            #password{
+                width: 251px;
+		        height: 100px;
+		        border: 1px solid #A6A6A6 ;
+		        /*设置边框圆角*/
+		        border-radius: 5px;
+		        padding-left: 10px;
+            }
 		    #checkcode{
 		        width: 110px;
 		    }

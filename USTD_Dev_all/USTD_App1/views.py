@@ -104,8 +104,8 @@ def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成�
     overallgrade = weigth.zyweight * score.zy + weigth.cxweight * score.cx + weigth.zsweight * score.zs + weigth.glweight * score.gl + weigth.zhweight * score.zh
     score.overallgrade = overallgrade
     score.save()
-    print(weigth.zyweight, score.zy)
     print(overallgrade)
+    return overallgrade
 
 
 def Activity_new(request):  # 活动汇总调用
@@ -275,7 +275,7 @@ def login(request):  # 登录页面功能实现
                 print('登录成功')
                 select(id)
                 Model_creat(id)
-                Calculate_grades(id)
+                overallgrade=Calculate_grades(id)
                 # Activity_new()
                 # queryCourse(id)
                 num_all = Score.objects.all().count()
@@ -302,7 +302,7 @@ def login(request):  # 登录页面功能实现
                                'm2': max_Score_list[1], 'm3': max_Score_list[2]
                                   , 'm4': max_Score_list[3], 'm5': max_Score_list[4], 'num_all': num_all,
                                'num_pass': num_pass, 'number': number,
-                               'score': score}, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
+                               'score': score,'overallgrade':overallgrade,}, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
             else:
                 return render(request, 'error.html')
         else:
@@ -376,43 +376,87 @@ def select(i):  # 主页面雷达图成绩展示功能实现
     avg_zs = avg_zs.fetchone()[0]
     avg_gl = avg_gl.fetchone()[0]
     avg_zh = avg_zh.fetchone()[0]
-    results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
-               {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
-    data_length = len(results[0])
-    angles = np.linspace(0, 2 * np.pi, data_length, endpoint=False)
-    labels = [key for key in results[0].keys()]
-    score = [[v for v in result.values()] for result in results]
-    score_a = np.concatenate((score[0], [score[0][0]]))
-    score_b = np.concatenate((score[1], [score[1][0]]))
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    # import matplotlib
+    plt.rcParams["font.sans-serif"] = ["SimHei"]
+    # results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
+    #            {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
+    dataset = pd.DataFrame(data=[[S.zy, avg_zy],
+                                 [ S.cx, avg_cx],
+                                 [ S.zs, avg_zs],
+                                 [ S.gl, avg_gl],
+                                 [ S.zh, avg_zh]],
+                           index=['专业技术', '创新创业', '知识学习 ', '管理实践', '综合发展'],
+                           columns=['个人水平', '平均水平'])
+    radar_labels = dataset.index
+    nAttr = 5
+    data = dataset.values  # 数据值
+    data_labels = dataset.columns
+    # 设置角度
+    angles = np.linspace(0, 2 * np.pi, nAttr,
+                         endpoint=False)
+    data = np.concatenate((data, [data[0]]))
     angles = np.concatenate((angles, [angles[0]]))
-    labels = np.concatenate((labels, [labels[0]]))
-    fig = plt.figure(figsize=(15, 6), dpi=100)
-    fig.suptitle("XXXX专业")
-    ax1 = plt.subplot(121, polar=True)
-    ax2 = plt.subplot(122, polar=True)
-    ax, data, name = [ax1, ax2], [score_a, score_b], ["个人", "平均"]
-    for i in range(2):
-        for j in np.arange(0, 100 + 20, 20):
-            ax[i].plot(angles, 6 * [j], '-.', lw=0.5, color='black')
-        for j in range(5):
-            ax[i].plot([angles[j], angles[j]], [0, 100], '-.', lw=0.5, color='black')
-        ax[i].plot(angles, data[i], color='b')
-        # 隐藏最外圈的圆
-        ax[i].spines['polar'].set_visible(False)
-        # 隐藏圆形网格线
-        ax[i].grid(False)
-        for a, b in zip(angles, data[i]):
-            ax[i].text(a, b + 5, '%.00f' % b, ha='center', va='center', fontsize=12, color='b')
-        ax[i].set_thetagrids(angles * 180 / np.pi, labels)
-        ax[i].set_theta_zero_location('N')
-        ax[i].set_rlim(0, 100)
-        ax[i].set_rlabel_position(0)
-        ax[i].set_title(name[i])
-    # 汉字字体，优先使用楷体，找不到则使用黑体
-    plt.rcParams['font.sans-serif'] = ['Kaitt', 'SimHei']
-    # 正常显示负号
-    plt.rcParams['axes.unicode_minus'] = False
-    # plt.show()
+    # 设置画布
+    fig = plt.figure(facecolor="white", figsize=(10, 6))
+    plt.subplot(111, polar=True)
+    # 绘图
+    plt.plot(angles, data, 'o-',
+             linewidth=1.5, alpha=0.2)
+    # 填充颜色
+    plt.fill(angles, data, alpha=0.25)
+    plt.thetagrids(angles[:-1] * 180 / np.pi,
+                   radar_labels, 1.2)
+    plt.figtext(0.52, 0.95, '综合素质分析',
+                ha='center', size=20)
+    # 设置图例
+    legend = plt.legend(data_labels,
+                        loc=(1.1, 0.05),
+                        labelspacing=0.1)
+    plt.setp(legend.get_texts(),
+             fontsize='large')
+    plt.grid(True)
+    # plt.savefig('tongshi.png')
+    #plt.show()
+    # results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
+    #            {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
+    # data_length = len(results[0])
+    # angles = np.linspace(0, 2 * np.pi, data_length, endpoint=False)
+    # labels = [key for key in results[0].keys()]
+    # score = [[v for v in result.values()] for result in results]
+    # score_a = np.concatenate((score[0], [score[0][0]]))
+    # score_b = np.concatenate((score[1], [score[1][0]]))
+    # angles = np.concatenate((angles, [angles[0]]))
+    # labels = np.concatenate((labels, [labels[0]]))
+    # fig = plt.figure(figsize=(15, 6), dpi=100)
+    # fig.suptitle("XXXX专业")
+    # ax1 = plt.subplot(121, polar=True)
+    # ax2 = plt.subplot(122, polar=True)
+    # ax, data, name = [ax1, ax2], [score_a, score_b], ["个人", "平均"]
+    # for i in range(2):
+    #     for j in np.arange(0, 100 + 20, 20):
+    #         ax[i].plot(angles, 6 * [j], '-.', lw=0.5, color='black')
+    #     for j in range(5):
+    #         ax[i].plot([angles[j], angles[j]], [0, 100], '-.', lw=0.5, color='black')
+    #     ax[i].plot(angles, data[i], color='b')
+    #     # 隐藏最外圈的圆
+    #     ax[i].spines['polar'].set_visible(False)
+    #     # 隐藏圆形网格线
+    #     ax[i].grid(False)
+    #     for a, b in zip(angles, data[i]):
+    #         ax[i].text(a, b + 5, '%.00f' % b, ha='center', va='center', fontsize=12, color='b')
+    #     ax[i].set_thetagrids(angles * 180 / np.pi, labels)
+    #     ax[i].set_theta_zero_location('N')
+    #     ax[i].set_rlim(0, 100)
+    #     ax[i].set_rlabel_position(0)
+    #     ax[i].set_title(name[i])
+    # # 汉字字体，优先使用楷体，找不到则使用黑体
+    # plt.rcParams['font.sans-serif'] = ['Kaitt', 'SimHei']
+    # # 正常显示负号
+    # plt.rcParams['axes.unicode_minus'] = False
+    # # plt.show()
     plt.savefig("static\\image\\1.png", format='png')
 
 
