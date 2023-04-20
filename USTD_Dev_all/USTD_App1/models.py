@@ -197,6 +197,8 @@ class Course(models.Model):  # 学生学习成绩表
         return self.name
 
 
+
+
 class learning(models.Model):  # 知识学习表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
@@ -213,7 +215,6 @@ class learning(models.Model):  # 知识学习表
             models.CheckConstraint(check=models.Q(total_score__gte=0, total_score__lte=100),
                                    name='learning_total_score'),
         ]
-
     def __str__(self):
         return self.name
 

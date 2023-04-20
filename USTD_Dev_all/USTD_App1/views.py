@@ -85,16 +85,15 @@ def Model_creat(id):
     overallsorce = OverallScore.objects.filter(id=id)
     course = Course.objects.filter(stu_id=id)
     learn = learning.objects.filter(sno=id)
-    warning = Early_Warning.objects.filter(id=id)
-    if learn.exists():
+    warning=Early_Warning.objects.filter(id=id)
+    if  learn.exists():
         print("learn is exists")
     else:
-        learn = learning(sno=student.id, name=student.name, banji=student.banji, major=student.major,
-                         department=student.department)
+        learn = learning(sno=student.id, name=student.name, banji=student.banji, major=student.major, department=student.department)
         learn.save()
         print(learn)
 
-    if score.exists():
+    if score.exists() :
         print("score is exists")
     else:
         score = Score(id=id)
@@ -111,15 +110,14 @@ def Model_creat(id):
     if overallsorce.exists():
         print("overallsorce is exists")
     else:
-        overallsorce = OverallScore(id=id, name=student.name, banji=student.banji, major=student.major,
-                                    department=student.department)
+        overallsorce = OverallScore(id=id,name=student.name, banji=student.banji, major=student.major, department=student.department)
         overallsorce.save()
         print(overallsorce)
 
     if warning.exists():
         print("warning is exists")
     else:
-        warning = Early_Warning(id=id, )
+        warning = Early_Warning(id=id,)
         warning.save()
         print(warning)
 
@@ -137,10 +135,10 @@ def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成�
     m5 = ComprehensiveDevelopment.objects.get(sno=id)
 
     # 计算总成绩
-    overallgrade = weigth.zyweight * m3.total_score + weigth.cxweight * m1.total_score \
-                   + weigth.zsweight * m1.total_score + weigth.glweight * m4.total_score \
+    overallgrade = weigth.zyweight * m3.total_score + weigth.cxweight * m1.total_score\
+                   + weigth.zsweight * m1.total_score + weigth.glweight * m4.total_score\
                    + weigth.zhweight * m5.total_score
-    overallscore = OverallScore.objects.get(id=id)
+    overallscore=OverallScore.objects.get(id=id)
     overallscore.total_score = overallgrade
     overallscore.save()
     print(overallgrade)
@@ -317,7 +315,7 @@ def login(request):  # 登录页面功能实现
                 print('登录成功')
                 Model_creat(id)
                 select(id)
-                overallgrade = Calculate_grades(id)
+                overallgrade=Calculate_grades(id)
                 # Activity_new()
                 # queryCourse(id)
                 num_all = Score.objects.all().count()
@@ -348,9 +346,7 @@ def login(request):  # 登录页面功能实现
                                'm2': max_Score_list[1], 'm3': max_Score_list[2]
                                   , 'm4': max_Score_list[3], 'm5': max_Score_list[4], 'num_all': num_all,
                                'num_pass': num_pass, 'number': number,
-                               's1': s1.total_score, 's2': s2.total_score, 's3': s3.total_score, 's4': s4.total_score,
-                               's5': s5.total_score,
-                               'overallgrade': overallgrade, }, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
+                               's1': s1.total_score,'s2': s2.total_score,'s3': s3.total_score,'s4':s4.total_score,'s5': s5.total_score,'overallgrade':overallgrade,}, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
             else:
                 return render(request, 'error.html')
         else:
@@ -436,10 +432,10 @@ def select(i):  # 主页面雷达图成绩展示功能实现
     # results = [{"专业技术": s1.total_score, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
     #            {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
     dataset = pd.DataFrame(data=[[s1.total_score, avg_zy],
-                                 [s2.total_score, avg_cx],
-                                 [s3.total_score, avg_zs],
-                                 [s4.total_score, avg_gl],
-                                 [s5.total_score, avg_zh]],
+                                 [ s2.total_score, avg_cx],
+                                 [ s3.total_score, avg_zs],
+                                 [ s4.total_score, avg_gl],
+                                 [ s5.total_score, avg_zh]],
                            index=['专业技术', '创新创业', '知识学习 ', '管理实践', '综合发展'],
                            columns=['个人水平', '平均水平'])
     radar_labels = dataset.index
@@ -471,7 +467,7 @@ def select(i):  # 主页面雷达图成绩展示功能实现
              fontsize='large')
     plt.grid(True)
     # plt.savefig('tongshi.png')
-    # plt.show()
+    #plt.show()
     # results = [{"专业技术": S.zy, "创新创业": S.cx, "知识学习": S.zs, "管理实践": S.gl, "综合发展": S.zh},
     #            {"专业技术": avg_zy, "创新创业": avg_cx, "知识学习": avg_zs, "管理实践": avg_gl, "综合发展": avg_zh}]
     # data_length = len(results[0])

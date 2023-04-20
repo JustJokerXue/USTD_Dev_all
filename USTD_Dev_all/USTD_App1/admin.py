@@ -1,6 +1,5 @@
 from .models import Early_Warning, learning
-from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible, administrator, \
-    GraduationRequirement, Application, OverallScore
+from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application,OverallScore
 from .models import Course
 from .models import Score
 from .models import Student
@@ -17,8 +16,6 @@ admin.site.site_title = '大学生发展综合素质测评系统管理后台'  #
 admin.site.index_title = '大学生发展综合素质测评系统管理后台'
 
 from .models import Student
-
-
 @admin.register(Student)
 class StudentAdmin(ImportExportModelAdmin):  # 学生用户信息表后台布局设计
     list_display = ('id', 'name', 'age', 'major', 'pwd', 'banji', 'department')
@@ -32,23 +29,18 @@ class StudentAdmin(ImportExportModelAdmin):  # 学生用户信息表后台布局
         if form.is_valid():
             stu = form.save()
             print(stu.id)
-            stu_cx = Innovation(sno=stu.id, name=stu.name, banji=stu.banji, major=stu.major, department=stu.department)
+            stu_cx = Innovation(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
             stu_cx.save()
-            stu_zy = majorTechnology(sno=stu.id, name=stu.name, banji=stu.banji, major=stu.major,
-                                     department=stu.department)
+            stu_zy = majorTechnology(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
             stu_zy.save()
-            stu_gl = manage(sno=stu.id, name=stu.name, banji=stu.banji, major=stu.major, department=stu.department)
+            stu_gl = manage(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
             stu_gl.save()
-            stu_zh = ComprehensiveDevelopment(sno=stu.id, name=stu.name, banji=stu.banji, major=stu.major,
-                                              department=stu.department)
+            stu_zh = ComprehensiveDevelopment(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
             stu_zh.save()
 
         super().save_model(request, obj, form, change)
 
-
 from .models import OverallScore
-
-
 @admin.register(OverallScore)
 class OverallScoreAdmin(ImportExportModelAdmin):  # 总评成绩表后台布局设计
     list_display = ('id', 'name', 'banji', 'major', 'department', 'total_score')
@@ -58,10 +50,7 @@ class OverallScoreAdmin(ImportExportModelAdmin):  # 总评成绩表后台布局�
     list_editable = ('total_score',)
     list_filter = ('banji', 'major', 'department')
 
-
 from .models import Weight
-
-
 @admin.register(Weight)
 class Weight(ImportExportModelAdmin):  # 学业预警成绩表后台布局设计
     list_display = ('id', 'zyweight', 'cxweight', 'zsweight', 'glweight', 'zhweight')
@@ -71,10 +60,7 @@ class Weight(ImportExportModelAdmin):  # 学业预警成绩表后台布局设计
     list_editable = ('zyweight', 'cxweight', 'zsweight', 'glweight', 'zhweight')
     # list_filter = ("id", "sp")
 
-
 from .models import Score
-
-
 @admin.register(Score)
 class ScoreAdmin(ImportExportModelAdmin):  # 学生五大方面评分表后台布局设计
     list_display = ('id', 'zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
@@ -83,10 +69,7 @@ class ScoreAdmin(ImportExportModelAdmin):  # 学生五大方面评分表后台�
     list_per_page = 20
     list_editable = ('zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
 
-
 from .models import Course
-
-
 @admin.register(Course)
 class Course(ImportExportModelAdmin):  # 知识学习表后台布局设计
     list_display = ('stu_id', 'name', 'course', 'grade', 'gpa')
@@ -96,10 +79,7 @@ class Course(ImportExportModelAdmin):  # 知识学习表后台布局设计
     list_editable = ('course', 'grade', 'gpa')
     # list_filter = ("id", "sp")
 
-
 from .models import learning
-
-
 @admin.register(learning)
 class learning(ImportExportModelAdmin):  # 学生创新创业评分表后台布局设计
     list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
@@ -109,10 +89,7 @@ class learning(ImportExportModelAdmin):  # 学生创新创业评分表后台布�
     list_per_page = 20
     list_editable = ('total_score',)
 
-
 from .models import Innovation
-
-
 @admin.register(Innovation)
 class InnovationAdmin(ImportExportModelAdmin):  # 学生创新创业评分表后台布局设计
     list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
@@ -122,10 +99,7 @@ class InnovationAdmin(ImportExportModelAdmin):  # 学生创新创业评分表后
     list_per_page = 20
     list_editable = ('total_score',)
 
-
 from .models import majorTechnology
-
-
 @admin.register(majorTechnology)
 class majorTechnologyAdmin(ImportExportModelAdmin):  # 学生专业技术评分白后台布局设计
     list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
@@ -135,10 +109,7 @@ class majorTechnologyAdmin(ImportExportModelAdmin):  # 学生专业技术评分�
     list_per_page = 20
     list_editable = ('total_score',)
 
-
 from .models import manage
-
-
 @admin.register(manage)
 class manageAdmin(ImportExportModelAdmin):  # 学生管理实践评分表后台布局设计
     list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
@@ -148,10 +119,7 @@ class manageAdmin(ImportExportModelAdmin):  # 学生管理实践评分表后台�
     list_per_page = 20
     list_editable = ('total_score',)
 
-
 from .models import ComprehensiveDevelopment
-
-
 @admin.register(ComprehensiveDevelopment)
 class ComprehensiveDevelopmentAdmin(ImportExportModelAdmin):  # 学生综合发展评分表后台布局设计
     list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
@@ -161,10 +129,7 @@ class ComprehensiveDevelopmentAdmin(ImportExportModelAdmin):  # 学生综合发�
     list_per_page = 20
     list_editable = ('total_score',)
 
-
 from .models import Activity
-
-
 @admin.register(Activity)
 class Activity(ImportExportModelAdmin):  # 活动汇总表后台布局设计
     list_display = ('id', 'aname', 'content', 'category', 'time')
@@ -175,10 +140,7 @@ class Activity(ImportExportModelAdmin):  # 活动汇总表后台布局设计
     ordering = ('id',)
     # list_filter = ("id", "sp")
 
-
 from .models import Application
-
-
 @admin.register(Application)
 class Application(ImportExportModelAdmin):  # 活动报名表后台布局设计
     list_display = ('aid', 'aname', 'no', 'name', 'banji')
@@ -199,8 +161,6 @@ class Application(ImportExportModelAdmin):  # 活动报名表后台布局设计
 #     # list_filter = ("id", "sp")
 
 from .models import Early_Warning
-
-
 @admin.register(Early_Warning)
 class Early_WarningAdmin(ImportExportModelAdmin):  # 学业预警成绩表后台布局设计
     list_display = ('id', 'minimum', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin', 'grad_req_id')
@@ -211,10 +171,7 @@ class Early_WarningAdmin(ImportExportModelAdmin):  # 学业预警成绩表后台
     fk_fields = ['grad_req_id']
     # list_filter = ("id", "sp")
 
-
 from .models import responsible
-
-
 @admin.register(responsible)
 class responsibleAdmin(ImportExportModelAdmin):  # 负责人用户信息表后台布局设计
     list_display = ('name', 'Employeeno', 'password')
@@ -223,10 +180,7 @@ class responsibleAdmin(ImportExportModelAdmin):  # 负责人用户信息表后�
     list_per_page = 20
     list_editable = ('name', 'password')
 
-
 from .models import administrator
-
-
 @admin.register(administrator)
 class administratorAdmin(ImportExportModelAdmin):  # 管理员用户信息表后台布局设计
     list_display = ('name', 'Employeeno', 'password')
@@ -235,10 +189,7 @@ class administratorAdmin(ImportExportModelAdmin):  # 管理员用户信息表后
     list_per_page = 20
     list_editable = ('name', 'password')
 
-
 from .models import shenhe
-
-
 @admin.register(shenhe)
 # admin.site.register(要写的表)  与  @admin.register(要写的表)  功能是一样的
 class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台布局设计
@@ -304,10 +255,7 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
     # 更改Action的内容为通过
     mak_pub1.short_description = "未通过"
 
-
 from .models import GraduationRequirement
-
-
 @admin.register(GraduationRequirement)
 class GraduationRequirementAdmin(ImportExportModelAdmin):  # 毕业要求后台设计
     list_display = ('id', 'credit', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin')

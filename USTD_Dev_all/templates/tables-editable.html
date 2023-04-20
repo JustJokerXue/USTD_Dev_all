@@ -260,13 +260,12 @@
                         <ul class="list-inline">
                             <li class="list-inline-item mr-3">
                                 <input class="knob" data-width="48" data-height="48" data-linecap="round"
-                                       data-fgcolor="#605daf" value="{{ number }}" data-skin="tron"
-                                       data-angleoffset="180"
+                                       data-fgcolor="#605daf" value="{{number}}" data-skin="tron" data-angleoffset="180"
                                        data-readonly="true" data-thickness=".1">
                             </li>
                             <li class="list-inline-item">
                                 <span class="text-muted">成绩达标率</span>
-                                <h6>{{ num_pass }}人/{{ num_all }}人</h6>
+                                <h6>{{num_pass}}人/{{num_all}}人</h6>
                             </li>
                         </ul>
                     </div>
@@ -296,33 +295,33 @@
                             </thead>
                             <tbody>
                             {% for item in shenhe_list_D %}
-                                <tr>
-                                    <td>{{ item.no }}</td>
-                                    <td>{{ item.miaoshu }}</td>
-                                    <td>{{ item.leibie }}</td>
-                                    <td>{{ item.extra_points }}</td>
-                                    <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
-                                    {% if item.zhuangtai == "T" %}
-                                        <td><font color="green">通过</font></td>
-                                    {% endif %}
-                                    {% if item.zhuangtai == "F" %}
-                                        <td><font color="red">未通过</font></td>
-                                    {% endif %}
-                                    {% if item.zhuangtai == "D" %}
-                                        <td><font color="#CEBE29">待审核</font></td>
-                                    {% endif %}
-                                    <td>
-                                        <a href="/shenhe_delete.html?id={{ item.id }}" id="a1">撤回</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ item.no }}</td>
+                                <td>{{ item.miaoshu }}</td>
+                                <td>{{ item.leibie }}</td>
+                                <td>{{ item.extra_points }}</td>
+                                <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
+                                {% if item.zhuangtai == "T" %}
+                                <td><font color="green">通过</font></td>
+                                {% endif %}
+                                {% if item.zhuangtai == "F" %}
+                                <td><font color="red">未通过</font></td>
+                                {% endif %}
+                                {% if item.zhuangtai == "D" %}
+                                <td><font color="#CEBE29">待审核</font></td>
+                                {% endif %}
+                                <td>
+                                    <a href="/shenhe_delete.html?id={{ item.id }}" id="a1">撤回</a>
+                                </td>
+                            </tr>
                             {% endfor %}
                             </tbody>
 
                         </table>
-                        <HR style="FILTER:alpha(opacity=100,finishopacity=0,style=2)" width="80%" color=#987cb9 SIZE=10>
-                        <br>
-                        <br>
-                        <h3 class="mt-0 header-title" align="center">不予通过材料</h3>
+                    <HR style="FILTER:alpha(opacity=100,finishopacity=0,style=2)" width="80%"color=#987cb9 SIZE=10>
+                    <br>
+                    <br>
+                        <h3 class="mt-0 header-title" align="center" >不予通过材料</h3>
                         <br>
                         <table class="table mb-0" rules=all frame="all">
                             <thead>
@@ -339,32 +338,32 @@
                             </thead>
                             <tbody>
                             {% for item in shenhe_list_F %}
-                                <tr>
-                                    <td>{{ item.no }}</td>
-                                    <td>{{ item.miaoshu }}</td>
-                                    <td>{{ item.leibie }}</td>
-                                    <td>{{ item.extra_points }}</td>
-                                    <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
-                                    {% if item.zhuangtai == "T" %}
-                                        <td><font color="green">通过</font></td>
-                                    {% endif %}
-                                    {% if item.zhuangtai == "F" %}
-                                        <td><font color="red">未通过</font></td>
-                                    {% endif %}
-                                    {% if item.zhuangtai == "D" %}
-                                        <td><font color="#CEBE29">待审核</font></td>
-                                    {% endif %}
+                            <tr>
+                                <td>{{ item.no }}</td>
+                                <td>{{ item.miaoshu }}</td>
+                                <td>{{ item.leibie }}</td>
+                                <td>{{ item.extra_points }}</td>
+                                <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
+                                {% if item.zhuangtai == "T" %}
+                                <td><font color="green">通过</font></td>
+                                {% endif %}
+                                {% if item.zhuangtai == "F" %}
+                                <td><font color="red">未通过</font></td>
+                                {% endif %}
+                                {% if item.zhuangtai == "D" %}
+                                <td><font color="#CEBE29">待审核</font></td>
+                                {% endif %}
 
-                                </tr>
+                            </tr>
                             {% endfor %}
                             </tbody>
                         </table>
-                        <HR style="FILTER:alpha(opacity=100,finishopacity=0,style=2)" width="80%" color=#987cb9 SIZE=10>
+                    <HR style="FILTER:alpha(opacity=100,finishopacity=0,style=2)" width="80%"color=#987cb9 SIZE=10>
+                    <br>
+                    <br>
+                    <h4 class="mt-0 header-title" align="center">审核通过材料</h4>
                         <br>
-                        <br>
-                        <h4 class="mt-0 header-title" align="center">审核通过材料</h4>
-                        <br>
-                        <table class="table mb-0" rules=all frame="all">
+                        <table class="table mb-0" rules=all frame="all" >
                             <thead>
                             <tr>
                                 <th width="5%">学号</th>
@@ -379,108 +378,102 @@
                             </thead>
                             <tbody>
                             {% for item in shenhe_list_T %}
-                                <tr>
-                                    <td>{{ item.no }}</td>
-                                    <td>{{ item.miaoshu }}</td>
-                                    <td>{{ item.leibie }}</td>
-                                    <td>{{ item.extra_points }}</td>
-                                    <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
-                                    {% if item.zhuangtai == "T" %}
-                                        <td><font color="green">通过</font></td>
-                                    {% endif %}
-                                    {% if item.zhuangtai == "F" %}
-                                        <td><font color="red">未通过</font></td>
-                                    {% endif %}
-                                    {% if item.zhuangtai == "D" %}
-                                        <td><font color="#CEBE29">待审核</font></td>
-                                    {% endif %}
+                            <tr>
+                                <td>{{ item.no }}</td>
+                                <td>{{ item.miaoshu }}</td>
+                                <td>{{ item.leibie }}</td>
+                                <td>{{ item.extra_points }}</td>
+                                <td><img height="100px" width="100px" src="{{ MEDIA_URL }}{{ item.image }}"></td>
+                                {% if item.zhuangtai == "T" %}
+                                <td><font color="green">通过</font></td>
+                                {% endif %}
+                                {% if item.zhuangtai == "F" %}
+                                <td><font color="red">未通过</font></td>
+                                {% endif %}
+                                {% if item.zhuangtai == "D" %}
+                                <td><font color="#CEBE29">待审核</font></td>
+                                {% endif %}
 
-                                </tr>
+                            </tr>
                             {% endfor %}
                             </tbody>
                         </table>
-                        <HR style="FILTER:alpha(opacity=100,finishopacity=0,style=2)" width="80%" color=#987cb9 SIZE=10>
-                        <br>
-                        <br>
-                        {#                        <form enctype="multipart/form-data" action="tables-editable.html" method="post">#}
-                        {#                            {% csrf_token %}#}
-                        {#                            <p>学号：<input type="text" name="id" value={{ ID0 }} disabled="disabled"></p>#}
-                        {#                            <p>描述：<input type="text" name="miaoshu"></p>#}
-                        {#                            <p>#}
-                        {#                                类别：#}
-                        {#                                <select name="leibie">#}
-                        {#                                    <option>创新创业</option>#}
-                        {#                                    <option>专业技术</option>#}
-                        {#                                    <option>管理实践</option>#}
-                        {#                                    <option>综合发展</option>#}
-                        {#                                </select>#}
-                        {#                            </p>#}
-                        {#                            <p>加分：<input type="text" name="extra_points"></p>#}
-                        {#                            <p>图片：<input type="file" name="image"></p>#}
-                        {#                            <input type="submit" value="upload">#}
-                        {#                        </form>#}
-                        <div class="rg_layout">
-                            <div class="rg_left">
-                                <p>提交审核材料</p>
-                            </div>
+                    <HR style="FILTER:alpha(opacity=100,finishopacity=0,style=2)" width="80%"color=#987cb9 SIZE=10>
+                    <br>
+                    <br>
+{#                        <form enctype="multipart/form-data" action="tables-editable.html" method="post">#}
+{#                            {% csrf_token %}#}
+{#                            <p>学号：<input type="text" name="id" value={{ ID0 }} disabled="disabled"></p>#}
+{#                            <p>描述：<input type="text" name="miaoshu"></p>#}
+{#                            <p>#}
+{#                                类别：#}
+{#                                <select name="leibie">#}
+{#                                    <option>创新创业</option>#}
+{#                                    <option>专业技术</option>#}
+{#                                    <option>管理实践</option>#}
+{#                                    <option>综合发展</option>#}
+{#                                </select>#}
+{#                            </p>#}
+{#                            <p>加分：<input type="text" name="extra_points"></p>#}
+{#                            <p>图片：<input type="file" name="image"></p>#}
+{#                            <input type="submit" value="upload">#}
+{#                        </form>#}
+                    <div class="rg_layout">
+		    <div class="rg_left">
+		        <p>提交审核材料</p>
+		    </div>
 
-                            <div class="rg_center">
-                                <br><br><br><br><br>
-                                <div class="rg_form">
-                                    <!--定义表单 form-->
-                                    <form enctype="multipart/form-data" action="tables-editable.html" method="post">
-                                        {% csrf_token %}
-                                        <table>
-                                            <tr>
-                                                <td class="td_left"><label for="username">学号</label></td>
-                                                <td class="td_right"><input type="text" name="id"
-                                                                            value={{ ID0 }} disabled="disabled"
-                                                                            id="name"></td>
-                                            </tr>
+		    <div class="rg_center">
+                <br><br><br><br><br>
+		        <div class="rg_form">
+		            <!--定义表单 form-->
+		            <form enctype="multipart/form-data" action="tables-editable.html" method="post">
+                        {% csrf_token %}
+		                <table>
+		                    <tr>
+		                        <td class="td_left"><label for="username">学号</label></td>
+		                        <td class="td_right"><input type="text" name="id" value={{ ID0 }} disabled="disabled" id="name"></td>
+		                    </tr>
 
-                                            <tr>
-                                                <td class="td_left"><label for="password">材料描述</label></td>
-                                                <td class="td_right"><textarea cols="8" rows="20" name="miaoshu"
-                                                                               id="password"></textarea></td>
-                                            </tr>
+		                    <tr>
+		                        <td class="td_left"><label for="password">材料描述</label></td>
+		                        <td class="td_right"><textarea cols="8" rows="20" name="miaoshu" id="password" ></textarea></td>
+		                    </tr>
 
 
-                                            <tr>
-                                                <td class="td_left"><label for="email">类别</label></td>
-                                                <td class="td_right"><select name="leibie"
-                                                                             style="width:200px;height: 20px">
-                                                    <option>创新创业</option>
-                                                    <option>专业技术</option>
-                                                    <option>管理实践</option>
-                                                    <option>综合发展</option>
-                                                </select></td>
-                                            </tr>
+		                    <tr>
+		                        <td class="td_left"><label for="email">类别</label></td>
+		                        <td class="td_right"><select name="leibie" style="width:200px;height: 20px">
+                                    <option>创新创业</option>
+                                    <option>专业技术</option>
+                                    <option>管理实践</option>
+                                    <option>综合发展</option>
+                                </select></td>
+		                    </tr>
 
-                                            <tr>
-                                                <td class="td_left"><label for="name">分值</label></td>
-                                                <td class="td_right"><input type="text" name="extra_points" id="name"
-                                                                            placeholder="请输入加分值"></td>
-                                            </tr>
+		                    <tr>
+		                        <td class="td_left"><label for="name">分值</label></td>
+		                        <td class="td_right"><input type="text" name="extra_points"id="name" placeholder="请输入加分值"></td>
+		                    </tr>
 
-                                            <tr>
-                                                <td class="td_left"><label for="tel">上传文件</label></td>
-                                                <td class="td_right"><input type="file" name="image"></td>
-                                            </tr>
+		                    <tr>
+		                        <td class="td_left"><label for="tel">上传文件</label></td>
+		                        <td class="td_right"><input type="file" name="image" ></td>
+		                    </tr>
 
-                                            <tr>
-                                                <td colspan="2" align="center"><input type="submit" id="btn_sub"
-                                                                                      value="提交"></td>
-                                            </tr>
-                                        </table>
+		                    <tr>
+		                        <td colspan="2" align="center"><input type="submit" id="btn_sub" value="提交"></td>
+		                    </tr>
+		                </table>
 
-                                    </form>
+                    </form>
 
-                                </div>
+		        </div>
 
-                            </div>
+		    </div>
 
 
-                        </div>
+		</div>
                     </div>
                 </div>
             </div>
@@ -520,122 +513,114 @@
 <!-- App js -->
 <script src="/static/js/app.js"></script>
 <style type="text/css">
-    #a1:hover {
+    #a1:hover{
         color: red;
         background: transparent;
-        border-color: #bbb #fff #fff #aaa;
-    }
+        border-color: #bbb#fff#fff#aaa;
+    }   /*鼠标经过超链接的样式*/
 
-    /*鼠标经过超链接的样式*/
-
-    #a1 { /*完全清除超链接下划线效果*/
+    #a1{/*完全清除超链接下划线效果*/
         width: 50px;
-        font-size: 20px;
+        font-size:20px;
         text-decoration: none;
-        border: solid 1px;
+        border:solid 1px;
         color: #444;
-        background: burlywood; /*超链接背景颜色*/
-        border-color: #fff #aaa #aaa #fff;
-        zoom: 1; /*解决IE浏览器无法显示问题*/
+        background: burlywood;    /*超链接背景颜色*/
+        border-color: #fff#aaa#aaa#fff;
+        zoom: 1;      /*解决IE浏览器无法显示问题*/
     }
+    *{
+		        margin: 0px;
+		        padding: 0px;
+		        box-sizing: border-box;
+		    }
 
-    * {
-        margin: 0px;
-        padding: 0px;
-        box-sizing: border-box;
-    }
+		    .rg_layout{
+		        width: 900px;
+		        height: 500px;
+		        border: 8px solid #EEEEEE;
+		        background-color: white;
+		        /*让div水平居中*/
+		        margin: auto;
+		    }
 
-    .rg_layout {
-        width: 900px;
-        height: 500px;
-        border: 8px solid #EEEEEE;
-        background-color: white;
-        /*让div水平居中*/
-        margin: auto;
-    }
+		    .rg_left{
+		        /*border: 1px solid red;*/
+		        float: left;
+		        margin: 15px;
+		    }
+		    .rg_left > p:first-child{
+		        color:#FFD026;
+		        font-size: 20px;
+		    }
 
-    .rg_left {
-        /*border: 1px solid red;*/
-        float: left;
-        margin: 15px;
-    }
+		    .rg_left > p:last-child{
+		        color:#A6A6A6;
+		        font-size: 20px;
 
-    .rg_left > p:first-child {
-        color: #FFD026;
-        font-size: 20px;
-    }
-
-    .rg_left > p:last-child {
-        color: #A6A6A6;
-        font-size: 20px;
-
-    }
+		    }
 
 
-    .rg_center {
-        float: left;
-        /* border: 1px solid red;*/
+		    .rg_center{
+		        float: left;
+		       /* border: 1px solid red;*/
 
-    }
+		    }
 
-    .rg_right {
-        /*border: 1px solid red;*/
-        float: right;
-        margin: 15px;
-    }
+		    .rg_right{
+		        /*border: 1px solid red;*/
+		        float: right;
+		        margin: 15px;
+		    }
 
-    .rg_right > p:first-child {
-        font-size: 15px;
+		    .rg_right > p:first-child{
+		        font-size: 15px;
 
-    }
+		    }
+		    .rg_right p a {
+		        color:pink;
+		    }
 
-    .rg_right p a {
-        color: pink;
-    }
+		    .td_left{
+		        width: 100px;
+		        text-align: right;
+		        height: 45px;
+		    }
+		    .td_right{
+		        padding-left: 50px ;
+		    }
 
-    .td_left {
-        width: 100px;
-        text-align: right;
-        height: 45px;
-    }
+		    #name{
+		        width: 251px;
+		        height: 32px;
+		        border: 1px solid #A6A6A6 ;
+		        /*设置边框圆角*/
+		        border-radius: 5px;
+		        padding-left: 10px;
+		    }
+            #password{
+                width: 251px;
+		        height: 100px;
+		        border: 1px solid #A6A6A6 ;
+		        /*设置边框圆角*/
+		        border-radius: 5px;
+		        padding-left: 10px;
+            }
+		    #checkcode{
+		        width: 110px;
+		    }
 
-    .td_right {
-        padding-left: 50px;
-    }
+		    #img_check{
+		        height: 32px;
+		        vertical-align: middle;
+		    }
 
-    #name {
-        width: 251px;
-        height: 32px;
-        border: 1px solid #A6A6A6;
-        /*设置边框圆角*/
-        border-radius: 5px;
-        padding-left: 10px;
-    }
-
-    #password {
-        width: 251px;
-        height: 100px;
-        border: 1px solid #A6A6A6;
-        /*设置边框圆角*/
-        border-radius: 5px;
-        padding-left: 10px;
-    }
-
-    #checkcode {
-        width: 110px;
-    }
-
-    #img_check {
-        height: 32px;
-        vertical-align: middle;
-    }
-
-    #btn_sub {
-        width: 150px;
-        height: 40px;
-        background-color: #FFD026;
-        border: 1px solid #FFD026;
-    }
+		    #btn_sub{
+		        width: 150px;
+		        height: 40px;
+		        background-color: #FFD026;
+		        border: 1px solid #FFD026 ;
+		    }
 </style>
 </body>
 </html>
