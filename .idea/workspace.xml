@@ -4,13 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="路由跳转统一，接入站内消息通知功能">
+    <list default="true" id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="主页成绩显示bug修复，用户信息变量调整">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/Academic_Early_Warning.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/Academic_Early_Warning.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/activity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/error2.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/error2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/form-editors.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/form-editors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/infor.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/infor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/my_notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/my_notifications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/password_change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/password_change_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/student_score.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/student_score.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/suggestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/suggestion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/tables-editable.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/tables-editable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +42,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -53,7 +65,9 @@
       <workItem from="1681924257187" duration="620000" />
       <workItem from="1681949883287" duration="7113000" />
       <workItem from="1681992461062" duration="5000" />
-      <workItem from="1681992491236" duration="3467000" />
+      <workItem from="1681992491236" duration="3746000" />
+      <workItem from="1681996437282" duration="32000" />
+      <workItem from="1681996901285" duration="1643000" />
     </task>
     <task id="LOCAL-00001" summary="modify">
       <created>1681913290900</created>
@@ -76,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681961372472</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="主页成绩显示bug修复，用户信息变量调整">
+      <created>1681996184251</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681996184251</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,6 +120,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modify" />
     <MESSAGE value="路由跳转统一，接入站内消息通知功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="路由跳转统一，接入站内消息通知功能" />
+    <MESSAGE value="主页成绩显示bug修复，用户信息变量调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="主页成绩显示bug修复，用户信息变量调整" />
   </component>
 </project>

@@ -156,6 +156,9 @@ def Activity_new(request):  # 活动汇总调用
     act_json = serializers.serialize("json", act_list)
     print(act_list)
     print(act_json)
+    num_all = Score.objects.all().count()
+    num_pass = Score.objects.filter(zy__gte=60, cx__gte=60, zs__gte=60, gl__gte=60, zh__gte=60).count()
+    number = int((num_pass / num_all) * 100)
     return render(request, 'activity.html', locals())
 
 
