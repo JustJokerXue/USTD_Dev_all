@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.utils import timezone
 
 # Create your models here.
 from django.utils.html import format_html
@@ -109,8 +110,8 @@ class Student(models.Model):  # 学生用户信息表
     age = models.IntegerField(default=0, verbose_name='年龄', null=True)
     major = models.CharField(max_length=200, verbose_name='专业', null=True)
     pwd = models.IntegerField(verbose_name='密码', default=123456)
-    banji = models.CharField(max_length=200, verbose_name='班级', null=True)
-    department = models.CharField(max_length=200, verbose_name='院系', null=True)
+    banji = models.CharField(max_length=200, verbose_name='班级',default='2020级')
+    department = models.CharField(max_length=200, verbose_name='院系', default='信工院')
 
     class Meta:
         db_table = 'Student'
@@ -119,6 +120,20 @@ class Student(models.Model):  # 学生用户信息表
 
     def __str__(self):
         return self.name
+# class Student(models.Model):  # 学生用户信息表
+#     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
+#     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
+#     age = models.IntegerField(default=0, verbose_name='年龄', null=True)
+#     sp = models.CharField(max_length=200, verbose_name='专业', null=True)
+#     pwd = models.IntegerField(verbose_name='密码', default=123456)
+#
+#     class Meta:
+#         db_table = 'Student'
+#         verbose_name = "学生"
+#         verbose_name_plural = "学生"
+#
+#     def __str__(self):
+#         return self.name
 
 
 class OverallScore(models.Model):  # 总评成绩表
@@ -394,13 +409,27 @@ class Weight(models.Model):  # 综测权重系数表
 
 
 class Activity(models.Model):  # 活动表
-    aid = models.IntegerField(default=0, verbose_name='活动编号', null=True)
-    aname = models.CharField(max_length=200, verbose_name='活动名称', null=True)
-    content = models.CharField(max_length=200, verbose_name='活动内容', null=True)
-    organizer = models.CharField(max_length=200, verbose_name='活动举办方', null=True)
-    baoming = models.CharField(max_length=200, verbose_name='报名方式', null=True)
+    # aid = models.IntegerField(default=0, verbose_name='活动编号', primary_key=True)
+    category = models.CharField(max_length=50, verbose_name='活动类型', null=True)
+    aname = models.CharField(max_length=50, verbose_name='活动名称', null=True)
+    content = models.CharField(max_length=2000, verbose_name='活动内容', null=True)
+    time = models.DateTimeField(auto_now=False, verbose_name='活动时间', default=timezone.now)
 
     class Meta:
         db_table = 'Activity'
-        verbose_name = "活动"
-        verbose_name_plural = "活动"
+        verbose_name = "活动汇总表"
+        verbose_name_plural = "活动汇总表"
+
+
+class Application(models.Model):  # 活动报名表
+    aid = models.IntegerField(default=0, verbose_name='活动编号')
+    aname = models.CharField(max_length=50, verbose_name='活动名称', null=True)
+    no = models.IntegerField(default='', verbose_name='学号')
+    name = models.CharField(max_length=50, verbose_name='姓名', null=True)
+    banji = models.CharField(max_length=50, verbose_name='班级', null=True)
+
+    class Meta:
+        db_table = 'Application'
+        verbose_name = "活动报名表"
+        verbose_name_plural = "活动报名表"
+

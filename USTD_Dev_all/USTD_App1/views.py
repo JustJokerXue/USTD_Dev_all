@@ -3,15 +3,17 @@ import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
 from cachecontrol.serialize import Serializer
+from django.contrib import messages
 from django.core import serializers
 from django.db.models import Max
 from django.http import JsonResponse, request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from requests import session
+from sqlalchemy import Integer
 
 from . import models
-from .models import Score, Weight, Activity
+from .models import Score, Weight, Activity,Application
 from .models import Student, Early_Warning, Course
 # from django.utils.html import strip_tags
 # from notifications.signals import notify
@@ -43,14 +45,23 @@ def Application_message(request):  # 学生个人活动报名信息
     return stu_application_json
 
 
-def Application(request):  # 活动报名
-
-    # 缺少活动编号与活动名称获取
+def Application_new(request):  # 活动报名
+    act_id = request.GET.get('id')
+    act = Activity.objects.get(id = act_id)
+    act_aname = act.aname
+    print(act_id,act_aname,act,type(act_id))
     stu_id = request.session.get('ID')
     stu = Student.objects.get(id=stu_id)
-    application = Application(no=stu.id, name=stu.name, banji=stu.banji)
-    application.save()
-    return 0
+    application = Application.objects.filter(aid=act_id,no = stu.id)
+    if application.exists():
+        # 需要弹出的消息框
+        messages.success(request, '请勿重复报名')
+        #  注意你需要在index.html添加我们上面的js代码
+    else:
+        application = Application(aid=act_id,aname = act_aname,no=stu.id, name=stu.name, banji=stu.banji)
+        application.save()
+        messages.success(request, '报名成功')
+    return redirect("http://127.0.0.1:8000/login/activity.html")
 
 
 def queryCourse(request):  # 获取学生成绩信息
@@ -153,8 +164,10 @@ def infor(request):  # 用户信息页面功能实现及调用
     std = Student.objects.get(id=std_id)
     id = std.id
     age = std.age
-    sp = std.sp
+    major = std.major
     pwd = std.pwd
+    banji = std.banji
+    department = std.department
     return render(request, "infor.html", locals())
 
 
@@ -226,10 +239,12 @@ def shenhe_upload(request):  # 上传审核材料页面功能实现及调用
 
         else:
             return render(request, 'error2.html')
-    shenhe_list_obj = models.shenhe.objects.filter(no=ID0)
+    shenhe_list_obj_D = models.shenhe.objects.filter(no=ID0,zhuangtai='D')
+    shenhe_list_obj_F = models.shenhe.objects.filter(no=ID0,zhuangtai='F')
+    shenhe_list_obj_T = models.shenhe.objects.filter(no=ID0,zhuangtai='T')
     request.session['ID0'] = ID0
     return render(request, 'tables-editable.html',
-                  {'shenhe_list': shenhe_list_obj, 'ID0': ID0, 'name': name, 'num_pass': num_pass, 'num_all': num_all,
+                  {'shenhe_list_D': shenhe_list_obj_D,'shenhe_list_F': shenhe_list_obj_F,'shenhe_list_T': shenhe_list_obj_T, 'ID0': ID0, 'name': name, 'num_pass': num_pass, 'num_all': num_all,
                    'number': number})
 
 

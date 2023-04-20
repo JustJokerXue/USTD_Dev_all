@@ -1,3 +1,4 @@
+{% load notifications_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +10,10 @@
     <meta content="Mannatthemes" name="author">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- X-editable css -->
-    <link type="text/css" href="/static/css/bootstrap-editable.css" rel="stylesheet">
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/icons.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+    <link type="text/css" href="../static/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="preloader">
@@ -39,20 +40,10 @@
             <div class="menu-extras topbar-custom">
                 <ul class="list-unstyled float-right mb-0">
                     <!-- language-->
-                    <li class="list-inline-item dropdown notification-list hide-phone"><a
-                            class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="false" aria-expanded="false">Chinese <img
-                            src="/static/picture/chinese_fiag.jpg" class="ml-2" height="16" alt=""></a>
-                        <div class="dropdown-menu dropdown-menu-right language-switch"><a class="dropdown-item"
-                                                                                          href="#"><img
-                                src="/static/picture/italy_flag.jpg" alt=""
-                                height="16"><span>Italian </span></a><a class="dropdown-item" href="#"><img
-                                src="/static/picture/french_flag.jpg" alt="" height="16"><span>French
-                        </span></a><a class="dropdown-item" href="#"><img
-                                src="/static/picture/spain_flag.jpg" alt="" height="16"><span>Spanish
-                        </span></a><a class="dropdown-item" href="#"><img
-                                src="/static/picture/russia_flag.jpg" alt="" height="16"><span>Russian
-                        </span></a></div>
+                    <li class="list-inline-item dropdown notification-list hide-phone">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">Chinese
+                            <img src="../static/picture/chinese_fiag.jpg" class="ml-2" height="16" alt=""></a>
                     </li><!-- notification-->
                     <li class="list-inline-item dropdown notification-list"><a
                             class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
@@ -62,57 +53,55 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg border-0">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
-                                <h5><span class="badge badge-danger float-right">745</span>Messages</h5>
-                            </div><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon"><img src="/static/picture/avatar-2.jpg" alt="user-img"
-                                                          class="img-fluid rounded-circle"></div>
-                            <p class="notify-details"><b>Charles M. Jones</b><small class="text-muted">Dummy
-                                text of the printing and typesetting industry.</small></p>
-                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon"><img src="/static/picture/avatar-3.jpg" alt="user-img"
-                                                          class="img-fluid rounded-circle"></div>
-                            <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You
-                                have 87 unread messages</small></p>
-                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon"><img src="/static/picture/avatar-4.jpg" alt="user-img"
-                                                          class="img-fluid rounded-circle"></div>
-                            <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a
-                                long established fact that a reader will</small></p>
-                        </a><!-- All--><a href="javascript:void(0);" class="dropdown-item notify-item border-top">View
-                            All </a>
+                                <h5><span class="badge badge-danger float-right">5</span>Messages</h5>
+                            </div>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon">
+                                <img src="../static/picture/avatar-2.jpg" alt="user-img" class="img-fluid rounded-circle">
+                            </div>
+                            <p class="notify-details">
+                                <b>Charles M. Jones</b>
+                                <small class="text-muted">Dummy text of the printing and typesetting industry.</small>
+                            </p>
+                            </a>
+{#                            <!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">#}
+{#                            <div class="notify-icon"><img src="../static/picture/avatar-3.jpg" alt="user-img"#}
+{#                                                          class="img-fluid rounded-circle"></div>#}
+{#                            <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You#}
+{#                                have 87 unread messages</small></p>#}
+{#                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">#}
+{#                            <div class="notify-icon"><img src="../static/picture/avatar-4.jpg" alt="user-img"#}
+{#                                                          class="img-fluid rounded-circle"></div>#}
+{#                            <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a#}
+{#                                long established fact that a reader will</small></p>#}
+{#                            </a>#}
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item border-top">
+                                View All
+                            </a>
                         </div>
                     </li><!-- notification-->
                     <li class="list-inline-item dropdown notification-list"><a
                             class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
                             href="#" role="button" aria-haspopup="false" aria-expanded="false"><i
                             class="dripicons-bell noti-icon"></i><span
-                            class="badge badge-success noti-icon-badge">2</span></a>
+                            class="badge badge-success noti-icon-badge">{% notifications_unread %}</span></a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg border-0">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
-                                <h5>Notification(3)</h5>
-                            </div><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <h5>Notification</h5>
+                            </div><!-- item--><a href="{% url 'my_notifications' %}" class="dropdown-item notify-item">
                             <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                            <p class="notify-details"><b>Your order is placed</b><small
-                                    class="text-muted">Dummy text of the printing and typesetting
-                                industry.</small></p>
-                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
-                            <p class="notify-details"><b>New Message received</b><small
-                                    class="text-muted">You have 87 unread messages</small></p>
-                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-info"><i class="mdi mdi-glass-cocktail"></i></div>
-                            <p class="notify-details"><b>Your class is updated</b><small
-                                    class="text-muted">It is a long established fact that a reader
-                                will</small></p>
-                        </a><!-- All--><a href="javascript:void(0);" class="dropdown-item notify-item border-top">View
-                            All </a>
+                            我的消息<span class="badge unread-count">{% notifications_unread %}</span>
+                            <br><small class="text-muted">My Messages</small>
+                        </a>
                         </div>
                     </li><!-- User-->
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown"
                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="/static/picture/avatar-1.jpg" alt="user" class="rounded-circle">
+                            <img src="../static/picture/avatar-1.jpg" alt="user" class="rounded-circle">
                         </a>
                         <span>{{ name }}</span>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown  border-0">
@@ -224,7 +213,7 @@
                                     <li>
                                         <a href="suggestion/4/">管理实践推荐</a>
                                     </li>
-                                    </li>
+
                                 </ul>
                             </li>
                             <li class="has-submenu">
@@ -248,6 +237,22 @@
                                 <ul>
                                     <li>
                                         <a href="form-editors.html">五大方面评分准则</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#">
+                            <i class="dripicons-blog">
+
+                            </i> 活动信息
+                        </a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a href="activity.html">活动入口</a>
                                     </li>
                                 </ul>
                             </li>
@@ -314,7 +319,7 @@
                                     <font color="green">{{ minimum }}</font>/24</a>
                                     {% endif %}
                                     {% if minimum < 24 %}
-                                    <font color="red">{{ minimum }}</font>/24</a>
+                                    <font color="red">{{ minimum }}</font>/24
                                     {% endif %}
                                 </td>
                                 {% if minimum >= 24 %}
@@ -331,7 +336,7 @@
                                     <font color="green">{{ compulsory }}</font>/20</a>
                                     {% endif %}
                                     {% if compulsory < 20 %}
-                                    <font color="red">{{ compulsory }}</font>/20</a>
+                                    <font color="red">{{ compulsory }}</font>/20
                                     {% endif %}
                                 </td>
                                 {% if compulsory >= 20 %}
@@ -348,7 +353,7 @@
                                     <font color="green">{{ elective }}</font>/4</a>
                                     {% endif %}
                                     {% if elective < 4 %}
-                                    <font color="red">{{ elective }}</font>/4</a>
+                                    <font color="red">{{ elective }}</font>/4
                                     {% endif %}
                                 </td>
                                 {% if elective >= 4 %}
@@ -367,7 +372,7 @@
                                     <font color="green">{{ physical }}</font>/60</a>
                                     {% endif %}
                                     {% if physical < 60 %}
-                                    <font color="red">{{ physical }}</font>/60</a>
+                                    <font color="red">{{ physical }}</font>/60
                                     {% endif %}
                                 </td>
                                 {% if physical >= 60 %}
@@ -385,7 +390,7 @@
                                     <font color="green">{{ cet4 }}</font>/425</a>
                                     {% endif %}
                                     {% if cet4 < 425 %}
-                                    <font color="red">{{ cet4 }}</font>/425</a>
+                                    <font color="red">{{ cet4 }}</font>/425
                                     {% endif %}
                                 </td>
                                 {% if cet4 >= 425 %}
@@ -403,7 +408,7 @@
                                     <font color="green">{{ mandarin }}</font>/80</a>
                                     {% endif %}
                                     {% if mandarin < 80 %}
-                                    <font color="red">{{ mandarin }}</font>/80</a>
+                                    <font color="red">{{ mandarin }}</font>/80
                                     {% endif %}
                                 </td>
                                 {% if mandarin >= 80 %}
@@ -425,25 +430,25 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">© 2022 大学生发展综合素质测评系统</a></div>
+            <div class="col-12">© 2022 大学生发展综合素质测评系统</div>
         </div>
     </div>
 </footer><!-- End Footer -->
 <!-- jQuery -->
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/popper.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/modernizr.min.js"></script>
-<script src="/static/js/waves.js"></script>
-<script src="/static/js/jquery.slimscroll.js"></script>
-<script src="/static/js/jquery.nicescroll.js"></script>
-<script src="/static/js/jquery.scrollTo.min.js"></script><!-- KNOB JS -->
-<script src="/static/js/excanvas.js"></script>
-<script src="/static/js/jquery.knob.js"></script><!-- XEditable Plugin -->
-<script src="/static/js/moment.js"></script>
-<script src="/static/js/bootstrap-editable.min.js"></script>
-<script src="/static/js/xeditable.js"></script><!-- App js -->
-<script src="/static/js/app.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/modernizr.min.js"></script>
+<script src="../static/js/waves.js"></script>
+<script src="../static/js/jquery.slimscroll.js"></script>
+<script src="../static/js/jquery.nicescroll.js"></script>
+<script src="../static/js/jquery.scrollTo.min.js"></script><!-- KNOB JS -->
+<script src="../static/js/excanvas.js"></script>
+<script src="../static/js/jquery.knob.js"></script><!-- XEditable Plugin -->
+<script src="../static/js/moment.js"></script>
+<script src="../static/js/bootstrap-editable.min.js"></script>
+<script src="../static/js/xeditable.js"></script><!-- App js -->
+<script src="../static/js/app.js"></script>
 </body>
 </html>
-<script src="/static/js/console-ban.min.js"></script>
+<script src="../static/js/console-ban.min.js"></script>
