@@ -82,20 +82,46 @@ def Model_creat(id):
     student = Student.objects.get(id=id)
     name = student.name
     score = Score.objects.filter(id=id)
+    overallsorce = OverallScore.objects.filter(id=id)
     course = Course.objects.filter(stu_id=id)
     learn = learning.objects.filter(sno=id)
-    if score.exists() and course.exists() and learn.exists():
-        print("score and course and learn is exists")
+    warning=Early_Warning.objects.filter(id=id)
+    if  learn.exists():
+        print("learn is exists")
+    else:
+        learn = learning(sno=student.id, name=student.name, banji=student.banji, major=student.major, department=student.department)
+        learn.save()
+        print(learn)
+
+    if score.exists() :
+        print("score is exists")
     else:
         score = Score(id=id)
         score.save()
+        print(score)
+
+    if course.exists():
+        print("course is exists")
+    else:
         course = Course(stu_id=id, name=name)
         course.save()
-        learn = learning(sno=student.id, name=student.name, banji=student.banji, major=student.major, department=student.department)
-        learn.save()
-        print(score)
         print(course)
-    return score
+
+    if overallsorce.exists():
+        print("overallsorce is exists")
+    else:
+        overallsorce = OverallScore(id=id,name=student.name, banji=student.banji, major=student.major, department=student.department)
+        overallsorce.save()
+        print(overallsorce)
+
+    if warning.exists():
+        print("warning is exists")
+    else:
+        warning = Early_Warning(id=id,)
+        warning.save()
+        print(warning)
+
+    return 1
 
 
 def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成功就调用
@@ -282,12 +308,13 @@ def login(request):  # 登录页面功能实现
                 return render(request, 'error.html')
             sid = str(student.id)
             spwd = str(student.pwd)
+
             print(id, pwd)
             print(sid, spwd)
             if id == sid and pwd == spwd:
                 print('登录成功')
-                select(id)
                 Model_creat(id)
+                select(id)
                 overallgrade=Calculate_grades(id)
                 # Activity_new()
                 # queryCourse(id)
