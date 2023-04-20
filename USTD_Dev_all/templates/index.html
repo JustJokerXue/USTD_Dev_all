@@ -29,6 +29,11 @@
 </head>
 <body>
 <!-- Loader -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner"></div>
+    </div>
+</div>
 <!-- Navigation Bar-->
 <header id="topnav">
     <div class="topbar-main">
@@ -46,20 +51,10 @@
             <div class="menu-extras topbar-custom">
                 <ul class="list-unstyled float-right mb-0">
                     <!-- language-->
-                    <li class="list-inline-item dropdown notification-list hide-phone"><a
-                            class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="false" aria-expanded="false">Chinese <img
-                            src="/static/picture/chinese_fiag.jpg" class="ml-2" height="16" alt=""></a>
-                        <div class="dropdown-menu dropdown-menu-right language-switch"><a class="dropdown-item"
-                                                                                          href="#"><img
-                                src="/static/picture/italy_flag.jpg" alt=""
-                                height="16"><span>Italian </span></a><a class="dropdown-item" href="#"><img
-                                src="/static/picture/french_flag.jpg" alt="" height="16"><span>French
-                        </span></a><a class="dropdown-item" href="#"><img
-                                src="/static/picture/spain_flag.jpg" alt="" height="16"><span>Spanish
-                        </span></a><a class="dropdown-item" href="#"><img
-                                src="/static/picture/russia_flag.jpg" alt="" height="16"><span>Russian
-                        </span></a></div>
+                    <li class="list-inline-item dropdown notification-list hide-phone">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">Chinese
+                            <img src="../static/picture/chinese_fiag.jpg" class="ml-2" height="16" alt=""></a>
                     </li><!-- notification-->
                     <li class="list-inline-item dropdown notification-list"><a
                             class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown"
@@ -69,24 +64,33 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg border-0">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
-                                <h5><span class="badge badge-danger float-right">745</span>Messages</h5>
-                            </div><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon"><img src="/static/picture/avatar-2.jpg" alt="user-img"
-                                                          class="img-fluid rounded-circle"></div>
-                            <p class="notify-details"><b>Charles M. Jones</b><small class="text-muted">Dummy
-                                text of the printing and typesetting industry.</small></p>
-                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon"><img src="/static/picture/avatar-3.jpg" alt="user-img"
-                                                          class="img-fluid rounded-circle"></div>
-                            <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You
-                                have 87 unread messages</small></p>
-                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon"><img src="../static/picture/avatar-4.jpg" alt="user-img"
-                                                          class="img-fluid rounded-circle"></div>
-                            <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a
-                                long established fact that a reader will</small></p>
-                        </a><!-- All--><a href="javascript:void(0);" class="dropdown-item notify-item border-top">View
-                            All </a>
+                                <h5><span class="badge badge-danger float-right">5</span>Messages</h5>
+                            </div>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon">
+                                <img src="../static/picture/avatar-2.jpg" alt="user-img" class="img-fluid rounded-circle">
+                            </div>
+                            <p class="notify-details">
+                                <b>Charles M. Jones</b>
+                                <small class="text-muted">Dummy text of the printing and typesetting industry.</small>
+                            </p>
+                            </a>
+{#                            <!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">#}
+{#                            <div class="notify-icon"><img src="../static/picture/avatar-3.jpg" alt="user-img"#}
+{#                                                          class="img-fluid rounded-circle"></div>#}
+{#                            <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You#}
+{#                                have 87 unread messages</small></p>#}
+{#                        </a><!-- item--><a href="javascript:void(0);" class="dropdown-item notify-item">#}
+{#                            <div class="notify-icon"><img src="../static/picture/avatar-4.jpg" alt="user-img"#}
+{#                                                          class="img-fluid rounded-circle"></div>#}
+{#                            <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a#}
+{#                                long established fact that a reader will</small></p>#}
+{#                            </a>#}
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item border-top">
+                                View All
+                            </a>
                         </div>
                     </li><!-- notification-->
                     <li class="list-inline-item dropdown notification-list"><a
@@ -108,7 +112,7 @@
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown"
                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="/static/picture/avatar-1.jpg" alt="user" class="rounded-circle">
+                            <img src="../static/picture/avatar-1.jpg" alt="user" class="rounded-circle">
                         </a>
                         <span>{{ name }}</span>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown  border-0">
@@ -398,8 +402,8 @@
                                             </i>
                                         </div>
                                         <div class="col-10 text-right">
-                                            <h5 class="mt-0 mb-1">{{ score.zh }}分</h5>
-                                            <p class="mb-0 font-12 text-muted"> 综合发展能力</p>
+                                            <h5 class="mt-0 mb-1">{{ score.zy }}分</h5>
+                                            <p class="mb-0 font-12 text-muted">专业技术能力</p>
                                         </div>
                                     </div>
                                 </div>
@@ -442,12 +446,12 @@
                         <div class="dropdown d-inline-block float-right">
                             <a class="nav-link dropdown-toggle arrow-none" id="dLabel4" data-toggle="dropdown" href="#"
                                role="button" aria-haspopup="false" aria-expanded="false">
+
                             </a>
                         </div>
                         <!--                        <h5 class="header-title mb-4 mt-0">综合发展能力</h5>-->
 
                         <div>
-
                             <h6 class="header-title mb-4 mt-0">近期活动展示</h6></br>
                             <a href="https://www.hunnu.edu.cn/">湖南师范大学官网</a></br></br>
                             <a href="https://jwc.hunnu.edu.cn/">湖南师范大学教务处</a></br></br>

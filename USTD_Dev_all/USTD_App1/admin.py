@@ -1,13 +1,13 @@
-from USTD_App1.models import Early_Warning
+from .models import Early_Warning
 # Register your models here.
-from USTD_App1.models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application, Activity,OverallScore
+from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application, Activity,OverallScore
 # from USTD_App1.models import Knowledge
-from USTD_App1.models import Course
-from USTD_App1.models import Score
-from USTD_App1.models import Student
-from USTD_App1.models import Activity
-from USTD_App1.models import Weight
-from USTD_App1.models import shenhe
+from .models import Course
+from .models import Score
+from .models import Student
+from .models import Activity
+from .models import Weight
+from .models import shenhe
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe

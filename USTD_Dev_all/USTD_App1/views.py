@@ -164,8 +164,10 @@ def infor(request):  # 用户信息页面功能实现及调用
     std = Student.objects.get(id=std_id)
     id = std.id
     age = std.age
-    sp = std.sp
+    major = std.major
     pwd = std.pwd
+    banji = std.banji
+    department = std.department
     return render(request, "infor.html", locals())
 
 
