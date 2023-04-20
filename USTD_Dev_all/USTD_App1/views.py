@@ -299,8 +299,6 @@ def login(request):  # 登录页面功能实现
         print("进入页面")
         id = str(request.POST.get('id'))
         pwd = str(request.POST.get('pwd'))
-        # id = str(id)
-        # pwd = str(pwd)
         if id.isdigit():
             try:
                 student = Student.objects.get(id=id)
@@ -308,7 +306,6 @@ def login(request):  # 登录页面功能实现
                 return render(request, 'error.html')
             sid = str(student.id)
             spwd = str(student.pwd)
-
             print(id, pwd)
             print(sid, spwd)
             if id == sid and pwd == spwd:
@@ -326,11 +323,6 @@ def login(request):  # 登录页面功能实现
                 s3 = learning.objects.get(sno=id)
                 s4 = manage.objects.get(sno=id)
                 s5 = ComprehensiveDevelopment.objects.get(sno=id)
-                # zh = Score.objects.filter(zy__gte=60).count()
-                # ch = Score.objects.filter(cx__gte=60).count()
-                # know = Score.objects.filter(zs__gte=60).count()
-                # gl = Score.objects.filter(gl__gte=60).count()
-                # select(id)
                 max_Score_list = max_Score()
                 request.session['ID'] = student.id
                 request.session['name'] = student.name
