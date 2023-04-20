@@ -216,7 +216,7 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
                     score_item = manage.objects
                 elif item.leibie == '综合发展':
                     score_item = ComprehensiveDevelopment.objects
-                score_item = score_item.get(item.no)
+                score_item = score_item.get(sno=item.no)
                 score_item.total_score += item.extra_points
                 score_item.save()
             except Exception as err:
@@ -243,7 +243,7 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
                     score_item = manage.objects
                 elif item.leibie == '综合发展':
                     score_item = ComprehensiveDevelopment.objects
-                score_item = score_item.get(item.no)
+                score_item = score_item.get(sno=item.no)
                 score_item.total_score -= item.extra_points
                 score_item.save()
             except Exception as err:

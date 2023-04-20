@@ -147,6 +147,7 @@ def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成�
 
 def Activity_new(request):  # 活动汇总调用
     stu_id = request.session.get('ID')
+    print(stu_id)
     student = Student.objects.get(id=stu_id)
     name = student.name
     act_list = list()
