@@ -404,7 +404,10 @@ def login(request):  # 登录页面功能实现
                 std_id = student.id
                 print(std_id)
                 std = Early_Warning.objects.get(id=std_id)
-                if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
+                graduation_req = std.grad_req_id
+                if std.minimum >= graduation_req.credit and std.compulsory >= graduation_req.compulsory \
+                        and std.elective >= graduation_req.elective and std.physical >= graduation_req.physical \
+                        and std.cet4 >= graduation_req.cet4 and std.mandarin >= graduation_req.mandarin:
                     ans = '满足毕业最低要求'
                 else:
                     ans = '不满足毕业最低要求'
@@ -425,16 +428,18 @@ def login(request):  # 登录页面功能实现
 
 
 def academic_Early_Warning(request):  # 学业预警页面功能实现及调用
-    name = request.session.get('name')
-    print(name)
+    stu_id = request.session.get('ID')
+    print(stu_id)
+    std = Early_Warning.objects.get(id=stu_id)
+    graduation_req = std.grad_req_id
     num_all = Early_Warning.objects.all().count()
-    num_pass = Early_Warning.objects.filter(minimum__gte=24, compulsory__gte=20, elective__gte=4, physical__gte=60,
-                                            cet4__gte=425, mandarin__gte=80).count()
+    num_pass = Early_Warning.objects.filter(minimum__gte=graduation_req.credit,
+                                            compulsory__gte=graduation_req.compulsory,
+                                            elective__gte=graduation_req.elective,
+                                            physical__gte=graduation_req.physical,
+                                            cet4__gte=graduation_req.cet4,
+                                            mandarin__gte=graduation_req.mandarin).count()
     number = int((num_pass / num_all) * 100)
-    e = Student.objects.get(name=name)
-    std_id = e.id
-    print(std_id)
-    std = Early_Warning.objects.get(id=std_id)
     minimum = std.minimum
     compulsory = std.compulsory
     elective = std.elective
