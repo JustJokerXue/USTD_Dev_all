@@ -1,6 +1,6 @@
-from .models import Early_Warning, learning
+from .models import Early_Warning, learning, CourseMessage
 from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application,OverallScore
-from .models import Course
+from .models import *
 from .models import Score
 from .models import Student
 from .models import Activity
@@ -10,6 +10,8 @@ from django.contrib import admin
 from django.utils.text import capfirst
 from django.contrib import admin  # 导入导出包
 from import_export.admin import ImportExportModelAdmin
+
+from .views import course_create
 
 admin.site.site_header = '大学生发展综合素质测评系统管理后台'  # 设置header
 admin.site.site_title = '大学生发展综合素质测评系统管理后台'  # 设置title
@@ -38,6 +40,20 @@ class StudentAdmin(ImportExportModelAdmin):  # 学生用户信息表后台布局
             stu_zh = ComprehensiveDevelopment(sno=stu.id, name=stu.name, banji=stu.banji,major=stu.major,department=stu.department)
             stu_zh.save()
 
+        super().save_model(request, obj, form, change)
+
+@admin.register(CourseMessage)
+class CourseMessageAdmin(ImportExportModelAdmin):  # 学生用户信息表后台布局设计
+    list_display = ('cid', 'course','banji', 'teacher', 'credits')
+    list_display_links = ("cid",)
+    search_fields = ('cid',)  # 查找
+    list_per_page = 20
+    list_editable = ( 'course','banji', 'teacher', 'credits')
+    list_filter = ("cid", "course", 'banji','teacher', 'credits')
+
+    def save_model(self, request, obj, form, change):
+        cm = form.save()
+        course_create(cm)
         super().save_model(request, obj, form, change)
 
 from .models import OverallScore
@@ -69,19 +85,18 @@ class ScoreAdmin(ImportExportModelAdmin):  # 学生五大方面评分表后台�
     list_per_page = 20
     list_editable = ('zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
 
-from .models import Course
 @admin.register(Course)
-class Course(ImportExportModelAdmin):  # 知识学习表后台布局设计
-    list_display = ('stu_id', 'name', 'course', 'grade', 'gpa')
+class Course(ImportExportModelAdmin):  # 课程成绩表后台布局设计
+    list_display = ('stu_id', 'name', 'course','grade', 'gpa')
     list_display_links = ("stu_id",)
     search_fields = ('stu_id', 'course')  # 查找
     list_per_page = 20
-    list_editable = ('course', 'grade', 'gpa')
+    list_editable = ('course','grade', 'gpa')
     # list_filter = ("id", "sp")
 
 from .models import learning
 @admin.register(learning)
-class learning(ImportExportModelAdmin):  # 学生创新创业评分表后台布局设计
+class learning(ImportExportModelAdmin):  # 知识学习表后台布局设计
     list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找

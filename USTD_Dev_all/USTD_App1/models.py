@@ -193,10 +193,21 @@ class Course(models.Model):  # 学生学习成绩表
             models.CheckConstraint(check=models.Q(gpa__gte=0, gpa__lte=5), name='gpa'),
         ]
 
+class CourseMessage(models.Model):  # 课程表
+    cid = models.IntegerField(default=0, verbose_name='课程号', primary_key=True)
+    course = models.CharField(max_length=200, default='', verbose_name='课程', null=True)
+    banji = models.CharField(max_length=200, verbose_name='班级',default='2020级')
+    teacher = models.CharField(max_length=200, default='', verbose_name='任课教师', null=True)
+    credits = models.FloatField(default=0, verbose_name='学分', null=True)
+
+    class Meta:
+        db_table = 'CourseMessage'
+        verbose_name = "课程"
+        verbose_name_plural = "课程"
+
+
     def __str__(self):
-        return self.name
-
-
+        return self.course
 
 
 class learning(models.Model):  # 知识学习表
