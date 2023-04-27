@@ -140,3 +140,167 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login/'
+SIMPLEUI_CONFIG = {
+    # 是否使用系统默认菜单。
+    'system_keep': False,
+
+    # 用于菜单排序和过滤, 不填此字段为默认排序和全部显示。 空列表[] 为全部不显示.
+    'menu_display': ['学生信息管理','综测权重系数设置','活动信息管理','材料审核','学业预警管理','notifications', '权限认证'],
+
+    # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时刷新展示菜单内容。
+    # 一般建议关闭。
+    'dynamic': False,
+    'menus': [
+        {
+            'app': 'auth',
+            'name': '权限认证',
+            'icon': 'fas fa-user-shield',
+            'models': [
+                {
+                    'name': '用户列表',
+                    'icon': 'fa fa-user',
+                    'url': 'auth/user/'
+                },
+                {
+                    'name': '用户组',
+                    'icon': 'fa fa-th-list',
+                    'url': 'auth/group/'
+                }
+            ]
+        },
+
+        {
+            'name': '学生信息管理',
+            'icon': 'fa fa-th-list',
+            'models': [
+                {
+                    'name': '学生信息',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/student/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': '课程',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/coursemessage/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': '综测总评成绩',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/overallscore/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': '课程成绩',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/course/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': '知识学习',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/learning/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': '创新创业',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/innovation/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': '专业技术',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/majortechnology/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': '管理实践',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/manage/',
+                    'icon': 'fa fa-tasks'
+                },
+                {
+                    'name': '综合发展',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/comprehensivedevelopment/',
+                    'icon': 'fa fa-tasks'
+                },
+            ]
+        },
+        {
+            'name': '综测权重系数设置',
+            'icon': 'fa fa-th-list',
+            'models': [
+                {
+                    'name': '综测权重系数',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/weight/',
+                    'icon': 'fa fa-tasks'
+                },
+            ]
+        },
+        {
+            'name': '活动信息管理',
+            'icon': 'fa fa-th-list',
+            'models': [
+                {
+                    'name': '活动汇总表',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/activity/',
+                    'icon': 'fa fa-tasks'
+                },
+            {
+                    'name': '活动报名表',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/application/',
+                    'icon': 'fa fa-tasks'
+                },
+            ]
+        },
+        {
+            'name': '材料审核',
+            'icon': 'fa fa-th-list',
+            'models': [
+                {
+                    'name': '审核材料表',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/shenhe/',
+                    'icon': 'fa fa-tasks'
+                },
+            ]
+        },
+        {
+            'name': '学业预警管理',
+            'icon': 'fa fa-th-list',
+            'models': [
+                {
+                    'name': '学业要求',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/graduationrequirement/',
+                    'icon': 'fa fa-tasks'
+                },
+{
+                    'name': '学业预警',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/early_warning/',
+                    'icon': 'fa fa-tasks'
+                },
+            ]
+        },
+        {
+            'name': 'notifications',
+            'icon': 'fa fa-th-list',
+            'models': [
+                {
+                    'name': 'notifications',
+                    # 注意url按'/admin/应用名小写/模型名小写/'命名。
+                    'url': '/admin/USTD_App1/notifications/',
+                    'icon': 'fa fa-tasks'
+                },
+
+            ]
+        },
+    ]
+}
