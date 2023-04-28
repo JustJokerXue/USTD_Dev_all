@@ -1,4 +1,4 @@
-from .models import Early_Warning, learning
+from .models import Early_Warning, learning, CourseMessage
 from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application,OverallScore
 from .models import Course
 from .models import Score
@@ -10,6 +10,8 @@ from django.contrib import admin
 from django.utils.text import capfirst
 from django.contrib import admin  # 导入导出包
 from import_export.admin import ImportExportModelAdmin
+
+from .views import course_create
 
 admin.site.site_header = '高校学生综合素质测评及综合分析平台--后台'  # 设置header
 admin.site.site_title = '高校学生综合素质测评及综合分析平台--后台'  # 设置title
@@ -41,6 +43,22 @@ class StudentAdmin(ImportExportModelAdmin):  # 学生用户信息表后台布局
         super().save_model(request, obj, form, change)
 
 from .models import OverallScore
+
+@admin.register(CourseMessage)
+class CourseMessageAdmin(ImportExportModelAdmin):  # 学生用户信息表后台布局设计
+    list_display = ('cid', 'course','banji', 'teacher', 'credits')
+    list_display_links = ("cid",)
+    search_fields = ('cid',)  # 查找
+    list_per_page = 20
+    list_editable = ( 'course','banji', 'teacher', 'credits')
+    list_filter = ("cid", "course", 'banji','teacher', 'credits')
+
+    def save_model(self, request, obj, form, change):
+        cm = form.save()
+        course_create(cm)
+        super().save_model(request, obj, form, change)
+
+
 @admin.register(OverallScore)
 class OverallScoreAdmin(ImportExportModelAdmin):  # 总评成绩表后台布局设计
     list_display = ('id', 'name', 'banji', 'major', 'department', 'total_score')
@@ -216,7 +234,7 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
                     score_item = manage.objects
                 elif item.leibie == '综合发展':
                     score_item = ComprehensiveDevelopment.objects
-                score_item = score_item.get(item.no)
+                score_item = score_item.get(sno=item.no)
                 score_item.total_score += item.extra_points
                 score_item.save()
             except Exception as err:
@@ -231,7 +249,7 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
     # 判断未通过的
     def mak_pub1(self, request, queryset):
         for item in queryset:
-            if item.zhuangtai == 'F':
+            if item.zhuangtai == 'D':
                 return
             try:
                 score_item = None
@@ -243,13 +261,13 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
                     score_item = manage.objects
                 elif item.leibie == '综合发展':
                     score_item = ComprehensiveDevelopment.objects
-                score_item = score_item.get(item.no)
+                score_item = score_item.get(sno=item.no)
                 score_item.total_score -= item.extra_points
                 score_item.save()
             except Exception as err:
                 print(err)
             print(item)
-            item.zhuangtai = 'F'
+            item.zhuangtai = 'D'
             item.save()
 
     # 更改Action的内容为通过

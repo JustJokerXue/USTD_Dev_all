@@ -410,12 +410,12 @@ def login(request):  # 登录页面功能实现
                 print(std_id)
                 std = Early_Warning.objects.get(id=std_id)
                 graduation_req = std.grad_req_id
-                if std.minimum >= graduation_req.credit and std.compulsory >= graduation_req.compulsory \
-                        and std.elective >= graduation_req.elective and std.physical >= graduation_req.physical \
-                        and std.cet4 >= graduation_req.cet4 and std.mandarin >= graduation_req.mandarin:
-                    ans = '满足毕业最低要求'
-                else:
-                    ans = '不满足毕业最低要求'
+                # if std.minimum >= graduation_req.credit and std.compulsory >= graduation_req.compulsory \
+                #         and std.elective >= graduation_req.elective and std.physical >= graduation_req.physical \
+                #         and std.cet4 >= graduation_req.cet4 and std.mandarin >= graduation_req.mandarin:
+                #     ans = '满足毕业最低要求'
+                # else:
+                ans = '不满足毕业最低要求'
                 return render(request, 'index.html',
                               {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
                                'm2': max_Score_list[1], 'm3': max_Score_list[2]
