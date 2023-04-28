@@ -251,7 +251,7 @@ class Innovation(models.Model):  # 学生创新创业评分表
         return self.name
 
 
-class majorTechnology(models.Model):  # 学生专业技术评分白
+class majorTechnology(models.Model):  # 学生专业技术评分表
     name = models.CharField(max_length=200, verbose_name='姓名', null=True)
     sno = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
     banji = models.CharField(max_length=200, verbose_name='班级', null=True)

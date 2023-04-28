@@ -253,6 +253,145 @@ def index(request):  # 主页面功能实现及调用
     # know = Score.objects.filter(zs__gte=60).count()
     # gl = Score.objects.filter(gl__gte=60).count()
     # select(id)
+
+    # 用户成绩排名
+    from django.db.models.functions import Rank
+    from django.db.models import F, Avg, Window
+    # majorTechnology.objects.filter(
+    #     sno=std_id
+    # ).values('total_score').annotate(
+    #     avg_mt=Avg('total_score')
+    # ).order_by('sno').annotate(
+    #     rank=Window(
+    #         expression=Rank(),
+    #         order_by=F('avg_mt').desc()
+    #     )
+    # )
+    #专业技术能力排名
+    mt_total_score_li = [majorTechnology.sno for majorTechnology in majorTechnology.objects.all().order_by('-total_score')]
+    print(mt_total_score_li)
+    mt_rank = 1
+    for item in mt_total_score_li:
+        if(item == std_id):
+            print(mt_rank)
+            break
+        else:
+            mt_rank += 1
+    # mtrank = majorTechnology.objects.filter(
+    #     sno=std_id
+    # ).values('total_score').annotate(
+    #     avg_mt=Avg('total_score')
+    # ).order_by('sno').annotate(
+    #     rank=Window(
+    #         expression=Rank(),
+    #         order_by=F('avg_mt').desc()
+    #     )
+    # )
+    # mt_rank = mtrank.values()[0].get('rank')
+    #创新创业能力排名
+    it_total_score_li = [Innovation.sno for Innovation in
+                         Innovation.objects.all().order_by('-total_score')]
+    print(it_total_score_li)
+    it_rank = 1
+    for item in it_total_score_li:
+        if (item == std_id):
+            print(it_rank)
+            break
+        else:
+            it_rank += 1
+    # itrank = Innovation.objects.filter(
+    #     sno=std_id
+    # ).values('total_score').annotate(
+    #     avg_mt=Avg('total_score')
+    # ).order_by('sno').annotate(
+    #     rank=Window(
+    #         expression=Rank(),
+    #         order_by=F('avg_mt').desc()
+    #     )
+    # )
+    # it_rank = itrank.values()[0].get('rank')
+    #知识学习能力排名
+    ln_total_score_li = [learning.sno for learning in
+                         learning.objects.all().order_by('-total_score')]
+    print(ln_total_score_li)
+    ln_rank = 1
+    for item in ln_total_score_li:
+        if (item == std_id):
+            print(ln_rank)
+            break
+        else:
+            ln_rank += 1
+    # lnrank = learning.objects.filter(
+    #     sno=std_id
+    # ).values('total_score').annotate(
+    #     avg_mt=Avg('total_score')
+    # ).order_by('sno').annotate(
+    #     rank=Window(
+    #         expression=Rank(),
+    #         order_by=F('avg_mt').desc()
+    #     )
+    # )
+    # ln_rank = lnrank.values()[0].get('rank')
+    #管理实践能力排名
+    mg_total_score_li = [manage.sno for manage in
+                         manage.objects.all().order_by('-total_score')]
+    print(mg_total_score_li)
+    mg_rank = 1
+    for item in mg_total_score_li:
+        if (item == std_id):
+            print(mg_rank)
+            break
+        else:
+            mg_rank += 1
+    # mgrank = manage.objects.filter(
+    #     sno=std_id
+    # ).values('total_score').annotate(
+    #     avg_mt=Avg('total_score')
+    # ).order_by('sno').annotate(
+    #     rank=Window(
+    #         expression=Rank(),
+    #         order_by=F('avg_mt').desc()
+    #     )
+    # )
+    # mg_rank = mgrank.values()[0].get('rank')
+    #综合发展能力排名
+    cd_total_score_li = [ComprehensiveDevelopment.sno for ComprehensiveDevelopment in
+                         ComprehensiveDevelopment.objects.all().order_by('-total_score')]
+    print(cd_total_score_li)
+    cd_rank = 1
+    for item in cd_total_score_li:
+        if (item == std_id):
+            print(cd_rank)
+            break
+        else:
+            cd_rank += 1
+    # cdrank = ComprehensiveDevelopment.objects.filter(
+    #     sno=std_id
+    # ).values('total_score').annotate(
+    #     avg_mt=Avg('total_score')
+    # ).order_by('sno').annotate(
+    #     rank=Window(
+    #         expression=Rank(),
+    #         order_by=F('avg_mt').desc()
+    #     )
+    # )
+    # cd_rank = cdrank.values()[0].get('rank')
+    # print(111111111)
+    # print(majorTechnology.objects.filter(
+    #     sno=std_id
+    # ).values('total_score').annotate(
+    #     avg_mt=Avg('total_score')
+    # ).order_by('sno').annotate(
+    #     rank=Window(
+    #         expression=Rank(),
+    #         order_by=F('avg_mt').desc()
+    #     )
+    # ))
+    # for jj in mtrank.values():
+    #     print(jj)
+    # print(mtrank.values()[0].get('rank'))
+    # print(111111111)
+    print(mt_rank, it_rank, ln_rank, mg_rank, cd_rank)
     if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
         ans = '满足毕业最低要求'
     else:
@@ -404,6 +543,60 @@ def login(request):  # 登录页面功能实现
                 s4 = manage.objects.get(sno=id)
                 s5 = ComprehensiveDevelopment.objects.get(sno=id)
                 max_Score_list = max_Score()
+
+                # 专业技术能力排名
+                mt_total_score_li = [majorTechnology.sno for majorTechnology in
+                                     majorTechnology.objects.all().order_by('-total_score')]
+                print(mt_total_score_li)
+                mt_rank = 1
+                for item in mt_total_score_li:
+                    if (item == student.id):
+                        break
+                    else:
+                        mt_rank += 1
+                # 创新创业能力排名
+                it_total_score_li = [Innovation.sno for Innovation in
+                                     Innovation.objects.all().order_by('-total_score')]
+                print(it_total_score_li)
+                it_rank = 1
+                for item in it_total_score_li:
+                    if (item == student.id):
+                        break
+                    else:
+                        it_rank += 1
+                # 知识学习能力排名
+                ln_total_score_li = [learning.sno for learning in
+                                     learning.objects.all().order_by('-total_score')]
+                print(ln_total_score_li)
+                ln_rank = 1
+                for item in ln_total_score_li:
+                    if (item == student.id):
+                        break
+                    else:
+                        ln_rank += 1
+                # 管理实践能力排名
+                mg_total_score_li = [manage.sno for manage in
+                                     manage.objects.all().order_by('-total_score')]
+                print(mg_total_score_li)
+                mg_rank = 1
+                for item in mg_total_score_li:
+                    if (item == student.id):
+                        break
+                    else:
+                        mg_rank += 1
+                # 综合发展能力排名
+                cd_total_score_li = [ComprehensiveDevelopment.sno for ComprehensiveDevelopment in
+                                     ComprehensiveDevelopment.objects.all().order_by('-total_score')]
+                print(cd_total_score_li)
+                cd_rank = 1
+                for item in cd_total_score_li:
+                    if (item == student.id):
+                        break
+                    else:
+                        cd_rank += 1
+
+                # print(mt_rank,it_rank,ln_rank,mg_rank,cd_rank)
+
                 request.session['ID'] = student.id
                 request.session['name'] = student.name
                 std_id = student.id
@@ -418,12 +611,14 @@ def login(request):  # 登录页面功能实现
                 ans = '不满足毕业最低要求'
                 return render(request, 'index.html',
                               {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
-                               'm2': max_Score_list[1], 'm3': max_Score_list[2]
-                                  , 'm4': max_Score_list[3], 'm5': max_Score_list[4], 'num_all': num_all,
-                               'num_pass': num_pass, 'number': number,
+                               'm2': max_Score_list[1], 'm3': max_Score_list[2], 'm4': max_Score_list[3],
+                               'm5': max_Score_list[4],
+                               'num_all': num_all,  'num_pass': num_pass, 'number': number,
                                's1': s1.total_score, 's2': s2.total_score, 's3': s3.total_score, 's4': s4.total_score,
                                's5': s5.total_score,
-                               'overallgrade': overallgrade, }, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
+                               'overallgrade': overallgrade,
+                               'mt_rank': mt_rank, 'it_rank': it_rank, 'ln_rank': ln_rank, 'mg_rank': mg_rank,
+                               'cd_rank': cd_rank}, )  # 'zh': zh, 'ch': ch, 'know': know, 'gl': gl
             else:
                 return render(request, 'error.html')
         else:
