@@ -14,12 +14,38 @@ from sqlalchemy import Integer
 
 from . import models
 from .models import Score, Weight, Activity, Application, OverallScore, learning, Innovation, majorTechnology, manage, \
-    ComprehensiveDevelopment
+    ComprehensiveDevelopment, CourseMessage
 from .models import Student, Early_Warning, Course
 # from django.utils.html import strip_tags
 # from notifications.signals import notify
 from notifications.models import Notification
 
+
+def learning_score(n):
+    cour = Course.objects.filter(stu_id = n)
+    stu = Student.objects.get(id = n)
+    sum_learning =0
+    sum_ccredits =0
+    for item in cour:
+        credits = CourseMessage.objects.get(course = item.course).credits
+        sum_learning = sum_learning + credits * item.grade
+        sum_ccredits = sum_ccredits + credits
+    l = sum_learning/sum_ccredits
+    learn = learning(sno=n,total_score=l,name = stu.name,banji=stu.banji,major= stu.major,department = stu.department)
+    learn.save()
+    return l
+
+def course_create(cm):
+    stu = Student.objects.filter(banji=cm.banji)
+    c = Course.objects.filter(course=cm.course)
+    for item in stu:
+        # c = Course.objects.filter(stu_id=item.id, name=item.name, course=cm.course)
+        # if c.exists():
+        #     print(c)
+        # else:
+        c = Course(stu_id=item.id, name=item.name, course=cm.course)
+        c.save()
+    return 0
 
 def my_notifications(request):
     context = {}
@@ -48,8 +74,26 @@ def Application_message(request):  # 学生个人活动报名信息
     stu_id = request.session.get('ID')
     stu_application = Application.objects.filter(no=stu_id)
     stu_application_json = serializers.serialize("json", stu_application)
-    return stu_application_json
+    print(stu_application_json)
+    # return render(request, 'application-message.html', {'application_message_list': stu_application_json, })
+    return render(request, 'application-message.html', locals())
 
+def Application_delete(request):  # 活动取消报名
+    act_id = request.GET.get('aid')
+    act = Application.objects.get(aid=act_id)
+    act_aname = act.aname
+    print(act_id, act_aname, act, type(act_id))
+    stu_id = request.session.get('ID')
+    stu = Student.objects.get(id=stu_id)
+    application = Application.objects.filter(aid=act_id, no=stu.id)
+    application.delete()
+    if application.exists():
+        # 需要弹出的消息框
+        messages.success(request, '取消报名失败，请重试')
+        #  注意你需要在index.html添加我们上面的js代码
+    else:
+        messages.success(request, '取消报名成功')
+    return redirect("http://127.0.0.1:8000/login/application-message.html")
 
 def Application_new(request):  # 活动报名
     act_id = request.GET.get('id')
@@ -154,6 +198,7 @@ def Calculate_grades(id):  # 计算总评分调用,在登录功能中登录成�
 
 def Activity_new(request):  # 活动汇总调用
     stu_id = request.session.get('ID')
+    print(stu_id)
     student = Student.objects.get(id=stu_id)
     name = student.name
     act_list = list()
@@ -333,8 +378,6 @@ def login(request):  # 登录页面功能实现
         print("进入页面")
         id = str(request.POST.get('id'))
         pwd = str(request.POST.get('pwd'))
-        # id = str(id)
-        # pwd = str(pwd)
         if id.isdigit():
             try:
                 student = Student.objects.get(id=id)
@@ -342,12 +385,12 @@ def login(request):  # 登录页面功能实现
                 return render(request, 'error.html')
             sid = str(student.id)
             spwd = str(student.pwd)
-
             print(id, pwd)
             print(sid, spwd)
             if id == sid and pwd == spwd:
                 print('登录成功')
                 Model_creat(id)
+                learning_score(id)
                 select(id)
                 overallgrade = Calculate_grades(id)
                 # Activity_new()
@@ -360,18 +403,16 @@ def login(request):  # 登录页面功能实现
                 s3 = learning.objects.get(sno=id)
                 s4 = manage.objects.get(sno=id)
                 s5 = ComprehensiveDevelopment.objects.get(sno=id)
-                # zh = Score.objects.filter(zy__gte=60).count()
-                # ch = Score.objects.filter(cx__gte=60).count()
-                # know = Score.objects.filter(zs__gte=60).count()
-                # gl = Score.objects.filter(gl__gte=60).count()
-                # select(id)
                 max_Score_list = max_Score()
                 request.session['ID'] = student.id
                 request.session['name'] = student.name
                 std_id = student.id
                 print(std_id)
                 std = Early_Warning.objects.get(id=std_id)
-                if std.minimum > 24 and std.compulsory > 20 and std.elective > 4 and std.physical > 60 and std.cet4 > 425 and std.mandarin > 80:
+                graduation_req = std.grad_req_id
+                if std.minimum >= graduation_req.credit and std.compulsory >= graduation_req.compulsory \
+                        and std.elective >= graduation_req.elective and std.physical >= graduation_req.physical \
+                        and std.cet4 >= graduation_req.cet4 and std.mandarin >= graduation_req.mandarin:
                     ans = '满足毕业最低要求'
                 else:
                     ans = '不满足毕业最低要求'
@@ -392,16 +433,18 @@ def login(request):  # 登录页面功能实现
 
 
 def academic_Early_Warning(request):  # 学业预警页面功能实现及调用
-    name = request.session.get('name')
-    print(name)
+    stu_id = request.session.get('ID')
+    print(stu_id)
+    std = Early_Warning.objects.get(id=stu_id)
+    graduation_req = std.grad_req_id
     num_all = Early_Warning.objects.all().count()
-    num_pass = Early_Warning.objects.filter(minimum__gte=24, compulsory__gte=20, elective__gte=4, physical__gte=60,
-                                            cet4__gte=425, mandarin__gte=80).count()
+    num_pass = Early_Warning.objects.filter(minimum__gte=graduation_req.credit,
+                                            compulsory__gte=graduation_req.compulsory,
+                                            elective__gte=graduation_req.elective,
+                                            physical__gte=graduation_req.physical,
+                                            cet4__gte=graduation_req.cet4,
+                                            mandarin__gte=graduation_req.mandarin).count()
     number = int((num_pass / num_all) * 100)
-    e = Student.objects.get(name=name)
-    std_id = e.id
-    print(std_id)
-    std = Early_Warning.objects.get(id=std_id)
     minimum = std.minimum
     compulsory = std.compulsory
     elective = std.elective
