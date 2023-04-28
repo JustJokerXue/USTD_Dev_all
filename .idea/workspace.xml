@@ -6,16 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="6a234e4f-0614-455f-b17f-a743aaa3342c" name="Changes" comment="主页成绩显示bug修复，用户信息变量调整">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/USTD_App1/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/static/image/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/USTD_Dev_all/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,6 +44,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mr.Wang/Desktop/fig&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -56,7 +66,9 @@
       <workItem from="1681992461062" duration="5000" />
       <workItem from="1681992491236" duration="3746000" />
       <workItem from="1681996437282" duration="32000" />
-      <workItem from="1681996901285" duration="3568000" />
+      <workItem from="1681996901285" duration="4961000" />
+      <workItem from="1682592870786" duration="25000" />
+      <workItem from="1682664302102" duration="1905000" />
     </task>
     <task id="LOCAL-00001" summary="modify">
       <created>1681913290900</created>
@@ -93,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681999074259</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="通知消息界面bug修复">
+      <created>1682001924440</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682001924440</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +137,7 @@
     <MESSAGE value="路由跳转统一，接入站内消息通知功能" />
     <MESSAGE value="主页成绩显示bug修复，用户信息变量调整" />
     <MESSAGE value="系统名称修改，bug修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="系统名称修改，bug修复" />
+    <MESSAGE value="通知消息界面bug修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="通知消息界面bug修复" />
   </component>
 </project>
