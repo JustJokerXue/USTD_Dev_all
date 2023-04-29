@@ -1,6 +1,6 @@
 from .models import Early_Warning, learning, CourseMessage
 from .models import Innovation, majorTechnology, manage, ComprehensiveDevelopment, responsible,administrator, GraduationRequirement, Application,OverallScore
-from .models import *
+from .models import Course
 from .models import Score
 from .models import Student
 from .models import Activity
@@ -13,9 +13,9 @@ from import_export.admin import ImportExportModelAdmin
 
 from .views import course_create
 
-admin.site.site_header = '大学生发展综合素质测评系统管理后台'  # 设置header
-admin.site.site_title = '大学生发展综合素质测评系统管理后台'  # 设置title
-admin.site.index_title = '大学生发展综合素质测评系统管理后台'
+admin.site.site_header = '高校学生综合素质测评及综合分析平台--后台'  # 设置header
+admin.site.site_title = '高校学生综合素质测评及综合分析平台--后台'  # 设置title
+admin.site.index_title = '高校学生综合素质测评及综合分析平台--后台'
 
 from .models import Student
 @admin.register(Student)
@@ -42,6 +42,8 @@ class StudentAdmin(ImportExportModelAdmin):  # 学生用户信息表后台布局
 
         super().save_model(request, obj, form, change)
 
+from .models import OverallScore
+
 @admin.register(CourseMessage)
 class CourseMessageAdmin(ImportExportModelAdmin):  # 学生用户信息表后台布局设计
     list_display = ('cid', 'course','banji', 'teacher', 'credits')
@@ -56,7 +58,7 @@ class CourseMessageAdmin(ImportExportModelAdmin):  # 学生用户信息表后台
         course_create(cm)
         super().save_model(request, obj, form, change)
 
-from .models import OverallScore
+
 @admin.register(OverallScore)
 class OverallScoreAdmin(ImportExportModelAdmin):  # 总评成绩表后台布局设计
     list_display = ('id', 'name', 'banji', 'major', 'department', 'total_score')
@@ -85,18 +87,19 @@ class ScoreAdmin(ImportExportModelAdmin):  # 学生五大方面评分表后台�
     list_per_page = 20
     list_editable = ('zy', 'cx', 'zs', 'gl', 'zh', 'overallgrade')
 
+from .models import Course
 @admin.register(Course)
-class Course(ImportExportModelAdmin):  # 课程成绩表后台布局设计
-    list_display = ('stu_id', 'name', 'course','grade', 'gpa')
+class Course(ImportExportModelAdmin):  # 知识学习表后台布局设计
+    list_display = ('stu_id', 'name', 'course', 'grade', 'gpa')
     list_display_links = ("stu_id",)
     search_fields = ('stu_id', 'course')  # 查找
     list_per_page = 20
-    list_editable = ('course','grade', 'gpa')
+    list_editable = ('course', 'grade', 'gpa')
     # list_filter = ("id", "sp")
 
 from .models import learning
 @admin.register(learning)
-class learning(ImportExportModelAdmin):  # 知识学习表后台布局设计
+class learning(ImportExportModelAdmin):  # 学生创新创业评分表后台布局设计
     list_display = ('name', 'sno', 'banji', 'major', 'department', 'total_score')
     list_display_links = ("sno",)
     search_fields = ('name',)  # 查找
@@ -264,7 +267,7 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
             except Exception as err:
                 print(err)
             print(item)
-            item.zhuangtai = 'F'
+            item.zhuangtai = 'D'
             item.save()
 
     # 更改Action的内容为通过

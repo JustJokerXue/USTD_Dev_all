@@ -296,7 +296,7 @@ SIMPLEUI_CONFIG = {
                 {
                     'name': 'notifications',
                     # 注意url按'/admin/应用名小写/模型名小写/'命名。
-                    'url': '/admin/USTD_App1/notifications/',
+                    'url': '/admin/notifications/notification/',
                     'icon': 'fa fa-tasks'
                 },
 
