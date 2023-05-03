@@ -14,7 +14,7 @@ from sqlalchemy import Integer
 
 from . import models
 from .models import Score, Weight, Activity, Application, OverallScore, learning, Innovation, majorTechnology, manage, \
-    ComprehensiveDevelopment, CourseMessage
+    ComprehensiveDevelopment, CourseMessage, GraduationRequirement
 from .models import Student, Early_Warning, Course
 # from django.utils.html import strip_tags
 # from notifications.signals import notify
@@ -392,13 +392,17 @@ def index(request):  # 主页面功能实现及调用
     # print(mtrank.values()[0].get('rank'))
     # print(111111111)
     print(mt_rank, it_rank, ln_rank, mg_rank, cd_rank)
-    graduation_req = std.grad_req_id
-    if std.minimum >= graduation_req.credit and std.compulsory >= graduation_req.compulsory \
-            and std.elective >= graduation_req.elective and std.physical >= graduation_req.physical \
-            and std.cet4 >= graduation_req.cet4 and std.mandarin >= graduation_req.mandarin:
-        ans = '满足毕业最低要求'
+    graduation_req = GraduationRequirement.objects.get(banji=std.banji)
+    if std.get_credit < graduation_req.credit or std.fail_num > graduation_req.fail_num_limit \
+            or std.physical < graduation_req.physical \
+            or std.cet4 < graduation_req.cet4 or std.mandarin < graduation_req.mandarin:
+        ans = '红色预警'
+    elif std.avg_grade < graduation_req.avg_grade:
+        ans = '橙色预警'
+    elif std.zongce < graduation_req.zongce:
+        ans = '蓝色预警'
     else:
-        ans = '不满足毕业最低要求'
+        ans = '没有预警'
     return render(request, 'index.html', locals(), )
     # {'ID': e.id, 'name': e.name, 'ans': ans, 'm1': max_Score_list[0],
     #  'm2': max_Score_list[1], 'm3': max_Score_list[2]
@@ -605,13 +609,17 @@ def login(request):  # 登录页面功能实现
                 std_id = student.id
                 print(std_id)
                 std = Early_Warning.objects.get(id=std_id)
-                graduation_req = std.grad_req_id
-                if std.minimum >= graduation_req.credit and std.compulsory >= graduation_req.compulsory \
-                        and std.elective >= graduation_req.elective and std.physical >= graduation_req.physical \
-                        and std.cet4 >= graduation_req.cet4 and std.mandarin >= graduation_req.mandarin:
-                    ans = '满足毕业最低要求'
+                graduation_req = GraduationRequirement.objects.get(banji=std.banji)
+                if std.get_credit < graduation_req.credit or std.fail_num > graduation_req.fail_num_limit \
+                        or std.physical < graduation_req.physical \
+                        or std.cet4 < graduation_req.cet4 or std.mandarin < graduation_req.mandarin:
+                    ans = '红色预警'
+                elif std.avg_grade < graduation_req.avg_grade:
+                    ans = '橙色预警'
+                elif std.zongce < graduation_req.zongce:
+                    ans = '蓝色预警'
                 else:
-                    ans = '不满足毕业最低要求'
+                    ans = '无预警'
                 return render(request, 'index.html',
                               {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
                                'm2': max_Score_list[1], 'm3': max_Score_list[2], 'm4': max_Score_list[3],
@@ -634,18 +642,18 @@ def academic_Early_Warning(request):  # 学业预警页面功能实现及调用
     stu_id = request.session.get('ID')
     print(stu_id)
     std = Early_Warning.objects.get(id=stu_id)
-    graduation_req = std.grad_req_id
+    graduation_req = GraduationRequirement.objects.get(banji=std.banji)
     num_all = Early_Warning.objects.all().count()
-    num_pass = Early_Warning.objects.filter(minimum__gte=graduation_req.credit,
-                                            compulsory__gte=graduation_req.compulsory,
-                                            elective__gte=graduation_req.elective,
+    num_pass = Early_Warning.objects.filter(get_credit__gte=graduation_req.credit,
+                                            fail_num__lte=graduation_req.fail_num_limit,
                                             physical__gte=graduation_req.physical,
                                             cet4__gte=graduation_req.cet4,
                                             mandarin__gte=graduation_req.mandarin).count()
     number = int((num_pass / num_all) * 100)
-    minimum = std.minimum
-    compulsory = std.compulsory
-    elective = std.elective
+    get_credit = std.get_credit
+    zongce = std.zongce
+    avg_grade = std.avg_grade
+    fail_num = std.fail_num
     physical = std.physical
     cet4 = std.cet4
     mandarin = std.mandarin
