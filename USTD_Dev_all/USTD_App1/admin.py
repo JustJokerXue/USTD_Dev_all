@@ -181,12 +181,11 @@ class Application(ImportExportModelAdmin):  # 活动报名表后台布局设计
 from .models import Early_Warning
 @admin.register(Early_Warning)
 class Early_WarningAdmin(ImportExportModelAdmin):  # 学业预警成绩表后台布局设计
-    list_display = ('id', 'minimum', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin', 'grad_req_id')
+    list_display = ('id', 'banji', 'get_credit', 'zongce', 'avg_grade', 'fail_num', 'physical', 'cet4', 'mandarin')
     list_display_links = ("id",)
     search_fields = ('id',)  # 查找
     list_per_page = 20
-    list_editable = ('minimum', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin')
-    fk_fields = ['grad_req_id']
+    list_editable = ('get_credit', 'zongce', 'avg_grade', 'fail_num', 'physical', 'cet4', 'mandarin')
     # list_filter = ("id", "sp")
 
 from .models import responsible
@@ -267,7 +266,7 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
             except Exception as err:
                 print(err)
             print(item)
-            item.zhuangtai = 'D'
+            item.zhuangtai = 'F'
             item.save()
 
     # 更改Action的内容为通过
@@ -276,11 +275,11 @@ class shenheAdmin(ImportExportModelAdmin):  # 上传审核材料汇总表后台�
 from .models import GraduationRequirement
 @admin.register(GraduationRequirement)
 class GraduationRequirementAdmin(ImportExportModelAdmin):  # 毕业要求后台设计
-    list_display = ('id', 'credit', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin')
+    list_display = ('id', 'banji', 'credit', 'zongce', 'avg_grade', 'fail_num_limit', 'physical', 'cet4', 'mandarin')
     list_display_links = ("id",)
     search_fields = ('id',)  # 查找
     list_per_page = 20
-    list_editable = ('credit', 'compulsory', 'elective', 'physical', 'cet4', 'mandarin')
+    list_editable = ('credit', 'zongce', 'avg_grade', 'fail_num_limit', 'physical', 'cet4', 'mandarin')
 
 
 def find_model_index(name):

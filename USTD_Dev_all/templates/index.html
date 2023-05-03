@@ -491,11 +491,14 @@
                         <hr style="border-color: #0b0b0b">
                         <div>
                             <h6 class="header-title mb-4 mt-0"><font color="black">学业预警情况</font></h6>
-                            {% if ans == "满足毕业最低要求" %}
-                                <span><font color="green"><strong>{{ ans }}</strong></font></span></br></br>
-                            {% endif %}
-                            {% if ans == "不满足毕业最低要求" %}
+                            {% if ans == "红色预警" %}
                                 <span><font color="red"><strong>{{ ans }}</strong></font></span></br></br>
+                            {% elif ans == "橙色预警" %}
+                                <span><font color="orange"><strong>{{ ans }}</strong></font></span></br></br>
+                            {% elif ans == "蓝色预警" %}
+                                <span><font color="blue"><strong>{{ ans }}</strong></font></span></br></br>
+                            {% elif ans == "没有预警" %}
+                                <span><font color="green"><strong>{{ ans }}</strong></font></span></br></br>
                             {% endif %}
                             <a href="Academic_Early_Warning.html"><u>详细展开</u></a></br>
                         </div>
