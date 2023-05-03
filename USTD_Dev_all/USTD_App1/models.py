@@ -57,21 +57,23 @@ from django.utils.html import format_html
 
 class GraduationRequirement(models.Model):  # 学生毕业要求表
     id = models.IntegerField(default=0, verbose_name='学业要求id', primary_key=True)
-    credit = models.FloatField(default=0, verbose_name='要求学分', null=True)
-    compulsory = models.FloatField(default=0, verbose_name='必修课成绩', null=True)
-    elective = models.FloatField(default=0, verbose_name='选修课成绩', null=True)
+    banji = models.CharField(max_length=200, verbose_name='班级', null=True)
+    credit = models.FloatField(default=0, verbose_name='应修学分', null=True)
+    zongce = models.FloatField(default=0, verbose_name='平均综测成绩', null=True)
+    avg_grade = models.FloatField(default=0, verbose_name='平均加权平均成绩', null=True)
+    fail_num_limit = models.IntegerField(default=0, verbose_name='不及格课程数限制', null=True)
     physical = models.FloatField(default=0, verbose_name='体测成绩', null=True)
     cet4 = models.FloatField(default=0, verbose_name='四级成绩', null=True)
     mandarin = models.FloatField(default=0, verbose_name='普通话成绩', null=True)
 
     class Meta:
         db_table = 'GraduationRequirement'
-        verbose_name = "学业要求"
-        verbose_name_plural = "学业要求"
+        verbose_name = "学业预警标准"
+        verbose_name_plural = "学业预警标准"
         constraints = [
             models.CheckConstraint(check=models.Q(credit__gte=0, credit__lte=170), name='grad_req_credit'),
-            models.CheckConstraint(check=models.Q(compulsory__gte=0, compulsory__lte=100), name='grad_req_compulsory'),
-            models.CheckConstraint(check=models.Q(elective__gte=0, elective__lte=100), name='grad_req_elective'),
+            models.CheckConstraint(check=models.Q(zongce__gte=0, zongce__lte=100), name='grad_req_zongce'),
+            models.CheckConstraint(check=models.Q(avg_grade__gte=0, avg_grade__lte=100), name='grad_req_avg_grade'),
             models.CheckConstraint(check=models.Q(physical__gte=0, physical__lte=100), name='grad_req_physical'),
             models.CheckConstraint(check=models.Q(cet4__gte=0, cet4__lte=750), name='grad_req_cet4'),
             models.CheckConstraint(check=models.Q(mandarin__gte=0, mandarin__lte=100), name='grad_req_mandarin'),
@@ -80,24 +82,23 @@ class GraduationRequirement(models.Model):  # 学生毕业要求表
 
 class Early_Warning(models.Model):  # 学业预警成绩表
     id = models.IntegerField(default=0, verbose_name='学号', primary_key=True)
-    minimum = models.FloatField(default=0, verbose_name='实修学分', null=True)
-    compulsory = models.FloatField(default=0, verbose_name='必修课成绩', null=True)
-    elective = models.FloatField(default=0, verbose_name='选修课成绩', null=True)
+    banji = models.CharField(max_length=200, verbose_name='班级', null=True)
+    get_credit = models.FloatField(default=0, verbose_name='实修学分', null=True)
+    zongce = models.FloatField(default=0, verbose_name='当前综测成绩', null=True)
+    avg_grade = models.FloatField(default=0, verbose_name='加权平均成绩', null=True)
+    fail_num = models.IntegerField(default=0, verbose_name='不及格课程数', null=True)
     physical = models.FloatField(default=0, verbose_name='体测成绩', null=True)
     cet4 = models.FloatField(default=0, verbose_name='四级成绩', null=True)
     mandarin = models.FloatField(default=0, verbose_name='普通话成绩', null=True)
-    grad_req_id = models.ForeignKey(GraduationRequirement, blank=True, null=True,
-                                    verbose_name="学业要求id", on_delete=models.DO_NOTHING,
-                                    db_column='stu_gradReq_id')
 
     class Meta:
         db_table = 'Early_Warning'
         verbose_name = "学业预警"
         verbose_name_plural = "学业预警"
         constraints = [
-            models.CheckConstraint(check=models.Q(minimum__gte=0, minimum__lte=170), name='minimum'),
-            models.CheckConstraint(check=models.Q(compulsory__gte=0, compulsory__lte=100), name='compulsory'),
-            models.CheckConstraint(check=models.Q(elective__gte=0, elective__lte=100), name='elective'),
+            models.CheckConstraint(check=models.Q(get_credit__gte=0, get_credit__lte=170), name='get_credit'),
+            models.CheckConstraint(check=models.Q(zongce__gte=0, zongce__lte=100), name='zongce'),
+            models.CheckConstraint(check=models.Q(avg_grade__gte=0, avg_grade__lte=100), name='avg_grade'),
             models.CheckConstraint(check=models.Q(physical__gte=0, physical__lte=100), name='physical'),
             models.CheckConstraint(check=models.Q(cet4__gte=0, cet4__lte=750), name='cet4'),
             models.CheckConstraint(check=models.Q(mandarin__gte=0, mandarin__lte=100), name='mandarin'),

@@ -302,64 +302,75 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="mt-0 header-title">学业预警</h4>
-                        <p class="text-muted mb-4 font-13">以下要求只要其中一项没有达到就会预警</p>
+                        <p class="text-muted mb-4 font-13">
+                            根据以下项目的情况来确定预警等级，预警等级分为四个：红色预警 > 橙色预警 > 蓝色预警 > 没有预警
+                        </p>
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th style="width: 50%;">项目</th>
-                                <th>成绩/及格分数</th>
+                                <th>当前值/评判标准</th>
                                 <th>是否合格</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>最低学分要求</td>
+                                <td>实修学分</td>
                                 <td><a href="#" id="inline-xuefen" data-pk="1">
-                                    {% if minimum >= 24 %}
-                                    <font color="green">{{ minimum }}</font>/24</a>
-                                    {% endif %}
-                                    {% if minimum < 24 %}
-                                    <font color="red">{{ minimum }}</font>/24
+                                    {% if get_credit >= graduation_req.credit %}
+                                    <font color="green">{{ get_credit }}</font>/{{ graduation_req.credit }}</a>
+                                    {% else %}
+                                    <font color="red">{{ get_credit }}</font>/{{ graduation_req.credit }}
                                     {% endif %}
                                 </td>
-                                {% if minimum >= 24 %}
+                                {% if get_credit >= graduation_req.credit %}
                                 <td><font color="green">是</font></td>
-                                {% endif %}
-                                {% if minimum < 24 %}
+                                {% else %}
                                 <td><font color="red">否</font></td>
                                 {% endif %}
                             </tr>
                             <tr>
-                                <td>必修课成绩</td>
-                                <td><a href="#" id="inline-bixiu" data-pk="1">
-                                    {% if compulsory >= 20 %}
-                                    <font color="green">{{ compulsory }}</font>/20</a>
-                                    {% endif %}
-                                    {% if compulsory < 20 %}
-                                    <font color="red">{{ compulsory }}</font>/20
+                                <td>当前综测成绩</td>
+                                <td><a href="#" id="inline-zongce" data-pk="1">
+                                    {% if zongce >= graduation_req.zongce %}
+                                    <font color="green">{{ zongce }}</font>/{{ graduation_req.zongce }}</a>
+                                    {% else %}
+                                    <font color="red">{{ zongce }}</font>/{{ graduation_req.zongce }}
                                     {% endif %}
                                 </td>
-                                {% if compulsory >= 20 %}
+                                {% if zongce >= graduation_req.zongce %}
                                 <td><font color="green">是</font></td>
-                                {% endif %}
-                                {% if compulsory < 20 %}
+                                {% else %}
                                 <td><font color="red">否</font></td>
                                 {% endif %}
                             </tr>
                             <tr>
-                                <td>选修课成绩</td>
-                                <td><a href="#" id="inline-xuanxiu" data-pk="1" data-value="">
-                                    {% if elective >= 4 %}
-                                    <font color="green">{{ elective }}</font>/4</a>
-                                    {% endif %}
-                                    {% if elective < 4 %}
-                                    <font color="red">{{ elective }}</font>/4
+                                <td>加权平均成绩</td>
+                                <td><a href="#" id="inline-avg-grade" data-pk="1" data-value="">
+                                    {% if avg_grade >= graduation_req.avg_grade %}
+                                    <font color="green">{{ avg_grade }}</font>/{{ graduation_req.avg_grade }}</a>
+                                    {% else %}
+                                    <font color="red">{{ avg_grade }}</font>/{{ graduation_req.avg_grade }}
                                     {% endif %}
                                 </td>
-                                {% if elective >= 4 %}
+                                {% if avg_grade >= graduation_req.avg_grade %}
                                 <td><font color="green">是</font></td>
+                                {% else %}
+                                <td><font color="red">否</font></td>
                                 {% endif %}
-                                {% if elective < 4 %}
+                            </tr>
+                            <tr>
+                                <td>不及格课程数</td>
+                                <td><a href="#" id="inline-fail" data-pk="1" data-value="">
+                                    {% if fail_num <= graduation_req.fail_num_limit %}
+                                    <font color="green">{{ fail_num }}</font>/{{ graduation_req.fail_num_limit }}</a>
+                                    {% else %}
+                                    <font color="red">{{ fail_num }}</font>/{{ graduation_req.fail_num_limit }}
+                                    {% endif %}
+                                </td>
+                                {% if fail_num <= graduation_req.fail_num_limit %}
+                                <td><font color="green">是</font></td>
+                                {% else %}
                                 <td><font color="red">否</font></td>
                                 {% endif %}
                             </tr>
@@ -368,53 +379,49 @@
                                 <td><a href="#" id="inline-tiyu" data-type="select" data-pk="1"
                                        data-value="0" data-source="/status"
                                        data-title="Select status">
-                                    {% if physical >= 60 %}
-                                    <font color="green">{{ physical }}</font>/60</a>
-                                    {% endif %}
-                                    {% if physical < 60 %}
-                                    <font color="red">{{ physical }}</font>/60
+                                    {% if physical >= graduation_req.physical %}
+                                    <font color="green">{{ physical }}</font>/{{ graduation_req.physical }}</a>
+                                    {% else %}
+                                    <font color="red">{{ physical }}</font>/{{ graduation_req.physical }}
                                     {% endif %}
                                 </td>
-                                {% if physical >= 60 %}
+                                {% if physical >= graduation_req.physical %}
                                 <td><font color="green">是</font></td>
-                                {% endif %}
-                                {% if physical < 60 %}
+                                {% else %}
                                 <td><font color="red">否</font></td>
                                 {% endif %}
                             </tr>
                             <tr>
                                 <td>四级成绩</td>
-                                <td><a href="#" id="inline-siji" data-type="combodate"
-                                       data-pk="1" data-title="">
-                                    {% if cet4 >= 425 %}
-                                    <font color="green">{{ cet4 }}</font>/425</a>
-                                    {% endif %}
-                                    {% if cet4 < 425 %}
-                                    <font color="red">{{ cet4 }}</font>/425
+                                <td><a href="#" id="inline-cet4" data-type="select" data-pk="1"
+                                       data-value="0" data-source="/status"
+                                       data-title="Select status">
+                                    {% if cet4 >= graduation_req.cet4 %}
+                                    <font color="green">{{ cet4 }}</font>/{{ graduation_req.cet4 }}</a>
+                                    {% else %}
+                                    <font color="red">{{ cet4 }}</font>/{{ graduation_req.cet4 }}
                                     {% endif %}
                                 </td>
-                                {% if cet4 >= 425 %}
+                                {% if cet4 >= graduation_req.cet4 %}
                                 <td><font color="green">是</font></td>
-                                {% endif %}
-                                {% if cet4 < 425 %}
+                                {% else %}
                                 <td><font color="red">否</font></td>
                                 {% endif %}
                             </tr>
                             <tr>
                                 <td>普通话成绩</td>
-                                <td><a href="#" id="inline-putonghua" data-type="textarea" data-pk="1"
-                                       data-title="Enter comments">
-                                    {% if mandarin >= 80 %}
-                                    <font color="green">{{ mandarin }}</font>/80</a>
-                                    {% endif %}
-                                    {% if mandarin < 80 %}
-                                    <font color="red">{{ mandarin }}</font>/80
+                                <td><a href="#" id="inline-mandarin" data-type="select" data-pk="1"
+                                       data-value="0" data-source="/status"
+                                       data-title="Select status">
+                                    {% if mandarin >= graduation_req.mandarin %}
+                                    <font color="green">{{ mandarin }}</font>/{{ graduation_req.mandarin }}</a>
+                                    {% else %}
+                                    <font color="red">{{ mandarin }}</font>/{{ graduation_req.mandarin }}
                                     {% endif %}
                                 </td>
-                                {% if mandarin >= 80 %}
+                                {% if mandarin >= graduation_req.mandarin %}
                                 <td><font color="green">是</font></td>
-                                {% endif %}
-                                {% if mandarin < 80 %}
+                                {% else %}
                                 <td><font color="red">否</font></td>
                                 {% endif %}
                             </tr>
