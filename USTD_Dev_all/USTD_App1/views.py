@@ -619,7 +619,7 @@ def login(request):  # 登录页面功能实现
                 elif std.zongce < graduation_req.zongce:
                     ans = '蓝色预警'
                 else:
-                    ans = '无预警'
+                    ans = '没有预警'
                 return render(request, 'index.html',
                               {'ID': student.id, 'name': student.name, 'ans': ans, 'm1': max_Score_list[0],
                                'm2': max_Score_list[1], 'm3': max_Score_list[2], 'm4': max_Score_list[3],

@@ -276,7 +276,7 @@ SIMPLEUI_CONFIG = {
             'icon': 'fa fa-th-list',
             'models': [
                 {
-                    'name': '学业要求',
+                    'name': '学业预警参考',
                     # 注意url按'/admin/应用名小写/模型名小写/'命名。
                     'url': '/admin/USTD_App1/graduationrequirement/',
                     'icon': 'fa fa-tasks'

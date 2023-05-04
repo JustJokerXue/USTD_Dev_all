@@ -57,7 +57,7 @@ from django.utils.html import format_html
 
 class GraduationRequirement(models.Model):  # 学生毕业要求表
     id = models.IntegerField(default=0, verbose_name='学业要求id', primary_key=True)
-    banji = models.CharField(max_length=200, verbose_name='班级', null=True)
+    banji = models.CharField(max_length=200, verbose_name='班级', unique=True, default='20级软件工程')
     credit = models.FloatField(default=0, verbose_name='应修学分', null=True)
     zongce = models.FloatField(default=0, verbose_name='平均综测成绩', null=True)
     avg_grade = models.FloatField(default=0, verbose_name='平均加权平均成绩', null=True)
@@ -68,8 +68,8 @@ class GraduationRequirement(models.Model):  # 学生毕业要求表
 
     class Meta:
         db_table = 'GraduationRequirement'
-        verbose_name = "学业预警标准"
-        verbose_name_plural = "学业预警标准"
+        verbose_name = "学业预警参考"
+        verbose_name_plural = "学业预警参考"
         constraints = [
             models.CheckConstraint(check=models.Q(credit__gte=0, credit__lte=170), name='grad_req_credit'),
             models.CheckConstraint(check=models.Q(zongce__gte=0, zongce__lte=100), name='grad_req_zongce'),
